@@ -1,0 +1,74 @@
+<!DOCTYPE html><html lang="en"><head><title>main</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="main"><meta name="groc-project-path" content="src/main.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/main.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+
+<span class="nv">Algorithm = </span><span class="nx">require</span> <span class="s">&#39;./algorithm&#39;</span>
+<span class="nv">Batch = </span><span class="nx">require</span> <span class="s">&#39;./batch&#39;</span>
+<span class="nv">Constraint = </span><span class="nx">require</span> <span class="s">&#39;./constraint&#39;</span>
+<span class="nv">Cypher = </span><span class="nx">require</span> <span class="s">&#39;./cypher&#39;</span>
+<span class="nv">Index = </span><span class="nx">require</span> <span class="s">&#39;./index&#39;</span>
+<span class="nv">Label = </span><span class="nx">require</span> <span class="s">&#39;./label&#39;</span>
+<span class="nv">Node = </span><span class="nx">require</span> <span class="s">&#39;./node&#39;</span>
+<span class="nv">Relationship = </span><span class="nx">require</span> <span class="s">&#39;./relationship&#39;</span>
+<span class="nv">Traversal = </span><span class="nx">require</span> <span class="s">&#39;./traversal&#39;</span>
+
+<span class="k">class</span> <span class="nx">Neo4js</span> <span class="k">extends</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">Module</span>
+    <span class="nx">@include</span> <span class="nx">Algorithm</span>
+    <span class="nx">@include</span> <span class="nx">Batch</span>
+    <span class="nx">@include</span> <span class="nx">Constraint</span>
+    <span class="nx">@include</span> <span class="nx">Cypher</span>
+    <span class="nx">@include</span> <span class="nx">Index</span>
+    <span class="nx">@include</span> <span class="nx">Label</span>
+    <span class="nx">@include</span> <span class="nx">Node</span>
+    <span class="nx">@include</span> <span class="nx">Relationship</span>
+    <span class="nx">@include</span> <span class="nx">Traversal</span>
+
+    <span class="nv">constructor: </span><span class="nf">(url) -&gt;</span>
+        <span class="k">if</span> <span class="nx">url</span>
+            <span class="vi">@url = </span><span class="nx">url</span>
+        <span class="k">else</span>
+            <span class="vi">@url = </span><span class="s">&#39;http://localhost:7474&#39;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-service">Get service</h3>
+
+<p>Without properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node">Details</a></p>
+
+<pre><code>neo
+.service()
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">service: </span><span class="nf">-&gt;</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data&quot;</span><span class="p">)</span>
+
+<span class="nv">exports.version = </span><span class="s">&#39;0.1.0&#39;</span>
+
+<span class="nv">exports.Neo4js = </span><span class="nx">Neo4js</span>
+
+<span class="nv">neo = </span><span class="k">new</span> <span class="nx">Neo4js</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>console.log neo
+neo.executeCypher('START root=node(*) RETURN root')
+.then((data) ->
+    console.log data
+)</p></div></div><div class="code"><div class="wrapper"><span class="nx">neo</span>
+<span class="p">.</span><span class="nx">queryBuilder</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">return</span><span class="p">([</span><span class="s">&#39;to&#39;</span><span class="p">,</span> <span class="s">&#39;type&#39;</span><span class="p">])</span>
+<span class="p">.</span><span class="nx">orderBy</span><span class="p">({</span>
+    <span class="nv">to: </span><span class="s">&#39;asc&#39;</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
+
+<span class="nx">neo</span>
+<span class="p">.</span><span class="nx">queryBuilder</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="s">&#39;*&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">return</span><span class="p">(</span><span class="s">&#39;*&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">execute</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nf">(data) -&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;error&#39;</span><span class="p">,</span> <span class="nx">arguments</span>
+<span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nf">(data) -&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">data</span>
+<span class="p">)</span>
+
+<span class="nx">neo</span>
+<span class="p">.</span><span class="nx">queryBuilder</span><span class="p">()</span>
+<span class="p">.</span><span class="nx">direction</span><span class="p">(</span><span class="s">&#39;n=a/tr=love/n&#39;</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">toString</span><span class="p">()</span></div></div></div></div></body></html>

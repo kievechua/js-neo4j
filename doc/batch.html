@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><title>batch</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="batch"><meta name="groc-project-path" content="src/batch.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/batch.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+
+<span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="execute-batch-operation">Execute batch operation</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships">Details</a></p>
+
+<pre><code>neo
+.getRelationships(1, {
+    "to" : "http://localhost:7474/db/data/node/43",
+    "max_depth" : 3,
+    "relationships" : {
+        "type" : "to",
+        "direction" : "out"
+    },
+    "algorithm" : "shortestPath"
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">executeBatch: </span><span class="nf">(params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/batch&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="execute-multiple-operations-in-batch-streaming">Execute multiple operations in batch streaming</h3>
+
+<p>TODO
+<a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships">Details</a></p>
+
+<pre><code>neo
+.getRelationships(1, {
+    "to" : "http://localhost:7474/db/data/node/43",
+    "max_depth" : 3,
+    "relationships" : {
+        "type" : "to",
+        "direction" : "out"
+    },
+    "algorithm" : "shortestPath"
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">executeBatchStream: </span><span class="nf">(params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/batch&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div></div></body></html>

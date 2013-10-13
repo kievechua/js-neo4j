@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><title>node</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="node"><meta name="groc-project-path" content="src/node.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/node.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+
+<span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-node">Create node</h3>
+
+<p>Without properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node">Details</a></p>
+
+<pre><code>neo
+.createNode()
+.then(...)
+.fail(...)
+.done(...)
+</code></pre>
+
+<p>With properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node-with-properties">Details</a></p>
+
+<pre><code>neo
+.createNode({
+  name: 'Kieve'
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createNode: </span><span class="nf">(params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-or-create-unique-node-create">Get or create unique node (create)</h3>
+
+<pre><code>neo
+.uniqueNode('people', {
+    "key" : "name",
+    "value" : "Tobias",
+    "properties" : {
+        "name" : "Tobias",
+        "sequence" : 1
+    }
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">uniqueNode: </span><span class="nf">(label, mode) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/index/node/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">?uniqueness=</span><span class="si">#{</span><span class="nx">mode</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-node">Get node</h3>
+
+<p>Note that the response contains URI/templates for the available operations for getting properties and relationships.
+<a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-get-node">Details</a></p>
+
+<pre><code>neo
+.getNode(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getNode: </span><span class="nf">(id) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="delete-node">Delete node</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-delete-node">Details</a></p>
+
+<pre><code>neo
+.deleteNode(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteNode: </span><span class="nf">(id) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+
+    <span class="nv">getNodeProperties: </span><span class="nf">(id) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">setNodeProperty: </span><span class="nf">(id, property, value) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">value</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">updateNodeProperties: </span><span class="nf">(id, params) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">deleteNodeProperties: </span><span class="nf">(id) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">deleteNodeProperty: </span><span class="nf">(id, property) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span></div></div></div></div></body></html>

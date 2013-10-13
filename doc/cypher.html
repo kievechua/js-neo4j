@@ -1,0 +1,300 @@
+<!DOCTYPE html><html lang="en"><head><title>cypher</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="cypher"><meta name="groc-project-path" content="src/cypher.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/cypher.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">_ = </span><span class="nx">require</span> <span class="s">&#39;lodash&#39;</span>
+<span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+
+<span class="nv">RESERVED = </span><span class="p">[</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;create&#39;</span><span class="p">,</span> <span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;delete&#39;</span><span class="p">,</span> <span class="s">&#39;foreach&#39;</span><span class="p">,</span> <span class="s">&#39;match&#39;</span><span class="p">,</span> <span class="s">&#39;where&#39;</span><span class="p">,</span> <span class="s">&#39;with&#39;</span>
+             <span class="s">&#39;return&#39;</span><span class="p">,</span> <span class="s">&#39;skip&#39;</span><span class="p">,</span> <span class="s">&#39;limit&#39;</span><span class="p">,</span> <span class="s">&#39;order&#39;</span><span class="p">,</span> <span class="s">&#39;by&#39;</span><span class="p">,</span> <span class="s">&#39;asc&#39;</span><span class="p">,</span> <span class="s">&#39;desc&#39;</span><span class="p">,</span> <span class="s">&#39;on&#39;</span><span class="p">,</span> <span class="s">&#39;when&#39;</span><span class="p">,</span>
+             <span class="s">&#39;case&#39;</span><span class="p">,</span> <span class="s">&#39;then&#39;</span><span class="p">,</span> <span class="s">&#39;else&#39;</span><span class="p">,</span> <span class="s">&#39;drop&#39;</span><span class="p">,</span> <span class="s">&#39;using&#39;</span><span class="p">,</span> <span class="s">&#39;merge&#39;</span><span class="p">,</span> <span class="s">&#39;constraint&#39;</span><span class="p">,</span> <span class="s">&#39;assert&#39;</span>
+             <span class="s">&#39;scan&#39;</span><span class="p">,</span> <span class="s">&#39;remove&#39;</span><span class="p">,</span> <span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="s">&#39;all&#39;</span><span class="p">,</span> <span class="s">&#39;any&#39;</span><span class="p">,</span> <span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;single&#39;</span><span class="p">,</span> <span class="s">&#39;length&#39;</span><span class="p">,</span>
+             <span class="s">&#39;type&#39;</span><span class="p">,</span> <span class="s">&#39;id&#39;</span><span class="p">,</span> <span class="s">&#39;coalesce&#39;</span><span class="p">,</span> <span class="s">&#39;head&#39;</span><span class="p">,</span> <span class="s">&#39;last&#39;</span><span class="p">,</span> <span class="s">&#39;timestamp&#39;</span><span class="p">,</span> <span class="s">&#39;startnode&#39;</span><span class="p">,</span>
+             <span class="s">&#39;endNode&#39;</span><span class="p">,</span> <span class="s">&#39;nodes&#39;</span><span class="p">,</span> <span class="s">&#39;relationships&#39;</span><span class="p">,</span> <span class="s">&#39;labels&#39;</span><span class="p">,</span> <span class="s">&#39;extract&#39;</span><span class="p">,</span> <span class="s">&#39;filter&#39;</span><span class="p">,</span>
+             <span class="s">&#39;tail&#39;</span><span class="p">,</span> <span class="s">&#39;range&#39;</span><span class="p">,</span> <span class="s">&#39;reduce&#39;</span><span class="p">,</span> <span class="s">&#39;abs&#39;</span><span class="p">,</span> <span class="s">&#39;acos&#39;</span><span class="p">,</span> <span class="s">&#39;asin&#39;</span><span class="p">,</span> <span class="s">&#39;atan&#39;</span><span class="p">,</span> <span class="s">&#39;cos&#39;</span><span class="p">,</span> <span class="s">&#39;cot&#39;</span><span class="p">,</span>
+             <span class="s">&#39;degrees&#39;</span><span class="p">,</span> <span class="s">&#39;e&#39;</span><span class="p">,</span> <span class="s">&#39;exp&#39;</span><span class="p">,</span> <span class="s">&#39;floor&#39;</span><span class="p">,</span> <span class="s">&#39;log&#39;</span><span class="p">,</span> <span class="s">&#39;log10&#39;</span><span class="p">,</span> <span class="s">&#39;pi&#39;</span><span class="p">,</span> <span class="s">&#39;radians&#39;</span><span class="p">,</span> <span class="s">&#39;rand&#39;</span><span class="p">,</span>
+             <span class="s">&#39;round&#39;</span><span class="p">,</span> <span class="s">&#39;sign&#39;</span><span class="p">,</span> <span class="s">&#39;sin&#39;</span><span class="p">,</span> <span class="s">&#39;sqrt&#39;</span><span class="p">,</span> <span class="s">&#39;tan&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">,</span> <span class="s">&#39;replace&#39;</span><span class="p">,</span> <span class="s">&#39;substring&#39;</span><span class="p">,</span>
+             <span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="s">&#39;ltrim&#39;</span><span class="p">,</span> <span class="s">&#39;rtrim&#39;</span><span class="p">,</span> <span class="s">&#39;trim&#39;</span><span class="p">,</span> <span class="s">&#39;lower&#39;</span><span class="p">,</span> <span class="s">&#39;upper&#39;</span> <span class="p">]</span>
+
+<span class="nv">INVALID_IDEN = </span><span class="sr">/\W/</span>
+
+<span class="nv">QUERY_PARTS = </span><span class="p">[</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;match&#39;</span><span class="p">,</span> <span class="s">&#39;where&#39;</span><span class="p">,</span> <span class="s">&#39;with&#39;</span><span class="p">,</span> <span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;delete&#39;</span><span class="p">,</span> <span class="s">&#39;forach&#39;</span><span class="p">,</span> <span class="s">&#39;return&#39;</span>
+                <span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="s">&#39;union all&#39;</span><span class="p">,</span> <span class="s">&#39;order by&#39;</span><span class="p">,</span> <span class="s">&#39;limit&#39;</span><span class="p">,</span> <span class="s">&#39;skip&#39;</span> <span class="p">]</span>
+
+<span class="k">class</span> <span class="nx">Cypher</span>
+    <span class="nv">constructor: </span><span class="nf">(url) -&gt;</span>
+        <span class="k">if</span> <span class="nx">url</span>
+            <span class="vi">@url = </span><span class="nx">url</span>
+        <span class="k">else</span>
+            <span class="vi">@url = </span><span class="s">&#39;http://localhost:7474&#39;</span>
+
+        <span class="vi">@_query = </span><span class="p">[]</span>
+        <span class="vi">@_params = </span><span class="p">{}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Insert any cypher query</p></div></div><div class="code"><div class="wrapper">    <span class="nv">cypher: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
+        <span class="k">return</span> <span class="nx">@</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Node direction &amp; relationship builder</p>
+
+<pre><code>neo.direction('n=a/tr=love/n') // (a) -[love]-&gt; ()
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">direction: </span><span class="nf">(query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">query</span>
+            <span class="k">for</span> <span class="nx">value</span> <span class="k">in</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+                <span class="nv">direction = </span><span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span>
+                <span class="nv">param = </span><span class="nx">direction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">or</span> <span class="s">&#39;&#39;</span>
+
+                <span class="k">switch</span> <span class="nx">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Node, e.g. (), (s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;n&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>To node, e.g. -->(), -->(s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;tn&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;--&gt;(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>From node, e.g. &lt;--(), &lt;--(s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;fn&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;--(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>To relationship, e.g. -[]->, -[r]-></p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;tr&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&gt;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>From relationship, e.g. &lt;-[]-, &lt;-[r]-</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;fr&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Outbound relationship, e.g. &lt;-[]->, &lt;-[r]-></p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;or&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&gt;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Ignore relationship, e.g. -[]-, -[r]-</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;ir&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>e.g. --</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;--&#39;</span>
+                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&#39;--&#39;</span>
+
+        <span class="k">return</span> <span class="nx">@</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Build start node</p>
+
+<pre><code>neo.start() // START
+neo.start('*') // START n = node(*)
+neo.start(1) // START n = node(1), { id: 1 }
+neo.start([1, 2]) // START n = node([1, 2]), { id: [1, 2] }
+neo.start([1, 2]) // START n = node([1, 2]), { id: [1, 2] }
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">start: </span><span class="nf">(query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">query</span> <span class="o">is</span> <span class="s">&#39;*&#39;</span>
+            <span class="nv">query = </span><span class="s">&#39;START n = node(*)&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="o">or</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span>
+            <span class="nx">@_params</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">query</span>
+            <span class="nv">query = </span><span class="s">&#39;START n = node({id})&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isObject</span> <span class="nx">query</span>
+            <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                <span class="nv">temp = </span><span class="s">&#39;START &#39;</span>
+
+                <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">query</span>
+                    <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;START &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                    <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s"> = node({</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s">})&quot;</span>
+
+                    <span class="nx">@_params</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+
+                <span class="nv">query = </span><span class="nx">temp</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span> <span class="o">is</span> <span class="s">&#39;*&#39;</span>
+                <span class="nv">query = </span><span class="s">&#39;START n = relationship(*)&#39;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isNumber</span><span class="p">(</span><span class="nx">query</span><span class="p">.</span><span class="nx">r</span><span class="p">)</span> <span class="o">or</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">query</span><span class="p">.</span><span class="nx">r</span><span class="p">)</span> <span class="o">or</span> <span class="nx">query</span> <span class="o">is</span> <span class="s">&#39;*&#39;</span>
+                <span class="nx">@_params</span><span class="p">[</span><span class="s">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+
+                <span class="nv">query = </span><span class="s">&#39;START n = relationship({id})&#39;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isObject</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                <span class="nv">temp = </span><span class="s">&#39;START &#39;</span>
+
+                <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                    <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;START &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                    <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s"> = relationship({</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s">})&quot;</span>
+
+                    <span class="nx">@_params</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+
+                <span class="nv">query = </span><span class="nx">temp</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">query</span>
+            <span class="nv">query = </span><span class="s">&quot;START </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s">&#39;Unsupported type&#39;</span><span class="p">)</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">create: </span><span class="nf">(param, query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">param</span> <span class="o">is</span> <span class="s">&#39;unique&#39;</span> <span class="k">then</span> <span class="nv">query = </span><span class="s">&quot;UNIQUE </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;CREATE </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">match: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;MATCH </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">where: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;WHERE </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">with: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;WITH </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">set: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;SET </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">merge: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;MERGE (</span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">)&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">drop: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;DROP INDEX ON </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">remove: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;REMOVE </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">del: </span><span class="nf">(query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span> <span class="nx">query</span>
+            <span class="nv">query = </span><span class="nx">query</span><span class="p">.</span><span class="nx">join</span> <span class="s">&#39;, &#39;</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;DELETE </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">foreach: </span><span class="nf">(query) -&gt;</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;FOREACH </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="k">return</span><span class="o">:</span> <span class="nf">(query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span> <span class="nx">query</span>
+            <span class="nv">temp = </span><span class="s">&#39;RETURN &#39;</span>
+
+            <span class="k">for</span> <span class="nx">q</span> <span class="k">in</span> <span class="nx">query</span>
+                <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;RETURN &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;n.</span><span class="si">#{</span><span class="nx">q</span><span class="si">}</span><span class="s">&quot;</span>
+
+            <span class="nv">query = </span><span class="nx">temp</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isObject</span> <span class="nx">query</span>
+            <span class="k">unless</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                    <span class="nv">temp = </span><span class="s">&#39;RETURN &#39;</span>
+
+                    <span class="k">for</span> <span class="nx">q</span> <span class="k">in</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                        <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;RETURN &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                        <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;r.</span><span class="si">#{</span><span class="nx">q</span><span class="si">}</span><span class="s">&quot;</span>
+
+                    <span class="nv">query = </span><span class="nx">temp</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">query</span>
+            <span class="nv">query = </span><span class="s">&quot;RETURN </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s">&#39;Unsupported type&#39;</span><span class="p">)</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">using: </span><span class="nf">(param, query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">param</span> <span class="o">isnt</span> <span class="s">&#39;index&#39;</span> <span class="o">or</span> <span class="nx">param</span> <span class="o">isnt</span> <span class="s">&#39;scan&#39;</span>
+            <span class="nv">query = </span><span class="s">&quot;USING </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span>
+            <span class="nv">query = </span><span class="s">&quot;USING </span><span class="si">#{</span><span class="nx">param</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span><span class="si">}</span><span class="s"> </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">union: </span><span class="nf">(query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">query</span> <span class="o">is</span> <span class="s">&#39;all&#39;</span>
+            <span class="nv">query = </span><span class="s">&#39;UNION ALL&#39;</span>
+        <span class="k">else</span>
+            <span class="nv">query = </span><span class="s">&#39;UNION&#39;</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">orderBy: </span><span class="nf">(query) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span> <span class="nx">query</span>
+            <span class="nv">temp = </span><span class="s">&#39;ORDER BY &#39;</span>
+
+            <span class="k">for</span> <span class="nx">q</span> <span class="k">in</span> <span class="nx">query</span>
+                <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;ORDER BY &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;n.</span><span class="si">#{</span><span class="nx">q</span><span class="si">}</span><span class="s">&quot;</span>
+
+            <span class="nv">query = </span><span class="nx">temp</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isObject</span> <span class="nx">query</span>
+            <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">query</span><span class="p">.</span><span class="nx">r</span>
+                <span class="nv">temp = </span><span class="s">&#39;ORDER BY &#39;</span>
+
+                <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">query</span>
+                    <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;ORDER BY &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                    <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;n.</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s"> &quot;</span> <span class="o">+</span> <span class="k">if</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">is</span> <span class="s">&#39;DESC&#39;</span> <span class="k">then</span> <span class="s">&#39;DESC&#39;</span> <span class="k">else</span> <span class="s">&#39;ASC&#39;</span>
+
+                <span class="nv">query = </span><span class="nx">temp</span>
+            <span class="k">else</span>
+                <span class="nv">temp = </span><span class="s">&#39;ORDER BY &#39;</span>
+
+                <span class="k">for</span> <span class="nx">q</span> <span class="k">in</span> <span class="nx">query</span>
+                    <span class="k">if</span> <span class="nx">temp</span> <span class="o">isnt</span> <span class="s">&#39;ORDER BY &#39;</span> <span class="k">then</span> <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&#39;, &#39;</span>
+
+                    <span class="nx">temp</span> <span class="o">+=</span> <span class="s">&quot;r.</span><span class="si">#{</span><span class="nx">q</span><span class="si">}</span><span class="s">&quot;</span>
+
+                <span class="nv">query = </span><span class="nx">temp</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">query</span>
+            <span class="nv">query = </span><span class="s">&quot;ORDER BY </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s">&#39;Unsupported type&#39;</span><span class="p">)</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">limit: </span><span class="nf">(query) -&gt;</span>
+        <span class="nv">query = </span><span class="nx">_</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="o">or</span> <span class="mi">0</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;LIMIT </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">skip: </span><span class="nf">(query) -&gt;</span>
+        <span class="nv">query = </span><span class="nx">_</span><span class="p">.</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">query</span><span class="p">)</span> <span class="o">or</span> <span class="mi">0</span>
+
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;SKIP </span><span class="si">#{</span><span class="nx">query</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="k">return</span> <span class="nx">@</span>
+
+    <span class="nv">toString: </span><span class="nf">-&gt;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">@_query</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">),</span> <span class="nx">@_params</span>
+        <span class="nx">@_query</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+
+    <span class="nv">execute: </span><span class="nf">(query, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/cypher&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nv">json:</span>
+                <span class="nv">query: </span><span class="nx">@toString</span><span class="p">()</span>
+                <span class="nv">params: </span><span class="nx">@_params</span>
+        <span class="p">})</span>
+
+
+<span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="execute-cypher-query">Execute cypher query</h3>
+
+<p>Without properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node">Details</a></p>
+
+<pre><code>neo
+.executeCypher(
+    'CREATE (n:Person { name : {name} }) RETURN n'
+    {
+        "name" : "Andres"
+    }
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">executeCypher: </span><span class="nf">(query, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/cypher&quot;</span><span class="p">,</span> <span class="p">{</span>
+            <span class="nv">json:</span>
+                <span class="nv">query: </span><span class="nx">query</span>
+                <span class="nv">params: </span><span class="nx">params</span>
+        <span class="p">})</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="return-query-builder-class">Return query builder class</h3>
+
+<p>Without properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node">Details</a></p>
+
+<pre><code>neo
+.queryBuilder()
+.start('*')
+.return('*')
+.execute()
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">queryBuilder: </span><span class="nf">-&gt;</span> <span class="k">new</span> <span class="nx">Cypher</span><span class="p">(</span><span class="nx">@url</span><span class="p">)</span></div></div></div></div></body></html>

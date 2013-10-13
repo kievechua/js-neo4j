@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="en"><head><title>relationship</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="relationship"><meta name="groc-project-path" content="src/relationship.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/relationship.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+
+<span class="nv">module.exports =</span>
+    <span class="nv">getRelationshipTypes: </span><span class="nf">-&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/types&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-all-relationships">Get all relationships</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships">Details</a></p>
+
+<pre><code>neo
+.getRelationships(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getRelationships: </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/all&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-outgoing-relationships">Get outgoing relationships</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-incoming-relationships">Details</a></p>
+
+<pre><code>neo
+.getIncomingRelationships(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getOutgoingRelationships: </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/out&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-or-create-unique-relationship-create">Get or create unique relationship (create)</h3>
+
+<p>Without properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node">Details</a></p>
+
+<pre><code>neo
+.createNode()
+.then(...)
+.fail(...)
+.done(...)
+</code></pre>
+
+<p>With properties <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node-with-properties">Details</a></p>
+
+<pre><code>neo
+.uniqueRelationship('people', {
+    "key" : "name",
+    "value" : "Tobias",
+    "start" : "http://localhost:7474/db/data/node/435",
+    "end" : "http://localhost:7474/db/data/node/436",
+    "type" : "knowledge"
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">uniqueRelationship: </span><span class="nf">(label, mode) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/index/relationship/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">?uniqueness=</span><span class="si">#{</span><span class="nx">mode</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-typed-relationships">Get typed relationships</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-typed-relationships">Details</a></p>
+
+<pre><code>neo
+.getTypedRelationships(1, ['LIKES', 'HATES'])
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getTypedRelationships: </span><span class="nf">(nodeId, types = []) -&gt;</span>
+        <span class="nv">types = </span><span class="nx">types</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s">&#39;%26&#39;</span><span class="p">)</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/all/</span><span class="si">#{</span><span class="nx">types</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-incoming-relationships">Get incoming relationships</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-incoming-relationships">Details</a></p>
+
+<pre><code>neo
+.getIncomingRelationships(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getIncomingRelationships: </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/in&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-relationship-by-id">Get Relationship by ID</h3>
+
+<p>Note that the response contains URI/templates for the available operations for getting properties and relationships.
+<a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-relationship-by-id">Details</a></p>
+
+<pre><code>neo
+.getRelationship(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getRelationship: </span><span class="nf">(id) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-relationship">Create relationship</h3>
+
+<p>Upon successful creation of a relationship, the new relationship is returned.
+<a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-create-relationship">Details</a></p>
+
+<pre><code>neo
+.createRelationship(1, 2, 'love', { foo: bar })
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createRelationship: </span><span class="nf">(fromId, toId, type, properties) -&gt;</span>
+        <span class="nv">params =</span>
+            <span class="nv">to: </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">toId</span><span class="si">}</span><span class="s">&quot;</span>
+            <span class="nv">type: </span><span class="nx">type</span>
+            <span class="nv">data: </span><span class="nx">properties</span>
+
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">fromId</span><span class="si">}</span><span class="s">/relationships&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="delete-relationship">Delete relationship</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-delete-relationship">Details</a></p>
+
+<pre><code>neo
+.deleteRelationship(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteRelationship: </span><span class="nf">(id) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-all-properties-on-a-relationship">Get all properties on a relationship</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-properties-on-a-relationship">Details</a></p>
+
+<pre><code>neo
+.getRelationshipProperties(1)
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getRelationshipProperties: </span><span class="nf">(id) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="set-all-properties-on-a-relationship">Set all properties on a relationship</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-set-all-properties-on-a-relationship">Details</a></p>
+
+<pre><code>neo
+.setRelationshipProperties(1, { happy: 'yes' })
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">setRelationshipProperties: </span><span class="nf">(id, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="get-all-properties-on-a-relationship">Get all properties on a relationship</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-properties-on-a-relationship">Details</a></p>
+
+<pre><code>neo
+.getRelationshipProperty(1, 'cost')
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">getRelationshipProperty: </span><span class="nf">(id, property) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="set-single-property-on-a-relationship">Set single property on a relationship</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-set-single-property-on-a-relationship">Details</a></p>
+
+<pre><code>neo
+.setRelationshipProperty(1, 'happy', 'yes')
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">setRelationshipProperty: </span><span class="nf">(id, property, value) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">value</span><span class="p">)</span>
+
+    <span class="nv">updateRelationshipProperties: </span><span class="nf">(id, params) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">deleteRelationshipProperties: </span><span class="nf">(id) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">deleteRelationshipProperty: </span><span class="nf">(id, property) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">statusCode</span> <span class="o">&gt;=</span> <span class="mi">400</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">res</span><span class="p">.</span><span class="nx">body</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="s">&#39;success&#39;</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span></div></div></div></div></body></html>
