@@ -1,0 +1,120 @@
+<!DOCTYPE html><html lang="en"><head><title>traversal</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="traversal"><meta name="groc-project-path" content="src/traversal.coffee"><meta name="groc-github-url" content="https://github.com/kievechua/neo4js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/kievechua/neo4js/blob/master/src/traversal.coffee">src/traversal.coffee</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+
+<span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="traversal-using-a-return-filter">Traversal using a return filter</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-post-all-relationships">Details</a></p>
+
+<pre><code>neo
+.traverseNode(1, {
+    "order" : "breadth_first",
+    "return_filter" : {
+        "body" : "position.endNode().postProperty('name').toLowerCase().contains('t')",
+        "language" : "javascript"
+    },
+    "prune_evaluator" : {
+        "body" : "position.length() &gt; 10",
+        "language" : "javascript"
+    },
+    "uniqueness" : "node_global",
+    "relationships" : [ {
+        "direction" : "all",
+        "type" : "knows"
+    }, {
+        "direction" : "all",
+        "type" : "loves"
+    } ],
+    "max_depth" : 3
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">traverseRelationship: </span><span class="nf">(nodeId, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/traverse/relationship&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="return-relationships-from-a-traversal">Return relationships from a traversal</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-traverse.html#rest-api-return-relationships-from-a-traversal">Details</a></p>
+
+<pre><code>neo
+.traverseNode(1, {
+    "order" : "breadth_first",
+    "uniqueness" : "none",
+    "return_filter" : {
+        "language" : "builtin",
+        "name" : "all"
+    }
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">traverseNode: </span><span class="nf">(nodeId, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/traverse/node&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="return-paths-from-a-traversal">Return paths from a traversal</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-traverse.html#rest-api-return-paths-from-a-traversal">Details</a></p>
+
+<pre><code>neo
+.traversePath(1, {
+    "order" : "breadth_first",
+    "uniqueness" : "none",
+    "return_filter" : {
+        "language" : "builtin",
+        "name" : "all"
+    }
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">traversePath: </span><span class="nf">(nodeId, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/traverse/path&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="creating-a-paged-traverser">Creating a paged traverser</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-traverse.html#rest-api-creating-a-paged-traverser">Details</a></p>
+
+<pre><code>neo
+.createPagedTraverse(1, {
+    "prune_evaluator" : {
+        "language" : "builtin",
+        "name" : "none"
+    },
+    "return_filter" : {
+        "language" : "javascript",
+        "body" : "position.endNode().getProperty('name').contains('1');"
+    },
+    "order" : "depth_first",
+    "relationships" : {
+        "type" : "NEXT",
+        "direction" : "out"
+    }
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createPagedTraverse: </span><span class="nf">(nodeId, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/traverse/node&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="paging-through-the-results-of-a-paged-traverser">Paging through the results of a paged traverser</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-traverse.html#rest-api-paging-through-the-results-of-a-paged-traverser">Details</a></p>
+
+<pre><code>neo
+.pagedTraverse(1, {
+    "prune_evaluator" : {
+        "language" : "builtin",
+        "name" : "none"
+    },
+    "return_filter" : {
+        "language" : "javascript",
+        "body" : "position.endNode().getProperty('name').contains('1');"
+    },
+    "order" : "depth_first",
+    "relationships" : {
+        "type" : "NEXT",
+        "direction" : "out"
+    }
+})
+.then(...)
+.fail(...)
+.done(...)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">pagedTraverse: </span><span class="nf">(nodeId, params) -&gt;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>TODO</p></div></div><div class="code"><div class="wrapper">        <span class="k">if</span> <span class="nx">params</span> <span class="o">is</span> <span class="s">&#39;String&#39;</span>
+            <span class="nv">params = </span><span class="s">&quot;/</span><span class="si">#{</span><span class="nx">params</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">params</span> <span class="o">is</span> <span class="s">&#39;Object&#39;</span>
+            <span class="nv">params = </span><span class="nx">qs</span><span class="p">.</span><span class="nx">parse</span> <span class="nx">params</span>
+
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/paged/traverse/node</span><span class="si">#{</span><span class="nx">params</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span></div></div></div></div></body></html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><title>label</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="label"><meta name="groc-project-path" content="src/label.coffee"><meta name="groc-github-url" content="https://github.com/kievechua/neo4js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/kievechua/neo4js/blob/master/src/label.coffee">src/label.coffee</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+
+<span class="nv">module.exports =</span>
+    <span class="nv">getNodeByLabel: </span><span class="nf">(label) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/label/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/nodes&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">getNodeByLabelAndProperty: </span><span class="nf">(label, property) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/label/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/nodes&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">property</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">getNodeLabels: </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/labels&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">getLabels: </span><span class="nf">-&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/labels&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">addLabel: </span><span class="nf">(nodeId, label) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/labels&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">label</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">addLabels: </span><span class="nf">(nodeId, labels) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/labels&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">labels</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">replaceLabels: </span><span class="nf">(nodeId, labels) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/labels&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">labels</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
+    <span class="nv">deleteLabel: </span><span class="nf">(nodeId, label) -&gt;</span>
+        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
+        <span class="nx">request</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/labels/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(err, res, body) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
+            <span class="k">else</span>
+                <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+        <span class="p">)</span>
+        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span></div></div></div></div></body></html>

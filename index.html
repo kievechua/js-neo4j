@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><title>index</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="index"><meta name="groc-project-path" content="README.md"><meta name="groc-github-url" content="https://github.com/kievechua/neo4js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/kievechua/neo4js/blob/master/README.md">README.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="neo4j-rest-api-wrapper-for-nodejs">Neo4j REST API wrapper for Node.js</h1>
+
+<hr />
+
+<p>Under development
+Not ready for production, as there's not test case yet.</p>
+
+<h2 id="installation">Installation</h2>
+
+<pre><code>npm install neo4js
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<pre><code>{Neo4js} = require('neo4js')
+
+neo = new Neo4js()
+
+neo
+    .queryBuilder()
+    .start('*')
+    .return('*')
+    .execute()
+    .fail((data) -&gt;
+        console.log 'error', arguments
+    )
+    .then((data) -&gt;
+        console.log data
+    )
+</code></pre>
+
+<p><a href="http://kievechua.github.io/neo4js/">Document</a></p>
+
+<h2 id="required">Required</h2>
+
+<p>Neo4j, 2.0</p>
+
+<h2 id="todo">TODO</h2>
+
+<ol>
+<li>Test case</li>
+<li>Refactor</li>
+<li>Write more document</li>
+<li>Browserify?</li>
+<li>Cache?</li>
+<li>Add feature</li>
+</ol></div></div></div></div></body></html>
