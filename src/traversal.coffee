@@ -1,6 +1,4 @@
 utils = require './utils.coffee'
-request = require 'request'
-Q = require 'q'
 
 module.exports =
     # ###Traversal using a return filter

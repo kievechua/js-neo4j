@@ -1,6 +1,4 @@
 utils = require './utils.coffee'
-request = require 'request'
-Q = require 'q'
 
 Algorithm = require './algorithm'
 Batch = require './batch'

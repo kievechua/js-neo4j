@@ -1,4 +1,4 @@
-request = require 'request'
+request = require 'superagent'
 Q = require 'q'
 
 moduleKeywords = ['extended', 'included']
@@ -25,11 +25,16 @@ module.exports =
     get: (url) ->
         deferred = Q.defer()
 
-        request.get url, (err, res, body) ->
-            if err or not body
-                deferred.reject err
-            else
-                deferred.resolve body
+        request
+            .get(url)
+            .type('json')
+            .query(params)
+            .end((err, body) ->
+                if err or not body
+                    deferred.reject err
+                else
+                    deferred.resolve body
+            )
 
         deferred.promise
 
@@ -37,11 +42,16 @@ module.exports =
     post: (url, params) ->
         deferred = Q.defer()
 
-        request.post url, params, (err, res, body) ->
-            if err or not body
-                deferred.reject err
-            else
-                deferred.resolve body
+        request
+            .post(url)
+            .type('json')
+            .send(params)
+            .end((err, body) ->
+                if err or not body
+                    deferred.reject err
+                else
+                    deferred.resolve body
+            )
 
         deferred.promise
 
@@ -49,11 +59,16 @@ module.exports =
     put: (url, params) ->
         deferred = Q.defer()
 
-        request.put url, params, (err, res, body) ->
-            if err or not body
-                deferred.reject err
-            else
-                deferred.resolve body
+        request
+            .put(url)
+            .type('json')
+            .send(params)
+            .end((err, body) ->
+                if err or not body
+                    deferred.reject err
+                else
+                    deferred.resolve body
+            )
 
         deferred.promise
 
@@ -61,12 +76,13 @@ module.exports =
     del: (url) ->
         deferred = Q.defer()
 
-        request.del url, (err, res, body) ->
-            if err
-                deferred.reject err
-            else if res.statusCode >= 400
-                deferred.reject res.body
-            else
-                deferred.resolve body
+        request
+            .del(url)
+            .end((err, body) ->
+                if err or not body
+                    deferred.reject err
+                else
+                    deferred.resolve body
+            )
 
         deferred.promise
