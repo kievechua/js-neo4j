@@ -15,9 +15,18 @@
 <span class="nv">INVALID_IDEN = </span><span class="sr">/\W/</span>
 
 <span class="nv">QUERY_PARTS = </span><span class="p">[</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;match&#39;</span><span class="p">,</span> <span class="s">&#39;where&#39;</span><span class="p">,</span> <span class="s">&#39;with&#39;</span><span class="p">,</span> <span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;delete&#39;</span><span class="p">,</span> <span class="s">&#39;forach&#39;</span><span class="p">,</span> <span class="s">&#39;return&#39;</span>
-                <span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="s">&#39;union all&#39;</span><span class="p">,</span> <span class="s">&#39;order by&#39;</span><span class="p">,</span> <span class="s">&#39;limit&#39;</span><span class="p">,</span> <span class="s">&#39;skip&#39;</span> <span class="p">]</span>
-
-<span class="k">class</span> <span class="nx">Cypher</span>
+                <span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="s">&#39;union all&#39;</span><span class="p">,</span> <span class="s">&#39;order by&#39;</span><span class="p">,</span> <span class="s">&#39;limit&#39;</span><span class="p">,</span> <span class="s">&#39;skip&#39;</span> <span class="p">]</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><pre><code>neo
+    .queryBuilder()
+    .start('*')
+    .return('*')
+    .execute()
+    .fail((data) -&gt;
+        console.log 'error', arguments
+    )
+    .then((data) -&gt;
+        console.log data
+    )
+</code></pre></div></div><div class="code"><div class="wrapper"><span class="k">class</span> <span class="nx">Cypher</span>
     <span class="nv">constructor: </span><span class="nf">(url) -&gt;</span>
         <span class="k">if</span> <span class="nx">url</span>
             <span class="vi">@url = </span><span class="nx">url</span>

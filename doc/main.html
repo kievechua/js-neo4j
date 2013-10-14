@@ -40,35 +40,4 @@
 
 <span class="nv">exports.version = </span><span class="s">&#39;0.1.0&#39;</span>
 
-<span class="nv">exports.Neo4js = </span><span class="nx">Neo4js</span>
-
-<span class="nv">neo = </span><span class="k">new</span> <span class="nx">Neo4js</span><span class="p">()</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>console.log neo
-neo.executeCypher('START root=node(*) RETURN root')
-.then((data) ->
-    console.log data
-)</p></div></div><div class="code"><div class="wrapper"><span class="nx">neo</span>
-<span class="p">.</span><span class="nx">queryBuilder</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">return</span><span class="p">([</span><span class="s">&#39;to&#39;</span><span class="p">,</span> <span class="s">&#39;type&#39;</span><span class="p">])</span>
-<span class="p">.</span><span class="nx">orderBy</span><span class="p">({</span>
-    <span class="nv">to: </span><span class="s">&#39;asc&#39;</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="nx">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
-
-<span class="nx">neo</span>
-<span class="p">.</span><span class="nx">queryBuilder</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="s">&#39;*&#39;</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">return</span><span class="p">(</span><span class="s">&#39;*&#39;</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">execute</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">fail</span><span class="p">(</span><span class="nf">(data) -&gt;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;error&#39;</span><span class="p">,</span> <span class="nx">arguments</span>
-<span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nf">(data) -&gt;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">data</span>
-<span class="p">)</span>
-
-<span class="nx">neo</span>
-<span class="p">.</span><span class="nx">queryBuilder</span><span class="p">()</span>
-<span class="p">.</span><span class="nx">direction</span><span class="p">(</span><span class="s">&#39;n=a/tr=love/n&#39;</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">toString</span><span class="p">()</span></div></div></div></div></body></html>
+<span class="nv">exports.Neo4js = </span><span class="nx">Neo4js</span></div></div></div></div></body></html>

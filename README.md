@@ -4,10 +4,7 @@
 Under development
 Not ready for production, as there's not test case yet.
 
-[Github Source](https://github.com/kievechua/neo4js)
-
 ## Usage
-
     {Neo4js} = require('neo4js')
 
     neo = new Neo4js()

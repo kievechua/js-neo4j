@@ -17,6 +17,19 @@ INVALID_IDEN = /\W/
 QUERY_PARTS = [ 'start', 'match', 'where', 'with', 'set', 'delete', 'forach', 'return'
                 'union', 'union all', 'order by', 'limit', 'skip' ]
 
+###
+    neo
+        .queryBuilder()
+        .start('*')
+        .return('*')
+        .execute()
+        .fail((data) ->
+            console.log 'error', arguments
+        )
+        .then((data) ->
+            console.log data
+        )
+###
 class Cypher
     constructor: (url) ->
         if url
@@ -35,10 +48,12 @@ class Cypher
     ###
     Node direction & relationship builder
     ```
-    neo.direction('n=a/tr=love/n') // (a) -[love]-> ()
+    neo.direction('n=a/tr=love/n') // (a)-[love]->()
     ```
     ###
     direction: (query) ->
+        temp = []
+
         if _.isString query
             for value in query.split('/')
                 direction = value.split('=')
@@ -47,28 +62,30 @@ class Cypher
                 switch direction[0]
                     # Node, e.g. (), (s)
                     when 'n'
-                        @_query.push "(#{param})"
+                        temp.push "(#{param})"
                     # To node, e.g. -->(), -->(s)
                     when 'tn'
-                        @_query.push "-->(#{param})"
+                        temp.push "-->(#{param})"
                     # From node, e.g. <--(), <--(s)
                     when 'fn'
-                        @_query.push "<--(#{param})"
+                        temp.push "<--(#{param})"
                     # To relationship, e.g. -[]->, -[r]->
                     when 'tr'
-                        @_query.push "-[#{param}]->"
+                        temp.push "-[#{param}]->"
                     # From relationship, e.g. <-[]-, <-[r]-
                     when 'fr'
-                        @_query.push "<-[#{param}]-"
+                        temp.push "<-[#{param}]-"
                     # Outbound relationship, e.g. <-[]->, <-[r]->
                     when 'or'
-                        @_query.push "<-[#{param}]->"
+                        temp.push "<-[#{param}]->"
                     # Ignore relationship, e.g. -[]-, -[r]-
                     when 'ir'
-                        @_query.push "-[#{param}]-"
+                        temp.push "-[#{param}]-"
                     # e.g. --
                     when '--'
-                        @_query.push '--'
+                        temp.push '--'
+
+            @_query.push temp.join('')
 
         return @
 

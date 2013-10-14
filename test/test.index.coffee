@@ -1,6 +1,6 @@
-assert = require 'assert'
-{Neo4js} = require '..'
+# assert = require 'assert'
+# {Neo4js} = require '..'
 
-describe 'Array', ->
-    console.log 'test'
-    neo4js()
+# describe 'Array', ->
+#     console.log 'test'
+#     neo4js()
