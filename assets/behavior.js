@@ -311,38 +311,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "get-service"
           },
           "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "console.log neo",
-            "slug": "consolelog-neo"
-          },
-          "depth": 1
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "neo.executeCypher('START root=node(*) RETURN root')",
-            "slug": "neoexecutecypherstart-rootnode-return-root"
-          },
-          "depth": 1
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": ".then((data) ->",
-            "slug": "thendata-"
-          },
-          "depth": 1
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "console.log data",
-            "slug": "consolelog-data"
-          },
-          "depth": 1
         }
       ]
     }, {

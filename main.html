@@ -40,33 +40,4 @@
 
 <span class="nv">exports.version = </span><span class="s">&#39;0.1.0&#39;</span>
 
-<span class="nv">exports.Neo4js = </span><span class="nx">Neo4js</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>neo = new Neo4js()</p>
-
-<h1 id="consolelog-neo">console.log neo</h1>
-
-<h1 id="neoexecutecypherstart-rootnode-return-root">neo.executeCypher('START root=node(*) RETURN root')</h1>
-
-<h1 id="thendata-">.then((data) -></h1>
-
-<h1 id="consolelog-data">console.log data</h1>
-
-<h1 id="">)</h1></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>neo
-.queryBuilder()
-.start(9)
-.return(['to', 'type'])
-.orderBy({
-    to: 'asc'</p></div></div><div class="code"><div class="wrapper"><span class="c1"># )</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>.limit(3)
-.toString()</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>neo
-.queryBuilder()
-.start('<em>')
-.return('</em>')
-.execute()
-.fail((data) ->
-    console.log 'error', arguments
-)
-.then((data) ->
-    console.log data
-)</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>neo
-.queryBuilder()
-.direction('n=a/tr=love/n')
-.toString()</p></div></div></div></div></body></html>
+<span class="nv">exports.Neo4js = </span><span class="nx">Neo4js</span></div></div></div></div></body></html>
