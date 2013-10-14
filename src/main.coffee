@@ -45,37 +45,3 @@ class Neo4js extends utils.Module
 exports.version = '0.1.0'
 
 exports.Neo4js = Neo4js
-
-# neo = new Neo4js()
-# # console.log neo
-# # neo.executeCypher('START root=node(*) RETURN root')
-# # .then((data) ->
-# #     console.log data
-# # )
-
-# neo
-# .queryBuilder()
-# .start(9)
-# .return(['to', 'type'])
-# .orderBy({
-#     to: 'asc'
-# })
-# .limit(3)
-# .toString()
-
-# neo
-# .queryBuilder()
-# .start('*')
-# .return('*')
-# .execute()
-# .fail((data) ->
-#     console.log 'error', arguments
-# )
-# .then((data) ->
-#     console.log data
-# )
-
-# neo
-# .queryBuilder()
-# .direction('n=a/tr=love/n')
-# .toString()

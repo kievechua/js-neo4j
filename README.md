@@ -34,6 +34,7 @@ Neo4j, 2.0
 1. Test case
 - Refactor
 - Write more document
+- Publish to NPM
 - Browserify?
 - Cache?
 - Add feature
