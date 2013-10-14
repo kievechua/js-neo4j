@@ -4,9 +4,7 @@
 Under development
 Not ready for production, as there's not test case yet.
 
-## Installation
-
-    npm install neo4js
+[Github Source](https://github.com/kievechua/neo4js)
 
 ## Usage
 
