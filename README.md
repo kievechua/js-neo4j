@@ -8,11 +8,34 @@ Not ready for production, as there's not test case yet.
 
     npm install neo4js
 
+## Usage
+
+    {Neo4js} = require('neo4js')
+
+    neo = new Neo4js()
+
+    neo
+        .queryBuilder()
+        .start('*')
+        .return('*')
+        .execute()
+        .fail((data) ->
+            console.log 'error', arguments
+        )
+        .then((data) ->
+            console.log data
+        )
+
+[Document](http://kievechua.github.io/neo4js/)
+
 ## Required
 
 Neo4j, 2.0
 
 ## TODO
 1. Test case
-2. Refactor
-3. Write more document
+- Refactor
+- Write more document
+- Browserify?
+- Cache?
+- Add feature
