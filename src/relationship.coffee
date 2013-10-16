@@ -100,7 +100,13 @@ module.exports =
             type: type
             data: properties
 
-        utils.post("#{@url}/db/data/node/#{fromNodeId}/relationships", params)
+        utils.post("#{@url}/db/data/node/#{fromNodeId}/relationships", params, (relationship) ->
+            id = relationship.body.self.split('/')
+            id = id[id.length - 1]
+            relationship.body.data._id = id
+
+            return relationship.body.data
+        )
     cRelationship: createRelationship
 
     # ###Delete relationship

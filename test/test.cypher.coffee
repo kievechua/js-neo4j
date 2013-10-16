@@ -3,10 +3,10 @@
 
 # {Neo4js} = require '../src/main'
 
-# describe 'Cypher', ->
+describe 'Cypher', ->
 #     neo = Neo4js()
 
 #     console.log neo
 
-#     it 'should pass', ->
-#         's'.should.equal 's'
+    it 'should pass', ->
+        's'.should.equal 's'

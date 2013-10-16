@@ -1,6 +1,4 @@
-# assert = require 'assert'
-# {Neo4js} = require '..'
 
-# describe 'Array', ->
-#     console.log 'test'
-#     neo4js()
+describe 'Cypher', ->
+    it 'should pass', ->
+        's'.should.equal 's'
