@@ -1,4 +1,5 @@
 utils = require './utils.coffee'
+_ = require 'lodash'
 
 module.exports =
     # ###read all relationships
@@ -9,7 +10,10 @@ module.exports =
     ```
     ###
     readRelationshipType: readRelationshipType = ->
-        utils.get("#{@url}/db/data/relationship/types")
+        utils.get(
+            "#{@url}/db/data/relationship/types",
+            (relationship) -> relationship.body
+        )
     rRelationshipType: readRelationshipType
 
     # ###read Relationship by ID
@@ -22,12 +26,12 @@ module.exports =
     readRelationship: readRelationship = (relationshipId, type) ->
         url = "#{@url}/db/data/relationship/#{relationshipId}"
 
-        utils.get(url, (node) ->
-            id = node.body.self.split('/')
+        utils.get(url, (relationship) ->
+            id = relationship.body.self.split('/')
             id = id[id.length - 1]
-            node.body.data._id = id
+            relationship.body.data._id = id
 
-            return node.body.data
+            return relationship.body.data
         )
     rRelationship: readRelationship
 
@@ -35,45 +39,53 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships)
     ```
-    neo.readRelationship(1, 'all')
+    neo.readTypedRelationship(1, 'all')
     ```
     ###
     # ###read outgoing relationships
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-incoming-relationships)
     ```
-    neo.readRelationship(1, 'out')
+    neo.readTypedRelationship(1, 'out')
     ```
     ###
     # ###read incoming relationships
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-incoming-relationships)
     ```
-    neo.readRelationship(1, 'in')
+    neo.readTypedRelationship(1, 'in')
     ```
     ###
-    readNodeRelationship: readNodeRelationship = (nodeId, type) ->
-        if type is 'all' or type is 'in' or type is 'out'
-            url = utils.get("#{@url}/db/data/node/#{nodeId}/relationships/#{type}")
-
-            utils.get(url, (relationship) ->
-                console.log arguments
-                return relationship
-            )
-    rNodeRelationship: readNodeRelationship
-
     # ###read typed relationships
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-typed-relationships)
     ```
-    neo.readTypedRelationship(1, ['LIKES', 'HATES'])
+    neo.readTypedRelationship(1, 'all', ['LIKES', 'HATES'])
     ```
     ###
-    readTypedRelationship: readTypedRelationship = (nodeId, types = []) ->
-        types = types.join('%26')
-        utils.get("#{@url}/db/data/node/#{nodeId}/relationships/all/#{types}")
+    readTypedRelationship: readTypedRelationship = (nodeId, type, relationships) ->
+        unless type isnt 'all' or type isnt 'in' or type isnt 'out'
+            throw new Error "Unsupported type #{type}, e.g. all, in, out"
+
+        if _.isArray relationships
+            relationships = relationships.join('%26')
+            return utils.get(
+                "#{@url}/db/data/node/#{nodeId}/relationships/#{type}/#{relationships}"
+                (relationship) -> relationship.body
+            )
+        else if _.isString relationships
+            return utils.get(
+                "#{@url}/db/data/node/#{nodeId}/relationships/#{type}/#{relationships}"
+                (relationship) -> relationship.body
+            )
+        else
+            return utils.get(
+                "#{@url}/db/data/node/#{nodeId}/relationships/#{type}"
+                (relationship) -> relationship.body
+            )
     rTypedRelationship: readTypedRelationship
 
+    # Considering dropping this in favour of Constraint
     # ###read or create unique relationship (create)
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node)
@@ -88,9 +100,9 @@ module.exports =
     })
     ```
     ###
-    createUniqueRelationship: createUniqueRelationship = (label, mode) ->
-        utils.post("#{@url}/db/data/index/relationship/#{label}?uniqueness=#{mode}", json: params)
-    cUniqueRelationship: createUniqueRelationship
+    # createUniqueRelationship: createUniqueRelationship = (label, mode) ->
+    #     utils.post("#{@url}/db/data/index/relationship/#{label}?uniqueness=#{mode}", json: params)
+    # cUniqueRelationship: createUniqueRelationship
 
     # ###Create relationship
     # Upon successful creation of a relationship, the new relationship is returned.

@@ -26,7 +26,7 @@ module.exports =
         )
     cNode: createNode
 
-    # Dropping this in favour of Constraint
+    # Considering dropping this in favour of Constraint
     # ###read or create unique node (create)
     ###
     ```

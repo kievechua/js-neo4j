@@ -50,6 +50,43 @@ describe 'Cypher', ->
                     deleteRelationship(relationship)
                     done()
 
+    readTypedRelationship = (relationship) ->
+        describe 'readTypedRelationship', ->
+            it 'should pass', (done) ->
+                Q.all([
+                    neo.readTypedRelationship(testNode[1]._id, 'all')
+                    neo.readTypedRelationship(testNode[1]._id, 'in')
+                    neo.readTypedRelationship(testNode[1]._id, 'out')
+                    neo.readTypedRelationship(testNode[1]._id, 'all', 'friend')
+                    neo.readTypedRelationship(testNode[1]._id, 'in', 'friend')
+                    neo.readTypedRelationship(testNode[1]._id, 'out', 'friend')
+                    neo.readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover'])
+                    # neo.readTypedRelationship(testNode[1]._id, 'between')
+                ])
+                .then((result) ->
+                    result[0].should.have.length 1
+                    result[1].should.have.length 1
+                    result[2].should.be.empty
+                    result[3].should.have.length 1
+                    result[4].should.have.length 1
+                    result[5].should.be.empty
+                    result[6].should.have.length 1
+                    # result[7].should.throw 'Unsupported type between, e.g. all, in, out'
+
+                    deleteRelationshipProperty(relationship)
+                    done()
+                )
+
+    readRelationshipType = (relationship) ->
+        describe 'readRelationshipType', ->
+            it 'should pass', (done) ->
+                neo.readRelationshipType()
+                .then (result) ->
+                    result.should.include 'friend'
+
+                    readTypedRelationship(relationship)
+                    done()
+
     readRelationshipProperty = (relationship) ->
         describe 'readRelationshipProperty', ->
             it 'should pass', (done) ->
@@ -63,7 +100,7 @@ describe 'Cypher', ->
 
                     result[1].should.equal '12 years ago'
 
-                    deleteRelationshipProperty(relationship)
+                    readRelationshipType(relationship)
                     done()
 
     updateRelationshipProperty = (relationship) ->
@@ -80,8 +117,6 @@ describe 'Cypher', ->
                     readRelationshipProperty(relationship)
                     done()
                 )
-                .fail ->
-                    console.log arguments
 
     readRelationship = (relationship) ->
         describe 'readRelationship', ->
