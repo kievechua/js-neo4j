@@ -18,22 +18,21 @@ describe 'Cypher', ->
             testNode = result
             done()
 
-    after (done) ->
+    # Unable to run in after(), as it run before everything finish
+    cleanup = ->
         Q.all([
             neo.deleteNode(testNode[0]._id)
             neo.deleteNode(testNode[1]._id)
         ])
-        .then((result) ->
-            done()
-        )
-
-        done()
 
     deleteRelationship = (relationship) ->
         describe 'deleteRelationship', ->
             it 'should pass', (done) ->
                 neo.deleteRelationship(relationship._id).then((result) ->
                     result.should.be.true
+
+                    cleanup()
+
                     done()
                 )
 
@@ -41,7 +40,7 @@ describe 'Cypher', ->
         describe 'deleteRelationshipProperty', ->
             it 'should pass', (done) ->
                 Q.all([
-                    neo.deleteRelationshipProperty(relationship._id, 'age')
+                    neo.deleteRelationshipProperty(relationship._id, 'since')
                     neo.deleteRelationshipProperty(relationship._id)
                 ])
                 .then (result) ->
@@ -54,10 +53,15 @@ describe 'Cypher', ->
     readRelationshipProperty = (relationship) ->
         describe 'readRelationshipProperty', ->
             it 'should pass', (done) ->
-                neo.readRelationshipProperty(relationship._id)
+                Q.all([
+                    neo.readRelationshipProperty(relationship._id)
+                    neo.readRelationshipProperty(relationship._id, 'since')
+                ])
                 .then (result) ->
-                    result.name.should.equal 'Kieve Chua'
-                    result.age.should.equal 17
+                    result[0].since.should.equal '12 years ago'
+                    result[0].sinceAge.should.equal 17
+
+                    result[1].should.equal '12 years ago'
 
                     deleteRelationshipProperty(relationship)
                     done()
@@ -66,25 +70,27 @@ describe 'Cypher', ->
         describe 'updateRelationshipProperty', ->
             it 'should pass', (done) ->
                 Q.all([
-                    neo.updateRelationshipProperty(relationship._id, 'gender', 'male')
-                    neo.updateRelationshipProperty(relationship._id, { 'name': 'Kieve Chua', 'age': 17 })
+                    neo.updateRelationshipProperty(relationship._id, 'since', '11 years ago')
+                    neo.updateRelationshipProperty(relationship._id, { 'since': '12 years ago', 'sinceAge': 17 })
                 ])
-                .then (result) ->
+                .then((result) ->
                     result[0].should.be.true
                     result[1].should.be.true
 
                     readRelationshipProperty(relationship)
                     done()
+                )
+                .fail ->
+                    console.log arguments
 
     readRelationship = (relationship) ->
         describe 'readRelationship', ->
             it 'should pass', (done) ->
-                console.log testNode[0]._id
-                neo.readRelationship(testNode[0]._id).then((result) ->
-                    console.log result
-                    # result.name.should.equal 'Kieve'
+                neo.readRelationship(relationship._id)
+                .then((result) ->
+                    result.since.should.equal '10 years ago'
 
-                    # updateRelationshipProperty(relationship)
+                    updateRelationshipProperty(relationship)
                     done()
                 )
 
