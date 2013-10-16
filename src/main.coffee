@@ -27,15 +27,12 @@ class Neo4js extends utils.Module
         else
             @url = 'http://localhost:7474'
 
-    # ###Get service
+    # ###read service
     ###
     Without properties [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node)
     ```
     neo
     .service()
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     service: -> utils.get("#{@url}/db/data")

@@ -3,7 +3,7 @@ utils = require './utils.coffee'
 module.exports =
     # ###Execute batch operation
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships)
     ```
     neo
     .executeBatch(1, {
@@ -15,9 +15,6 @@ module.exports =
         },
         "algorithm" : "shortestPath"
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     executeBatch: (params) ->
@@ -26,7 +23,7 @@ module.exports =
     # ###Execute multiple operations in batch streaming
     ###
     TODO
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships)
     ```
     neo
     .executeBatchStream(1, {
@@ -38,9 +35,6 @@ module.exports =
         },
         "algorithm" : "shortestPath"
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     executeBatchStream: (params) ->

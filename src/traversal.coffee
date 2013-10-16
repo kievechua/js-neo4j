@@ -26,9 +26,6 @@ module.exports =
         } ],
         "max_depth" : 3
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     traverseRelationship: (nodeId, params) ->
@@ -47,9 +44,6 @@ module.exports =
             "name" : "all"
         }
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     traverseNode: (nodeId, params) ->
@@ -68,9 +62,6 @@ module.exports =
             "name" : "all"
         }
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     traversePath: (nodeId, params) ->
@@ -88,7 +79,7 @@ module.exports =
         },
         "return_filter" : {
             "language" : "javascript",
-            "body" : "position.endNode().getProperty('name').contains('1');"
+            "body" : "position.endNode().readProperty('name').contains('1');"
         },
         "order" : "depth_first",
         "relationships" : {
@@ -96,13 +87,11 @@ module.exports =
             "direction" : "out"
         }
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    createPagedTraverse: (nodeId, params) ->
+    createPagedTraverse: createPagedTraverse = (nodeId, params) ->
         utils.post("#{@url}/db/data/node/#{nodeId}/traverse/node", json: params)
+    cPagedTraverse: createPagedTraverse
 
     # ###Paging through the results of a paged traverser
     ###
@@ -116,7 +105,7 @@ module.exports =
         },
         "return_filter" : {
             "language" : "javascript",
-            "body" : "position.endNode().getProperty('name').contains('1');"
+            "body" : "position.endNode().readProperty('name').contains('1');"
         },
         "order" : "depth_first",
         "relationships" : {
@@ -124,9 +113,6 @@ module.exports =
             "direction" : "out"
         }
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     pagedTraverse: (nodeId, params) ->

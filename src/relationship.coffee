@@ -1,88 +1,73 @@
 utils = require './utils.coffee'
 
 module.exports =
-    # ###Get all relationships
+    # ###read all relationships
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationship-types.html)
     ```
     neo
-    .getRelationshipType()
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationshipType()
     ```
     ###
-    getRelationshipType: ->
+    readRelationshipType: readRelationshipType = ->
         utils.get("#{@url}/db/data/relationship/types")
+    rRelationshipType: readRelationshipType
 
-    # ###Get all relationships
+    # ###read all relationships
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships)
     ```
     neo
-    .getRelationship(1, 'all')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationship(1, 'all')
     ```
     ###
-    # ###Get outgoing relationships
+    # ###read outgoing relationships
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-incoming-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-incoming-relationships)
     ```
     neo
-    .getRelationship(1, 'out')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationship(1, 'out')
     ```
     ###
-    # ###Get incoming relationships
+    # ###read incoming relationships
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-incoming-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-incoming-relationships)
     ```
     neo
-    .getRelationship(1, 'in')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationship(1, 'in')
     ```
     ###
-    # ###Get Relationship by ID
+    # ###read Relationship by ID
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-relationship-by-id)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-relationship-by-id)
     ```
     neo
-    .getRelationship(1)
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationship(1)
     ```
     ###
-    getRelationship: (nodeId, type) ->
+    readRelationship: readRelationship = (nodeId, type) ->
         if type is 'all' or type is 'in' or type is 'out'
             url = utils.get("#{@url}/db/data/node/#{nodeId}/relationships/#{type}")
         else
             url = "#{@url}/db/data/relationship/#{nodeId}"
 
         utils.get(url)
+    rRelationship: readRelationship
 
-    # ###Get typed relationships
+    # ###read typed relationships
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-typed-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-typed-relationships)
     ```
     neo
-    .getTypedRelationship(1, ['LIKES', 'HATES'])
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readTypedRelationship(1, ['LIKES', 'HATES'])
     ```
     ###
-    getTypedRelationship: (nodeId, types = []) ->
+    readTypedRelationship: readTypedRelationship = (nodeId, types = []) ->
         types = types.join('%26')
         utils.get("#{@url}/db/data/node/#{nodeId}/relationships/all/#{types}")
+    rTypedRelationship: readTypedRelationship
 
-    # ###Get or create unique relationship (create)
+    # ###read or create unique relationship (create)
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node)
     ```
@@ -94,13 +79,11 @@ module.exports =
         "end" : "http://localhost:7474/db/data/node/436",
         "type" : "knowledge"
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    createUniqueRelationship: (label, mode) ->
+    createUniqueRelationship: createUniqueRelationship = (label, mode) ->
         utils.post("#{@url}/db/data/index/relationship/#{label}?uniqueness=#{mode}", json: params)
+    cUniqueRelationship: createUniqueRelationship
 
     # ###Create relationship
     # Upon successful creation of a relationship, the new relationship is returned.
@@ -109,18 +92,16 @@ module.exports =
     ```
     neo
     .createRelationship(1, 2, 'love', { foo: bar })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    createRelationship: (fromNodeId, toNodeId, type, properties) ->
+    createRelationship: createRelationship = (fromNodeId, toNodeId, type, properties) ->
         params =
             to: "#{@url}/db/data/node/#{toNodeId}"
             type: type
             data: properties
 
         utils.post("#{@url}/db/data/node/#{fromNodeId}/relationships", params)
+    cRelationship: createRelationship
 
     # ###Delete relationship
     ###
@@ -128,43 +109,36 @@ module.exports =
     ```
     neo
     .deleteRelationship(1)
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    deleteRelationship: (id) ->
+    deleteRelationship: deleteRelationship = (id) ->
         utils.del("#{@url}/db/data/relationship/#{id}", params)
+    dRelationship: deleteRelationship
 
-    # ###Get all properties on a relationship
+    # ###read all properties on a relationship
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-properties-on-a-relationship)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-properties-on-a-relationship)
     ```
     neo
-    .getRelationshipProperty(1)
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationshipProperty(1)
     ```
     ###
-    # ###Get all properties on a relationship
+    # ###read all properties on a relationship
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-properties-on-a-relationship)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-properties-on-a-relationship)
     ```
     neo
-    .getRelationshipProperty(1, 'cost')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readRelationshipProperty(1, 'cost')
     ```
     ###
-    getRelationshipProperty: (id, property) ->
+    readRelationshipProperty: readRelationshipProperty = (id, property) ->
         if property
             url = "#{@url}/db/data/relationship/#{id}/properties/#{property}"
         else
             url = "#{@url}/db/data/relationship/#{id}/properties"
 
         utils.get(url)
+    rRelationshipProperty: readRelationshipProperty
 
     # ###Set single property on a relationship
     ###
@@ -172,9 +146,6 @@ module.exports =
     ```
     neo
     .updateRelationshipProperty(1, 'happy', 'yes')
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     # ###Update relationship properties
@@ -183,9 +154,6 @@ module.exports =
     ```
     neo
     .updateRelationshipProperty(1, { age: 18 })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     # ###Set all properties on a relationship
@@ -194,12 +162,9 @@ module.exports =
     ```
     neo
     .updateRelationshipProperty(1, { happy: 'yes' })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    updateRelationshipProperty: (id, property, value) ->
+    updateRelationshipProperty: updateRelationshipProperty = (id, property, value) ->
         if value
             url = "#{@url}/db/data/relationship/#{id}/properties/#{property}"
         else
@@ -207,6 +172,7 @@ module.exports =
             url = "#{@url}/db/data/relationship/#{id}/properties"
 
         utils.put(url, json: value)
+    uRelationshipProperty: updateRelationshipProperty
 
     # ###Remove properties from a relationship
     ###
@@ -214,9 +180,6 @@ module.exports =
     ```
     neo
     .deleteRelationshipProperty(1)
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     # ###Remove property from a relationship
@@ -225,15 +188,13 @@ module.exports =
     ```
     neo
     .deleteRelationshipProperty(1, 'cost')
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    deleteRelationshipProperty: (id, property) ->
+    deleteRelationshipProperty: deleteRelationshipProperty = (id, property) ->
         if property
             url = "#{@url}/db/data/relationship/#{id}/properties/#{property}"
         else
             url = "#{@url}/db/data/relationship/#{id}/properties"
 
         utils.del(url)
+    dRelationshipProperty: deleteRelationshipProperty

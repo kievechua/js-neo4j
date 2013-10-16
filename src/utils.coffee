@@ -22,16 +22,19 @@ module.exports =
             this
 
     # Wrap GET request with promise
-    get: (url) ->
+    get: (url, success) ->
         deferred = Q.defer()
 
         request
             .get(url)
             .type('json')
-            .query(params)
             .end((err, body) ->
-                if err or not body
+                if err
                     deferred.reject err
+                else if body.statusCode >= 400
+                    deferred.reject body.error
+                else if success
+                    deferred.resolve success(body)
                 else
                     deferred.resolve body
             )
@@ -39,7 +42,7 @@ module.exports =
         deferred.promise
 
     # Wrap POST request with promise
-    post: (url, params) ->
+    post: (url, params, success) ->
         deferred = Q.defer()
 
         request
@@ -47,8 +50,12 @@ module.exports =
             .type('json')
             .send(params)
             .end((err, body) ->
-                if err or not body
+                if err
                     deferred.reject err
+                else if body.statusCode >= 400
+                    deferred.reject body.error
+                else if success
+                    deferred.resolve success(body)
                 else
                     deferred.resolve body
             )
@@ -56,7 +63,7 @@ module.exports =
         deferred.promise
 
     # Wrap PUT request with promise
-    put: (url, params) ->
+    put: (url, params, success) ->
         deferred = Q.defer()
 
         request
@@ -64,8 +71,12 @@ module.exports =
             .type('json')
             .send(params)
             .end((err, body) ->
-                if err or not body
+                if err
                     deferred.reject err
+                else if body.statusCode >= 400
+                    deferred.reject body.error
+                else if success
+                    deferred.resolve success(body)
                 else
                     deferred.resolve body
             )
@@ -79,10 +90,12 @@ module.exports =
         request
             .del(url)
             .end((err, body) ->
-                if err or not body
+                if err
                     deferred.reject err
+                else if body.statusCode >= 400
+                    deferred.reject body.error
                 else
-                    deferred.resolve body
+                    deferred.resolve body.ok
             )
 
         deferred.promise

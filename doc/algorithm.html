@@ -4,10 +4,10 @@
 
 <span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="find-path">Find path</h3>
 
-<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships">Details</a></p>
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships">Details</a></p>
 
 <pre><code>neo
-.getRelationships(1, {
+.findPath(1, {
     "to" : "http://localhost:7474/db/data/node/43",
     "max_depth" : 3,
     "relationships" : {
@@ -16,8 +16,5 @@
     },
     "algorithm" : "shortestPath"
 })
-.then(...)
-.fail(...)
-.done(...)
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">findPath: </span><span class="nf">(nodeId, params) -&gt;</span>
         <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/paths&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span></div></div></div></div></body></html>

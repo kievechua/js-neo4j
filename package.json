@@ -9,7 +9,7 @@
   },
   "main": "./src/main",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script -R Spec",
+    "test": "mocha --compilers coffee:coffee-script -R Spec"
   },
   "engines": {
     "node": "~0.8.19"

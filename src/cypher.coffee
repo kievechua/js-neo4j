@@ -18,17 +18,17 @@ QUERY_PARTS = [ 'start', 'match', 'where', 'with', 'set', 'delete', 'forach', 'r
                 'union', 'union all', 'order by', 'limit', 'skip' ]
 
 ###
-    neo
-        .queryBuilder()
-        .start('*')
-        .return('*')
-        .execute()
-        .fail((data) ->
-            console.log 'error', arguments
-        )
-        .then((data) ->
-            console.log data
-        )
+neo
+.queryBuilder()
+.start('*')
+.return('*')
+.execute()
+.fail((data) ->
+    console.log 'error', arguments
+)
+.then((data) ->
+    console.log data
+)
 ###
 class Cypher
     constructor: (url) ->
@@ -324,9 +324,6 @@ module.exports =
             "name" : "Andres"
         }
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     executeCypher: (query, params) ->
@@ -345,9 +342,6 @@ module.exports =
     .start('*')
     .return('*')
     .execute()
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     queryBuilder: -> new Cypher(@url)

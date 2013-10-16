@@ -7,9 +7,6 @@ module.exports =
     ```
     neo
     .createNode()
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     With properties [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node-with-properties)
     ```
@@ -17,48 +14,62 @@ module.exports =
     .createNode({
       name: 'Kieve'
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    createNode: (params) ->
-        utils.post("#{@url}/db/data/node", json: params)
+    createNode: createNode = (params) ->
+        utils.post("#{@url}/db/data/node", params, (node) ->
+            id = node.body.self.split('/')
+            id = id[id.length - 1]
+            node.body.data._id = id
 
-    # ###Get or create unique node (create)
+            return node.body.data
+        )
+    cNode: createNode
+
+    # Dropping this in favour of Constraint
+    # ###read or create unique node (create)
     ###
+    ```
+    neo.createUniqueNode('people', 'name', 'Kieve', { age: 18 }, 'create_or_fail')
+    ```
+    ###
+    # createUniqueNode: createUniqueNode = (label, key, value, params, mode = "get_or_create") ->
+    #     utils.post(
+    #         "#{@url}/db/data/index/node/#{label}?uniqueness=#{mode}",
+    #         {
+    #             key: key
+    #             value:  value
+    #             properties: params
+    #         },
+    #         (node) ->
+    #             id = node.body.self.split('/')
+    #             id = id[id.length - 1]
+    #             node.body.data._id = id
+
+    #             return node.body.data
+    #     )
+    # cUniqueNode: createUniqueNode
+
+    # ###read node
+    # Note that the response contains URI/templates for the available operations for readting properties and relationships.
+    ###
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-read-node)
     ```
     neo
-    .createUniqueNode('people', {
-        "key" : "name",
-        "value" : "Tobias",
-        "properties" : {
-            "name" : "Tobias",
-            "sequence" : 1
-        }
-    })
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readNode(1)
     ```
     ###
-    createUniqueNode: (label, mode) ->
-        utils.post("#{@url}/db/data/index/node/#{label}?uniqueness=#{mode}", json: params)
+    readNode: readNode = (nodeId) ->
+        utils.get(
+            "#{@url}/db/data/node/#{nodeId}",
+            (node) ->
+                id = node.body.self.split('/')
+                id = id[id.length - 1]
+                node.body.data._id = id
 
-    # ###Get node
-    # Note that the response contains URI/templates for the available operations for getting properties and relationships.
-    ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-get-node)
-    ```
-    neo
-    .getNode(1)
-    .then(...)
-    .fail(...)
-    .done(...)
-    ```
-    ###
-    getNode: (id) ->
-        utils.get("#{@url}/db/data/node/#{id}")
+                return node.body.data
+        )
+    rNode: readNode
 
     # ###Delete node
     ###
@@ -66,27 +77,29 @@ module.exports =
     ```
     neo
     .deleteNode(1)
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    deleteNode: (id) ->
-        utils.del("#{@url}/db/data/node/#{id}")
+    deleteNode: deleteNode = (nodeId) ->
+        utils.del("#{@url}/db/data/node/#{nodeId}")
+    dNode: deleteNode
 
-    # ###Get properties for node
+    # ###read properties for node
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-properties.html#rest-api-get-properties-for-node)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-properties.html#rest-api-read-properties-for-node)
     ```
     neo
-    .getNodeProperty(1)
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readNodeProperty(1)
     ```
     ###
-    getNodeProperty: (id) ->
-        utils.get("#{@url}/db/data/node/#{id}/properties")
+    readNodeProperty: readNodeProperty = (nodeId) ->
+        utils.get(
+            "#{@url}/db/data/node/#{nodeId}/properties",
+            (node) ->
+                node.body._id = nodeId
+
+                return node.body
+        )
+    rNodeProperty: readNodeProperty
 
     # ###Set property on node
     ###
@@ -94,9 +107,6 @@ module.exports =
     ```
     neo
     .updateNodeProperty(1, 'name', 'kieve')
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     # ###Update node properties
@@ -105,19 +115,22 @@ module.exports =
     ```
     neo
     .updateNodeProperty(1, { 'name': 'kieve' })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    updateNodeProperty: (id, property, value) ->
+    updateNodeProperty: updateNodeProperty = (nodeId, property, value) ->
         if value
-            url = "#{@url}/db/data/node/#{id}/properties/#{property}"
+            value = JSON.stringify(value)
+            url = "#{@url}/db/data/node/#{nodeId}/properties/#{property}"
         else
             value = property
-            url = "#{@url}/db/data/node/#{id}/properties"
+            url = "#{@url}/db/data/node/#{nodeId}/properties"
 
-        utils.put(url, json: value)
+        utils.put(
+            url,
+            value,
+            (node) -> node.ok
+        )
+    uNodeProperty: updateNodeProperty
 
     # ###Delete all properties from node
     ###
@@ -125,9 +138,6 @@ module.exports =
     ```
     neo
     .deleteNodeProperty(1)
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     # ###Delete a named property from a node
@@ -136,43 +146,36 @@ module.exports =
     ```
     neo
     .deleteNodeProperty(1, 'name')
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    deleteNodeProperty: (id, property) ->
+    deleteNodeProperty: deleteNodeProperty = (nodeId, property) ->
         if property
-            url = "#{@url}/db/data/node/#{id}/properties/#{property}"
+            url = "#{@url}/db/data/node/#{nodeId}/properties/#{property}"
         else
-            url = "#{@url}/db/data/node/#{id}/properties"
+            url = "#{@url}/db/data/node/#{nodeId}/properties"
 
         utils.del(url)
+    dNodeProperty: deleteNodeProperty
 
-    # ###Get all nodes with a label
+    # ###read all nodes with a label
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-get-all-nodes-with-a-label)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-all-nodes-with-a-label)
     ```
     neo
-    .getNodeByLabel('person')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readNodeByLabel('person')
     ```
     ###
-    # ###Get nodes by label and property
+    # ###read nodes by label and property
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-get-nodes-by-label-and-property)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-nodes-by-label-and-property)
     ```
     neo
-    .getNodeByLabel('person', { name: 'kieve chua' })
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readNodeByLabel('person', { name: 'kieve chua' })
     ```
     ###
-    getNodeByLabel: (label, property) ->
+    readNodeByLabel: readNodeByLabel = (label, property) ->
         if property
             return utils.get("#{@url}/db/data/label/#{label}/nodes", property)
         else
             return utils.get("#{@url}/db/data/label/#{label}/nodes")
+    rNodeByLabel: readNodeByLabel

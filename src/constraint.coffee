@@ -7,77 +7,65 @@ module.exports =
     ```
     neo
     .createUniquenessConstraint('person', [ "name" ])
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    createUniquenessConstraint: (label, constraint) ->
+    createUniquenessConstraint: createUniquenessConstraint = (label, constraint) ->
         utils.post(
             "#{@url}/db/data/schema/constraint/#{label}/uniqueness"
             json:
                 property_keys: constraint
         )
+    cUniquenessConstraint: createUniquenessConstraint
 
-    # ###Get a specific uniqueness constraint
+    # ###read a specific uniqueness constraint
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-get-a-specific-uniqueness-constraint)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-a-specific-uniqueness-constraint)
     ```
     neo
-    .getUniquenessConstraint('person', 'name')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readUniquenessConstraint('person', 'name')
     ```
     ###
-    # ###Get all uniqueness constraints for a label
+    # ###read all uniqueness constraints for a label
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-get-all-uniqueness-constraints-for-a-label)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-uniqueness-constraints-for-a-label)
     ```
     neo
-    .getUniquenessConstraint('person')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readUniquenessConstraint('person')
     ```
     ###
-    getUniquenessConstraint: (label, property) ->
+    readUniquenessConstraint: readUniquenessConstraint = (label, property) ->
         if property
             url = "#{@url}/db/data/schema/constraint/#{label}/uniqueness/#{property}"
         else
             url = "#{@url}/db/data/schema/constraint/#{label}/uniqueness"
 
         utils.get(url)
+    rUniquenessConstraint: readUniquenessConstraint
 
-    # ###Get all constraints for a label
+    # ###read all constraints for a label
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-get-all-constraints-for-a-label)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-constraints-for-a-label)
     ```
     neo
-    .getConstraint('person')
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readConstraint('person')
     ```
     ###
-    # ###Get all constraints
+    # ###read all constraints
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-get-all-constraints)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-constraints)
     ```
     neo
-    .getConstraint()
-    .then(...)
-    .fail(...)
-    .done(...)
+    .readConstraint()
     ```
     ###
-    getConstraint: (label) ->
+    readConstraint: readConstraint = (label) ->
         if label
             url = "#{@url}/db/data/schema/constraint/#{label}"
         else
             url = "#{@url}/db/data/schema/constraint"
 
         utils.get(url)
+    rConstraint: readConstraint
 
     # ###Drop constraint
     ###
@@ -85,12 +73,10 @@ module.exports =
     ```
     neo
     .deleteConstraint('peerson', 'name')
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
-    deleteConstraint: (label, property) ->
+    deleteConstraint: deleteConstraint = (label, property) ->
         utils.get(
             "#{@url}/db/data/schema/constraint/#{label}/uniqueness/#{property}"
         )
+    dConstraint: deleteConstraint

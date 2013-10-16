@@ -221,7 +221,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "title": "constraint"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Create uniqueness constraint",
+            "slug": "create-uniqueness-constraint"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read a specific uniqueness constraint",
+            "slug": "read-a-specific-uniqueness-constraint"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read all uniqueness constraints for a label",
+            "slug": "read-all-uniqueness-constraints-for-a-label"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read all constraints for a label",
+            "slug": "read-all-constraints-for-a-label"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read all constraints",
+            "slug": "read-all-constraints"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Drop constraint",
+            "slug": "drop-constraint"
+          },
+          "depth": 3
+        }
+      ]
     }, {
       "type": "file",
       "data": {
@@ -281,7 +331,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "title": "label"
       },
       "depth": 1,
-      "outline": []
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Listing labels for a node",
+            "slug": "listing-labels-for-a-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "List all labels",
+            "slug": "list-all-labels"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Adding a label to a node",
+            "slug": "adding-a-label-to-a-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Adding a label to a node",
+            "slug": "adding-a-label-to-a-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Replacing labels on a node",
+            "slug": "replacing-labels-on-a-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Removing a label from a node",
+            "slug": "removing-a-label-from-a-node"
+          },
+          "depth": 3
+        }
+      ]
     }, {
       "type": "file",
       "data": {
@@ -307,8 +407,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get service",
-            "slug": "get-service"
+            "title": "read service",
+            "slug": "read-service"
           },
           "depth": 3
         }
@@ -346,16 +446,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get or create unique node (create)",
-            "slug": "get-or-create-unique-node-create"
+            "title": "read or create unique node (create)",
+            "slug": "read-or-create-unique-node-create"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get node",
-            "slug": "get-node"
+            "title": "read node",
+            "slug": "read-node"
           },
           "depth": 3
         }, {
@@ -364,6 +464,62 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 3,
             "title": "Delete node",
             "slug": "delete-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read properties for node",
+            "slug": "read-properties-for-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Set property on node",
+            "slug": "set-property-on-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Update node properties",
+            "slug": "update-node-properties"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Delete all properties from node",
+            "slug": "delete-all-properties-from-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Delete a named property from a node",
+            "slug": "delete-a-named-property-from-a-node"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read all nodes with a label",
+            "slug": "read-all-nodes-with-a-label"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read nodes by label and property",
+            "slug": "read-nodes-by-label-and-property"
           },
           "depth": 3
         }
@@ -393,48 +549,56 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get all relationships",
-            "slug": "get-all-relationships"
+            "title": "read all relationships",
+            "slug": "read-all-relationships"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get outgoing relationships",
-            "slug": "get-outgoing-relationships"
+            "title": "read all relationships",
+            "slug": "read-all-relationships"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get or create unique relationship (create)",
-            "slug": "get-or-create-unique-relationship-create"
+            "title": "read outgoing relationships",
+            "slug": "read-outgoing-relationships"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get typed relationships",
-            "slug": "get-typed-relationships"
+            "title": "read incoming relationships",
+            "slug": "read-incoming-relationships"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get incoming relationships",
-            "slug": "get-incoming-relationships"
+            "title": "read Relationship by ID",
+            "slug": "read-relationship-by-id"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get Relationship by ID",
-            "slug": "get-relationship-by-id"
+            "title": "read typed relationships",
+            "slug": "read-typed-relationships"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read or create unique relationship (create)",
+            "slug": "read-or-create-unique-relationship-create"
           },
           "depth": 3
         }, {
@@ -457,8 +621,32 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get all properties on a relationship",
-            "slug": "get-all-properties-on-a-relationship"
+            "title": "read all properties on a relationship",
+            "slug": "read-all-properties-on-a-relationship"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read all properties on a relationship",
+            "slug": "read-all-properties-on-a-relationship"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Set single property on a relationship",
+            "slug": "set-single-property-on-a-relationship"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Update relationship properties",
+            "slug": "update-relationship-properties"
           },
           "depth": 3
         }, {
@@ -473,16 +661,16 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Get all properties on a relationship",
-            "slug": "get-all-properties-on-a-relationship"
+            "title": "Remove properties from a relationship",
+            "slug": "remove-properties-from-a-relationship"
           },
           "depth": 3
         }, {
           "type": "heading",
           "data": {
             "level": 3,
-            "title": "Set single property on a relationship",
-            "slug": "set-single-property-on-a-relationship"
+            "title": "Remove property from a relationship",
+            "slug": "remove-property-from-a-relationship"
           },
           "depth": 3
         }

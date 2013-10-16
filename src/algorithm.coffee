@@ -5,7 +5,7 @@ Q = require 'q'
 module.exports =
     # ###Find path
     ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-get-all-relationships)
+    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships)
     ```
     neo
     .findPath(1, {
@@ -17,9 +17,6 @@ module.exports =
         },
         "algorithm" : "shortestPath"
     })
-    .then(...)
-    .fail(...)
-    .done(...)
     ```
     ###
     findPath: (nodeId, params) ->

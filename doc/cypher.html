@@ -15,18 +15,17 @@
 <span class="nv">INVALID_IDEN = </span><span class="sr">/\W/</span>
 
 <span class="nv">QUERY_PARTS = </span><span class="p">[</span> <span class="s">&#39;start&#39;</span><span class="p">,</span> <span class="s">&#39;match&#39;</span><span class="p">,</span> <span class="s">&#39;where&#39;</span><span class="p">,</span> <span class="s">&#39;with&#39;</span><span class="p">,</span> <span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;delete&#39;</span><span class="p">,</span> <span class="s">&#39;forach&#39;</span><span class="p">,</span> <span class="s">&#39;return&#39;</span>
-                <span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="s">&#39;union all&#39;</span><span class="p">,</span> <span class="s">&#39;order by&#39;</span><span class="p">,</span> <span class="s">&#39;limit&#39;</span><span class="p">,</span> <span class="s">&#39;skip&#39;</span> <span class="p">]</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><pre><code>neo
-    .queryBuilder()
-    .start('*')
-    .return('*')
-    .execute()
-    .fail((data) -&gt;
-        console.log 'error', arguments
-    )
-    .then((data) -&gt;
-        console.log data
-    )
-</code></pre></div></div><div class="code"><div class="wrapper"><span class="k">class</span> <span class="nx">Cypher</span>
+                <span class="s">&#39;union&#39;</span><span class="p">,</span> <span class="s">&#39;union all&#39;</span><span class="p">,</span> <span class="s">&#39;order by&#39;</span><span class="p">,</span> <span class="s">&#39;limit&#39;</span><span class="p">,</span> <span class="s">&#39;skip&#39;</span> <span class="p">]</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>neo
+.queryBuilder()
+.start('<em>')
+.return('</em>')
+.execute()
+.fail((data) ->
+    console.log 'error', arguments
+)
+.then((data) ->
+    console.log data
+)</p></div></div><div class="code"><div class="wrapper"><span class="k">class</span> <span class="nx">Cypher</span>
     <span class="nv">constructor: </span><span class="nf">(url) -&gt;</span>
         <span class="k">if</span> <span class="nx">url</span>
             <span class="vi">@url = </span><span class="nx">url</span>
@@ -38,22 +37,26 @@
         <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">query</span>
         <span class="k">return</span> <span class="nx">@</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Node direction &amp; relationship builder</p>
 
-<pre><code>neo.direction('n=a/tr=love/n') // (a) -[love]-&gt; ()
+<pre><code>neo.direction('n=a/tr=love/n') // (a)-[love]-&gt;()
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">direction: </span><span class="nf">(query) -&gt;</span>
+        <span class="nv">temp = </span><span class="p">[]</span>
+
         <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">query</span>
             <span class="k">for</span> <span class="nx">value</span> <span class="k">in</span> <span class="nx">query</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
                 <span class="nv">direction = </span><span class="nx">value</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;=&#39;</span><span class="p">)</span>
                 <span class="nv">param = </span><span class="nx">direction</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">or</span> <span class="s">&#39;&#39;</span>
 
                 <span class="k">switch</span> <span class="nx">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Node, e.g. (), (s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;n&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>To node, e.g. -->(), -->(s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;tn&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;--&gt;(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>From node, e.g. &lt;--(), &lt;--(s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;fn&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;--(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>To relationship, e.g. -[]->, -[r]-></p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;tr&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&gt;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>From relationship, e.g. &lt;-[]-, &lt;-[r]-</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;fr&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Outbound relationship, e.g. &lt;-[]->, &lt;-[r]-></p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;or&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&gt;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Ignore relationship, e.g. -[]-, -[r]-</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;ir&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>e.g. --</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;--&#39;</span>
-                        <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="s">&#39;--&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>To node, e.g. -->(), -->(s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;tn&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;--&gt;(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>From node, e.g. &lt;--(), &lt;--(s)</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;fn&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;--(</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">)&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>To relationship, e.g. -[]->, -[r]-></p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;tr&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&gt;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>From relationship, e.g. &lt;-[]-, &lt;-[r]-</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;fr&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Outbound relationship, e.g. &lt;-[]->, &lt;-[r]-></p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;or&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;&lt;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&gt;&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Ignore relationship, e.g. -[]-, -[r]-</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;ir&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&quot;-[</span><span class="si">#{</span><span class="nx">param</span><span class="si">}</span><span class="s">]-&quot;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>e.g. --</p></div></div><div class="code"><div class="wrapper">                    <span class="k">when</span> <span class="s">&#39;--&#39;</span>
+                        <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span> <span class="s">&#39;--&#39;</span>
+
+            <span class="nx">@_query</span><span class="p">.</span><span class="nx">push</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="nx">@</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Build start node</p>
 
@@ -286,9 +289,6 @@ neo.start([1, 2]) // START n = node([1, 2]), { id: [1, 2] }
         "name" : "Andres"
     }
 })
-.then(...)
-.fail(...)
-.done(...)
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">executeCypher: </span><span class="nf">(query, params) -&gt;</span>
         <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/cypher&quot;</span><span class="p">,</span> <span class="p">{</span>
             <span class="nv">json:</span>
@@ -303,7 +303,4 @@ neo.start([1, 2]) // START n = node([1, 2]), { id: [1, 2] }
 .start('*')
 .return('*')
 .execute()
-.then(...)
-.fail(...)
-.done(...)
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">queryBuilder: </span><span class="nf">-&gt;</span> <span class="k">new</span> <span class="nx">Cypher</span><span class="p">(</span><span class="nx">@url</span><span class="p">)</span></div></div></div></div></body></html>

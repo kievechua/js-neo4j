@@ -1,11 +1,33 @@
 utils = require './utils.coffee'
 
 module.exports =
-    createIndex: (index, params) ->
-        utils.post("#{@url}/db/data/schema/index/#{index}", json: params)
+    # ###Create index
+    ###
+    neo.
+    createIndex('person', [ 'name' ])
+    ###
+    createIndex: createIndex = (index, params) ->
+        utils.post(
+            "#{@url}/db/data/schema/index/#{index}",
+            json:
+                property_keys: params
+        )
+    cIndex: createIndex
 
-    getIndex: (label) ->
+    # ###List indexes for a label
+    ###
+    neo.
+    readIndex('user')
+    ###
+    readIndex: readIndex = (label) ->
         utils.get("#{@url}/db/data/schema/index/#{label}")
+    rIndex: readIndex
 
-    deleteIndex: (label, property) ->
-        utils.del("#{@url}/db/data/schema/index/#{label}/#{property}", json: params)
+    # ###Drop index
+    ###
+    neo.
+    deleteIndex('user')
+    ###
+    deleteIndex: deleteIndex = (label, property) ->
+        utils.del("#{@url}/db/data/schema/index/#{label}/#{property}")
+    dIndex: deleteIndex
