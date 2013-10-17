@@ -39,13 +39,12 @@ describe 'Relationship', ->
     deleteRelationshipProperty = (relationship) ->
         describe 'deleteRelationshipProperty', ->
             it 'should pass', (done) ->
-                Q.all([
-                    neo.deleteRelationshipProperty(relationship._id, 'since')
-                    neo.deleteRelationshipProperty(relationship._id)
-                ])
+                # Q.all([
+                #     neo.deleteRelationshipProperty(relationship._id)
+                # ])
+                neo.deleteRelationshipProperty(relationship._id, 'since')
                 .then (result) ->
-                    result[0].should.be.true
-                    result[1].should.be.true
+                    result.should.be.true
 
                     deleteRelationship(relationship)
                     done()
@@ -90,11 +89,16 @@ describe 'Relationship', ->
     readRelationshipProperty = (relationship) ->
         describe 'readRelationshipProperty', ->
             it 'should pass', (done) ->
-                Q.all([
-                    neo.readRelationshipProperty(relationship._id)
-                    neo.readRelationshipProperty(relationship._id, 'since')
-                ])
-                .then (result) ->
+                neo.readRelationshipProperty(relationship._id)
+                .then((result) ->
+                    result.since.should.equal '12 years ago'
+                    result.sinceAge.should.equal 17
+
+                    readRelationshipType(relationship)
+                    done()
+                )
+                .fail((result) ->
+                    console.log result
                     result[0].since.should.equal '12 years ago'
                     result[0].sinceAge.should.equal 17
 
@@ -102,17 +106,15 @@ describe 'Relationship', ->
 
                     readRelationshipType(relationship)
                     done()
+                )
 
     updateRelationshipProperty = (relationship) ->
         describe 'updateRelationshipProperty', ->
             it 'should pass', (done) ->
-                Q.all([
-                    neo.updateRelationshipProperty(relationship._id, 'since', '11 years ago')
-                    neo.updateRelationshipProperty(relationship._id, { 'since': '12 years ago', 'sinceAge': 17 })
-                ])
+                # neo.updateRelationshipProperty(relationship._id, 'since', '11 years ago')
+                neo.updateRelationshipProperty(relationship._id, { 'since': '12 years ago', 'sinceAge': 17 })
                 .then((result) ->
-                    result[0].should.be.true
-                    result[1].should.be.true
+                    result.should.be.true
 
                     readRelationshipProperty(relationship)
                     done()

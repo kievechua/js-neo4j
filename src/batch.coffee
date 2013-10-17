@@ -6,19 +6,38 @@ module.exports =
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships)
     ```
     neo
-    .executeBatch(1, {
-        "to" : "http://localhost:7474/db/data/node/43",
-        "max_depth" : 3,
-        "relationships" : {
-            "type" : "to",
-            "direction" : "out"
-        },
-        "algorithm" : "shortestPath"
-    })
+    .executeBatch([
+        {
+          "method" : "PUT",
+          "to" : "/node/221/properties",
+          "body" : {
+            "age" : 1
+          },
+          "id" : 0
+        }, {
+          "method" : "GET",
+          "to" : "/node/221",
+          "id" : 1
+        }, {
+          "method" : "POST",
+          "to" : "/node",
+          "body" : {
+            "age" : 1
+          },
+          "id" : 2
+        }, {
+          "method" : "POST",
+          "to" : "/node",
+          "body" : {
+            "age" : 1
+          },
+          "id" : 3
+        }
+    ])
     ```
     ###
     executeBatch: (params) ->
-        utils.post("#{@url}/db/data/batch", json: params)
+        utils.post("#{@url}/db/data/batch", params, (result) -> result.body)
 
     # ###Execute multiple operations in batch streaming
     ###
@@ -38,4 +57,4 @@ module.exports =
     ```
     ###
     executeBatchStream: (params) ->
-        utils.post("#{@url}/db/data/batch", json: params)
+        utils.post("#{@url}/db/data/batch", params)

@@ -1,4 +1,4 @@
-utils = require './utils.coffee'
+utils = require './utils'
 
 module.exports =
     # ###Create node
@@ -175,7 +175,7 @@ module.exports =
     ###
     readNodeByLabel: readNodeByLabel = (label, property) ->
         if property
-            return utils.get("#{@url}/db/data/label/#{label}/nodes", property)
+            utils.get("#{@url}/db/data/label/#{label}/nodes", property)
         else
-            return utils.get("#{@url}/db/data/label/#{label}/nodes")
+            utils.get("#{@url}/db/data/label/#{label}/nodes")
     rNodeByLabel: readNodeByLabel

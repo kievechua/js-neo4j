@@ -20,4 +20,4 @@ module.exports =
     ```
     ###
     findPath: (nodeId, params) ->
-        utils.post("#{@url}/db/data/node/#{nodeId}/paths", json: params)
+        utils.post("#{@url}/db/data/node/#{nodeId}/paths", params)

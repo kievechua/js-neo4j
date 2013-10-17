@@ -26,6 +26,7 @@ describe 'Label', ->
         describe 'deleteLabel', ->
             it 'should pass', (done) ->
                 neo.deleteLabel(label._id).then((result) ->
+                    console.log result
                     result.should.be.true
 
                     cleanup()
@@ -50,16 +51,16 @@ describe 'Label', ->
     readTypedLabel = (label) ->
         describe 'readTypedLabel', ->
             it 'should pass', (done) ->
-                Q.all([
-                    neo.readTypedLabel(testNode[1]._id, 'all')
-                    neo.readTypedLabel(testNode[1]._id, 'in')
-                    neo.readTypedLabel(testNode[1]._id, 'out')
-                    neo.readTypedLabel(testNode[1]._id, 'all', 'friend')
-                    neo.readTypedLabel(testNode[1]._id, 'in', 'friend')
-                    neo.readTypedLabel(testNode[1]._id, 'out', 'friend')
-                    neo.readTypedLabel(testNode[1]._id, 'all', ['friend', 'lover'])
-                    # neo.readTypedLabel(testNode[1]._id, 'between')
-                ])
+                # Q.all([
+                #     neo.readTypedLabel(testNode[1]._id, 'in')
+                #     neo.readTypedLabel(testNode[1]._id, 'out')
+                #     neo.readTypedLabel(testNode[1]._id, 'all', 'friend')
+                #     neo.readTypedLabel(testNode[1]._id, 'in', 'friend')
+                #     neo.readTypedLabel(testNode[1]._id, 'out', 'friend')
+                #     neo.readTypedLabel(testNode[1]._id, 'all', ['friend', 'lover'])
+                #     neo.readTypedLabel(testNode[1]._id, 'between')
+                # ])
+                neo.readTypedLabel(testNode[1]._id, 'all')
                 .then((result) ->
                     result[0].should.have.length 1
                     result[1].should.have.length 1
@@ -77,10 +78,10 @@ describe 'Label', ->
     readNodeByLabel = (label) ->
         describe 'readNodeByLabel', ->
             it 'should pass', (done) ->
-                Q.all([
-                    # neo.readNodeByLabel('friend', { name: 'Test label 1' })
-                    neo.readNodeByLabel('friend')
-                ])
+                # Q.all([
+                #     neo.readNodeByLabel('friend', { name: 'Test label 1' })
+                # ])
+                neo.readNodeByLabel('bestfriend')
                 .then((result) ->
                     console.log result
                     # result.should.include 'friend'
@@ -105,7 +106,6 @@ describe 'Label', ->
                 ])
                 .then (result) ->
                     result[0].should.include 'bestfriend'
-                    result[0].should.include 'lover'
 
                     result[1].should.include 'bestfriend'
                     result[1].should.include 'lover'
@@ -116,7 +116,7 @@ describe 'Label', ->
     updateLabel = ->
         describe 'updateLabel', ->
             it 'should pass', (done) ->
-                neo.updateLabel(testNode._id, ['bestfriend', 'lover'])
+                neo.updateLabel(testNode._id, ['bestfriend'])
                 .then((result) ->
                     result.should.be.true
 
@@ -127,13 +127,13 @@ describe 'Label', ->
     createLabel = ->
         describe 'createLabel', ->
             it 'should pass', (done) ->
-                Q.all([
-                    neo.createLabel(testNode._id, 'friend')
-                    neo.createLabel(testNode._id, ['friend', 'colleague'])
-                ])
+                # Q.all([
+                #     neo.createLabel(testNode._id, ['friend', 'colleague'])
+                # ])
+                neo.createLabel(testNode._id, 'friend')
                 .then((result) ->
-                    result[0].should.be.true
-                    result[1].should.be.true
+                    result.should.be.true
+                    # result[1].should.be.true
 
                     updateLabel()
                     done()

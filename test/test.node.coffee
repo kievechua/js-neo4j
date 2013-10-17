@@ -7,6 +7,17 @@ chai.should()
 describe 'Node', ->
     neo = new Neo4js()
 
+    testNode = null
+
+    before (done) ->
+        Q.all([
+            neo.createNode({ name: 'Test node 1' })
+            neo.createNode({ name: 'Test node 2' })
+        ])
+        .then (result) ->
+            testNode = result
+            done()
+
     deleteNode = (node) ->
         describe 'deleteNode', ->
             it 'should pass', (done) ->
@@ -19,15 +30,16 @@ describe 'Node', ->
         describe 'deleteNodeProperty', ->
             it 'should pass', (done) ->
                 Q.all([
-                    neo.deleteNodeProperty(node._id, 'age')
-                    neo.deleteNodeProperty(node._id)
+                    neo.deleteNodeProperty(testNode[0]._id, 'name')
+                    neo.deleteNodeProperty(testNode[1]._id)
                 ])
-                .then (result) ->
+                .then((result) ->
                     result[0].should.be.true
                     result[1].should.be.true
 
                     deleteNode(node)
                     done()
+                )
 
     readNodeProperty = (node) ->
         describe 'readNodeProperty', ->
