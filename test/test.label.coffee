@@ -18,64 +18,11 @@ describe 'Label', ->
     # Unable to run in after(), as it run before everything finish
     cleanup = ->
         Q.all([
-            neo.deleteNode(testNode[0]._id)
-            neo.deleteNode(testNode[1]._id)
+            neo.deleteNode(testNode._id)
+            neo.deleteNode(testNode._id)
         ])
 
-    deleteLabel = (label) ->
-        describe 'deleteLabel', ->
-            it 'should pass', (done) ->
-                neo.deleteLabel(label._id).then((result) ->
-                    console.log result
-                    result.should.be.true
-
-                    cleanup()
-
-                    done()
-                )
-
-    deleteLabelProperty = (label) ->
-        describe 'deleteLabelProperty', ->
-            it 'should pass', (done) ->
-                Q.all([
-                    neo.deleteLabelProperty(label._id, 'since')
-                    neo.deleteLabelProperty(label._id)
-                ])
-                .then (result) ->
-                    result[0].should.be.true
-                    result[1].should.be.true
-
-                    deleteLabel(label)
-                    done()
-
-    readTypedLabel = (label) ->
-        describe 'readTypedLabel', ->
-            it 'should pass', (done) ->
-                # Q.all([
-                #     neo.readTypedLabel(testNode[1]._id, 'in')
-                #     neo.readTypedLabel(testNode[1]._id, 'out')
-                #     neo.readTypedLabel(testNode[1]._id, 'all', 'friend')
-                #     neo.readTypedLabel(testNode[1]._id, 'in', 'friend')
-                #     neo.readTypedLabel(testNode[1]._id, 'out', 'friend')
-                #     neo.readTypedLabel(testNode[1]._id, 'all', ['friend', 'lover'])
-                #     neo.readTypedLabel(testNode[1]._id, 'between')
-                # ])
-                neo.readTypedLabel(testNode[1]._id, 'all')
-                .then((result) ->
-                    result[0].should.have.length 1
-                    result[1].should.have.length 1
-                    result[2].should.be.empty
-                    result[3].should.have.length 1
-                    result[4].should.have.length 1
-                    result[5].should.be.empty
-                    result[6].should.have.length 1
-                    # result[7].should.throw 'Unsupported type between, e.g. all, in, out'
-
-                    deleteLabelProperty(label)
-                    done()
-                )
-
-    readNodeByLabel = (label) ->
+    readNodeByLabel = ->
         describe 'readNodeByLabel', ->
             it 'should pass', (done) ->
                 # Q.all([
@@ -86,14 +33,14 @@ describe 'Label', ->
                     console.log result
                     # result.should.include 'friend'
 
-                    # readTypedLabel(label)
+                    readTypedLabel()
                     done()
                 )
                 .fail((result) ->
                     console.log result
                     # result.should.include 'friend'
 
-                    # readTypedLabel(label)
+                    readTypedLabel()
                     done()
                 )
 
@@ -101,14 +48,14 @@ describe 'Label', ->
         describe 'readLabel', ->
             it 'should pass', (done) ->
                 Q.all([
-                    neo.readLabel(testNode._id)
+                    neo.readLabel(testNode._id),
                     neo.readLabel()
                 ])
                 .then (result) ->
                     result[0].should.include 'bestfriend'
 
                     result[1].should.include 'bestfriend'
-                    result[1].should.include 'lover'
+                    result[1].should.include 'friend'
 
                     readNodeByLabel()
                     done()

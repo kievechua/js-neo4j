@@ -5,15 +5,14 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-create-uniqueness-constraint)
     ```
-    neo
-    .createUniquenessConstraint('person', [ "name" ])
+    neo.createUniquenessConstraint('person', [ "name" ])
     ```
     ###
     createUniquenessConstraint: createUniquenessConstraint = (label, constraint) ->
         utils.post(
             "#{@url}/db/data/schema/constraint/#{label}/uniqueness"
-            json:
-                property_keys: constraint
+            property_keys: constraint
+            (result) -> result.ok
         )
     cUniquenessConstraint: createUniquenessConstraint
 
