@@ -135,7 +135,7 @@ module.exports =
     ```
     ###
     deleteRelationship: deleteRelationship = (relationshipId) ->
-        utils.del("#{@url}/db/data/relationship/#{relationshipId}")
+        utils.del("#{@url}/db/data/relationship/#{relationshipId}", (node) -> node.ok)
     dRelationship: deleteRelationship
 
     # ###read all properties on a relationship
@@ -218,5 +218,5 @@ module.exports =
         else
             url = "#{@url}/db/data/relationship/#{id}/properties"
 
-        utils.del(url)
+        utils.del(url, (node) -> node.ok)
     dRelationshipProperty: deleteRelationshipProperty

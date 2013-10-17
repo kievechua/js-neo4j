@@ -4,7 +4,7 @@ chai.should()
 
 {Neo4js} = require '../src/main'
 
-describe 'Cypher', ->
+describe 'Node', ->
     neo = new Neo4js()
 
     deleteNode = (node) ->
@@ -93,14 +93,5 @@ describe 'Cypher', ->
     #             result.status.should.equal 409
     #         )
     #         .done(->
-    #             done()
-    #         )
-
-    # describe 'readNodeByLabel', ->
-    #     it 'should pass', (done) ->
-    #         neo.readNodeByLabel('people').then((node) ->
-    #             console.log node
-    #             node.age.should.equal 18
-
     #             done()
     #         )

@@ -1,4 +1,5 @@
 utils = require './utils.coffee'
+_ = require 'lodash'
 
 module.exports =
     # ###Listing labels for a node
@@ -23,7 +24,7 @@ module.exports =
         else
             url = "#{@url}/db/data/labels"
 
-        utils.get(url)
+        utils.get(url, (result) -> result.body)
     rLabel: readLabel
 
     # ###Adding a label to a node
@@ -43,7 +44,14 @@ module.exports =
     ```
     ###
     createLabel: createLabel = (nodeId, label) ->
-        utils.post("#{@url}/db/data/node/#{nodeId}/labels", json: label)
+        if _.isString label
+            label = label.match /[A-Za-z]+/
+            label = JSON.stringify(label[0])
+        else if _.isArray label
+            for l in label
+                l = l.match(/[A-Za-z]+/)[0]
+
+        utils.post("#{@url}/db/data/node/#{nodeId}/labels", label, (result) -> result.ok)
     cLabel: createLabel
 
     # ###Replacing labels on a node
@@ -55,7 +63,9 @@ module.exports =
     ```
     ###
     updateLabel: updateLabel = (nodeId, labels) ->
-        utils.put("#{@url}/db/data/node/#{nodeId}/labels", json: labels)
+        unless _.isArray labels then throw new Error("Labels #{labels} must be array")
+
+        utils.put("#{@url}/db/data/node/#{nodeId}/labels", labels, (result) -> result.ok)
     uLabel: updateLabel
 
     # ###Removing a label from a node

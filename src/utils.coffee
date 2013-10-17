@@ -1,7 +1,21 @@
+_ = require 'lodash'
 request = require 'superagent'
 Q = require 'q'
 
 moduleKeywords = ['extended', 'included']
+
+errorHandler = (deferred, err, body, success) ->
+    if err
+        deferred.reject err
+    else if body.statusCode >= 400
+        deferred.reject {
+            statusCode: body.statusCode
+            message: body.body
+        }
+    else if success
+        deferred.resolve success(body)
+    else
+        deferred.resolve body
 
 module.exports =
     # ###Provide mixin and extand classes
@@ -22,22 +36,26 @@ module.exports =
             this
 
     # Wrap GET request with promise
-    get: (url, success) ->
+    get: (url, query, success) ->
         deferred = Q.defer()
 
-        request
-            .get(url)
-            .type('json')
-            .end((err, body) ->
-                if err
-                    deferred.reject err
-                else if body.statusCode >= 400
-                    deferred.reject body.error
-                else if success
-                    deferred.resolve success(body)
-                else
-                    deferred.resolve body
-            )
+        if _.isFunction query
+            success = query
+
+            request
+                .get(url)
+                .type('json')
+                .end((err, body) ->
+                    errorHandler deferred, err, body, success
+                )
+        else
+            request
+                .get(url)
+                .type('json')
+                .query(query)
+                .end((err, body) ->
+                    errorHandler deferred, err, body, success
+                )
 
         deferred.promise
 
@@ -50,14 +68,7 @@ module.exports =
             .type('json')
             .send(params)
             .end((err, body) ->
-                if err
-                    deferred.reject err
-                else if body.statusCode >= 400
-                    deferred.reject body.error
-                else if success
-                    deferred.resolve success(body)
-                else
-                    deferred.resolve body
+                errorHandler deferred, err, body, success
             )
 
         deferred.promise
@@ -71,31 +82,19 @@ module.exports =
             .type('json')
             .send(params)
             .end((err, body) ->
-                if err
-                    deferred.reject err
-                else if body.statusCode >= 400
-                    deferred.reject body.error
-                else if success
-                    deferred.resolve success(body)
-                else
-                    deferred.resolve body
+                errorHandler deferred, err, body, success
             )
 
         deferred.promise
 
     # Wrap Delete request with promise
-    del: (url) ->
+    del: (url, success) ->
         deferred = Q.defer()
 
         request
             .del(url)
             .end((err, body) ->
-                if err
-                    deferred.reject err
-                else if body.statusCode >= 400
-                    deferred.reject body.error
-                else
-                    deferred.resolve body.ok
+                errorHandler deferred, err, body, success
             )
 
         deferred.promise

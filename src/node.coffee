@@ -80,7 +80,7 @@ module.exports =
     ```
     ###
     deleteNode: deleteNode = (nodeId) ->
-        utils.del("#{@url}/db/data/node/#{nodeId}")
+        utils.del("#{@url}/db/data/node/#{nodeId}", (node) -> node.ok)
     dNode: deleteNode
 
     # ###read properties for node
@@ -154,7 +154,7 @@ module.exports =
         else
             url = "#{@url}/db/data/node/#{nodeId}/properties"
 
-        utils.del(url)
+        utils.del(url, (node) -> node.ok)
     dNodeProperty: deleteNodeProperty
 
     # ###read all nodes with a label

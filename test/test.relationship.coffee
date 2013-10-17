@@ -4,7 +4,7 @@ chai.should()
 
 {Neo4js} = require '../src/main'
 
-describe 'Cypher', ->
+describe 'Relationship', ->
     neo = new Neo4js()
 
     testNode = null
