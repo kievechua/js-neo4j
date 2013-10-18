@@ -1,10 +1,10 @@
-utils = require './utils.coffee'
+utils = require './utils'
 
 Algorithm = require './algorithm'
 Batch = require './batch'
 Constraint = require './constraint'
 Cypher = require './cypher'
-Index = require './index'
+Index = require './indexing'
 Label = require './label'
 Node = require './node'
 Relationship = require './relationship'

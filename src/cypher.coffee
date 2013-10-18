@@ -1,5 +1,5 @@
 _ = require 'lodash'
-utils = require './utils.coffee'
+utils = require './utils'
 
 RESERVED = [ 'start', 'create', 'set', 'delete', 'foreach', 'match', 'where', 'with'
              'return', 'skip', 'limit', 'order', 'by', 'asc', 'desc', 'on', 'when',
