@@ -20,16 +20,14 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-a-specific-uniqueness-constraint)
     ```
-    neo
-    .readUniquenessConstraint('person', 'name')
+    neo.readUniquenessConstraint('person', 'name')
     ```
     ###
     # ###read all uniqueness constraints for a label
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-uniqueness-constraints-for-a-label)
     ```
-    neo
-    .readUniquenessConstraint('person')
+    neo.readUniquenessConstraint('person')
     ```
     ###
     readUniquenessConstraint: readUniquenessConstraint = (label, property) ->
@@ -38,23 +36,21 @@ module.exports =
         else
             url = "#{@url}/db/data/schema/constraint/#{label}/uniqueness"
 
-        utils.get(url)
+        utils.get(url, (result) -> result.body)
     rUniquenessConstraint: readUniquenessConstraint
 
     # ###read all constraints for a label
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-constraints-for-a-label)
     ```
-    neo
-    .readConstraint('person')
+    neo.readConstraint('person')
     ```
     ###
     # ###read all constraints
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-constraints)
     ```
-    neo
-    .readConstraint()
+    neo.readConstraint()
     ```
     ###
     readConstraint: readConstraint = (label) ->
@@ -63,19 +59,19 @@ module.exports =
         else
             url = "#{@url}/db/data/schema/constraint"
 
-        utils.get(url)
+        utils.get(url, (result) -> result.body)
     rConstraint: readConstraint
 
     # ###Drop constraint
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-drop-constraint)
     ```
-    neo
-    .deleteConstraint('peerson', 'name')
+    neo.deleteConstraint('person', 'name')
     ```
     ###
     deleteConstraint: deleteConstraint = (label, property) ->
-        utils.get(
+        utils.del(
             "#{@url}/db/data/schema/constraint/#{label}/uniqueness/#{property}"
+            (result) -> result.ok
         )
     dConstraint: deleteConstraint
