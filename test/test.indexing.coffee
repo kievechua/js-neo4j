@@ -1,4 +1,3 @@
-Q = require 'q'
 chai = require 'chai'
 chai.should()
 
@@ -11,7 +10,7 @@ describe 'Index', ->
         describe 'deleteIndex', ->
             it 'should pass', (done) ->
                 neo
-                .deleteIndex('user', 'name')
+                .deleteIndex('testuser', 'name')
                 .then((result) ->
                     result.should.be.true
 
@@ -22,9 +21,9 @@ describe 'Index', ->
         describe 'readIndex', ->
             it 'should pass', (done) ->
                 neo
-                .readIndex('user')
+                .readIndex('testuser')
                 .then((result) ->
-                    result[0].label.should.equal 'user'
+                    result[0].label.should.equal 'testuser'
                     result[0]['property-keys'].should.include 'name'
 
                     deleteIndex()
@@ -34,19 +33,12 @@ describe 'Index', ->
 
     describe 'createIndex', ->
         it 'should pass', (done) ->
-            randomProperty = 'name' + (Math.random() * (10000000 - 1) + 1)
-
             neo
-            .createIndex('user', ['name'])
+            .createIndex('testuser', ['name'])
             .then((result) ->
-                result.label.should.equal 'user'
+                result.label.should.equal 'testuser'
                 result['property-keys'].should.include 'name'
 
-                readIndex()
-
-                done()
-            )
-            .fail((result) ->
                 readIndex()
 
                 done()
