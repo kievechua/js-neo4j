@@ -4,94 +4,50 @@ chai.should()
 
 {Neo4js} = require '../src/main'
 
-describe 'Constraint', ->
+describe 'Index', ->
     neo = new Neo4js()
 
-    randomProperty = null
-    # testNode = null
-
-    # before (done) ->
-    #     Q.all([
-    #         neo.createNode({ name: 'Test batch 1' })
-    #         neo.createNode({ name: 'Test batch 2' })
-    #     ])
-    #     .then (result) ->
-    #         testNode = result
-    #         done()
-
-    deleteConstraint = ->
-        describe 'deleteConstraint', ->
+    deleteIndex = ->
+        describe 'deleteIndex', ->
             it 'should pass', (done) ->
-                neo.deleteConstraint('person', randomProperty)
+                neo
+                .deleteIndex('user', 'name')
                 .then((result) ->
                     result.should.be.true
 
                     done()
                 )
-                .fail((result) ->
-                    console.log result
 
-                    done()
-                )
-
-    readUniquenessConstraint = ->
-        defer = Q.defer()
-
-        describe 'readUniquenessConstraint', ->
+    readIndex = ->
+        describe 'readIndex', ->
             it 'should pass', (done) ->
                 neo
-                .readUniquenessConstraint('person', randomProperty)
+                .readIndex('user')
                 .then((result) ->
-                    result[0]['property-keys'][0].should.equal randomProperty
+                    result[0].label.should.equal 'user'
+                    result[0]['property-keys'].should.include 'name'
 
-                    defer.resolve(true)
+                    deleteIndex()
+
                     done()
                 )
-                .fail((result) ->
-                    console.log result
-
-                    defer.resolve(false)
-                    done()
-                )
-
-        defer.promise
-
-    readConstraint = ->
-        defer = Q.defer()
-
-        describe 'readConstraint', ->
-            it 'should pass', (done) ->
-                neo
-                .readConstraint()
-                .then((result) ->
-                    result.should.have.length.of.at.least 1
-
-                    defer.resolve(true)
-                    done()
-                )
-
-        defer.promise
 
     describe 'createIndex', ->
         it 'should pass', (done) ->
             randomProperty = 'name' + (Math.random() * (10000000 - 1) + 1)
 
-            neo.createIndex('user', ['name'])
+            neo
+            .createIndex('user', ['name'])
             .then((result) ->
-                console.log result
-                # result.should.be.true
+                result.label.should.equal 'user'
+                result['property-keys'].should.include 'name'
 
-                # Q.all([
-                #     readConstraint()
-                #     readUniquenessConstraint()
-                # ])
-                # .then (result) ->
-                #     deleteConstraint()
+                readIndex()
 
                 done()
             )
             .fail((result) ->
-                console.log result
+                readIndex()
 
                 done()
             )
