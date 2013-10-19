@@ -18,40 +18,39 @@ describe 'Batch', ->
             testNode = result
             done()
 
+    after ->
+        Q.all([
+            neo.deleteNode(testNode[0]._id)
+            neo.deleteNode(testNode[1]._id)
+            neo.deleteNode(9999999)
+        ])
+
     describe 'executeBatch', ->
         it 'should pass', (done) ->
             neo
-                .executeBatch([{
-                    "method" : "PUT",
-                    "to" : "/node/#{testNode[0]._id}/properties",
-                    "body" : {
-                        "age" : 1
-                    },
-                    "id" : 4
-                }, {
-                    "method" : "GET",
-                    "to" : "/node/#{testNode[0]._id}",
-                    "id" : 1
-                }, {
-                    "method" : "POST",
-                    "to" : "/node",
-                    "body" : {
-                        "age" : 1
-                    },
-                    "id" : 2
-                }, {
-                    "method" : "POST",
-                    "to" : "/node",
-                    "body" : {
-                        "age" : 1
-                    },
-                    "id" : 3
-                }])
-                .then((result) ->
-                    result[0].id.should.equal 4
-                    result[1].id.should.equal 1
-                    result[2].id.should.equal 2
-                    result[3].id.should.equal 3
+            .executeBatch([{
+                "method" : "PUT",
+                "to" : "/node/#{testNode[0]._id}/properties",
+                "body" : {
+                    "age" : 1
+                },
+                "id" : parseInt(testNode[0]._id)
+            }, {
+                "method" : "GET",
+                "to" : "/node/#{testNode[0]._id}",
+                "id" : parseInt(testNode[0]._id)
+            }, {
+                "method" : "POST",
+                "to" : "/node",
+                "body" : {
+                    "age" : 1
+                },
+                "id" : 9999999
+            }])
+            .then((result) ->
+                result[0].id.should.equal parseInt(testNode[0]._id)
+                result[1].id.should.equal parseInt(testNode[0]._id)
+                result[2].id.should.equal parseInt(9999999)
 
-                    done()
-                )
+                done()
+            )

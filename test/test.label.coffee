@@ -9,6 +9,7 @@ describe 'Label', ->
 
     testNode = null
 
+    console.log 1
     before (done) ->
         neo.createNode({ name: 'Test label 1' })
         .then (node) ->
@@ -16,11 +17,14 @@ describe 'Label', ->
             done()
 
     # Unable to run in after(), as it run before everything finish
-    cleanup = ->
+    after (done) ->
+        console.log 2
         Q.all([
             neo.deleteNode(testNode._id)
             neo.deleteNode(testNode._id)
         ])
+        .then (node) ->
+            done()
 
     readNodeByLabel = ->
         describe 'readNodeByLabel', ->
@@ -60,30 +64,33 @@ describe 'Label', ->
                     readNodeByLabel()
                     done()
 
-    updateLabel = ->
-        describe 'updateLabel', ->
-            it 'should pass', (done) ->
-                neo.updateLabel(testNode._id, ['bestfriend'])
-                .then((result) ->
-                    result.should.be.true
+    # updateLabel = ->
 
-                    readLabel()
-                    done()
-                )
+    # createLabel = ->
+    describe 'createLabel', ->
+        it 'should pass', ->
+            console.log 3
+            # Q.all([
+            #     neo.createLabel(testNode._id, ['friend', 'colleague'])
+            # ])
+            neo.createLabel(testNode._id, 'friend')
+            .then((result) ->
+                console.log 4
+                result.should.be.true
+                # result[1].should.be.true
 
-    createLabel = ->
-        describe 'createLabel', ->
-            it 'should pass', (done) ->
-                # Q.all([
-                #     neo.createLabel(testNode._id, ['friend', 'colleague'])
-                # ])
-                neo.createLabel(testNode._id, 'friend')
-                .then((result) ->
-                    result.should.be.true
-                    # result[1].should.be.true
+                updateLabel()
+            )
 
-                    updateLabel()
-                    done()
-                )
+            describe 'updateLabel', ->
+                it 'should pass', (done) ->
+                    console.log 5
+                    neo.updateLabel(testNode._id, ['bestfriend'])
+                    .then((result) ->
+                        console.log 6
+                        result.should.be.true
 
-    createLabel()
+                        readLabel()
+                        done()
+                    )
+    # createLabel()

@@ -34,14 +34,12 @@ describe 'Algorithm', ->
     after (done) ->
         neo
         .deleteRelationship(testRelationship._id)
-        .then((relationship) ->
+        .then(->
             Q.all([
                 neo.deleteNode(testNode[0]._id)
                 neo.deleteNode(testNode[1]._id)
             ])
-            .then((result) ->
-                done()
-            )
+            .then(-> done())
         )
 
     describe 'createIndex', ->
@@ -59,10 +57,6 @@ describe 'Algorithm', ->
             .then((result) ->
                 result[0].start.should.equal "http://localhost:7474/db/data/node/#{testNode[0]._id}"
                 result[0].end.should.equal "http://localhost:7474/db/data/node/#{testNode[1]._id}"
-
-                done()
-            )
-            .fail((result) ->
 
                 done()
             )

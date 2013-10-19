@@ -1,6 +1,11 @@
 Q = require 'q'
 chai = require 'chai'
+chaiAsPromised = require 'chai-as-promised'
+
 chai.should()
+chai.use(chaiAsPromised)
+
+require("mocha-as-promised")()
 
 {Neo4js} = require '../src/main'
 
@@ -9,84 +14,53 @@ describe 'Node', ->
 
     testNode = null
 
-    before (done) ->
-        Q.all([
-            neo.createNode({ name: 'Test node 1' })
-            neo.createNode({ name: 'Test node 2' })
-        ])
-        .then (result) ->
-            testNode = result
-            done()
+    describe 'createNode', ->
+        it 'should pass', ->
+            neo
+            .createNode({ name: 'Kieve' })
+            .then((node) ->
+                node.should.have.property('name').equal 'Kieve'
 
-    deleteNode = (node) ->
-        describe 'deleteNode', ->
-            it 'should pass', (done) ->
-                neo.deleteNode(node._id).then((result) ->
-                    result.should.be.true
-                    done()
-                )
+                testNode = node
+            )
 
-    deleteNodeProperty = (node) ->
-        describe 'deleteNodeProperty', ->
-            it 'should pass', (done) ->
-                Q.all([
-                    neo.deleteNodeProperty(testNode[0]._id, 'name')
-                    neo.deleteNodeProperty(testNode[1]._id)
-                ])
-                .then((result) ->
-                    result[0].should.be.true
-                    result[1].should.be.true
+    describe 'readNode', ->
+        it 'should pass', ->
+            neo.readNode(testNode._id).then((result) ->
+                result.name.should.equal 'Kieve'
+            )
 
-                    deleteNode(node)
-                    done()
-                )
+    describe 'updateNodeProperty', ->
+        it 'should pass', ->
+            Q.all([
+                neo.updateNodeProperty(testNode._id, 'gender', 'male')
+                neo.updateNodeProperty(testNode._id, { 'name': 'Kieve Chua', 'age': 17 })
+            ])
+            .then (result) ->
+                result[0].should.be.true
+                result[1].should.be.true
 
-    readNodeProperty = (node) ->
-        describe 'readNodeProperty', ->
-            it 'should pass', (done) ->
-                neo.readNodeProperty(node._id)
-                .then (result) ->
-                    result.name.should.equal 'Kieve Chua'
-                    result.age.should.equal 17
+    describe 'readNodeProperty', ->
+        it 'should pass', ->
+            neo
+            .readNodeProperty(testNode._id)
+            .then (result) ->
+                result.name.should.equal 'Kieve Chua'
+                result.age.should.equal 17
 
-                    deleteNodeProperty(node)
-                    done()
+    describe 'deleteNodeProperty', ->
+        it 'should pass', ->
+            Q.all([
+                neo.deleteNodeProperty(testNode._id, 'name')
+                neo.deleteNodeProperty(testNode._id)
+            ])
+            .then (result) ->
+                result[0].should.be.true
+                result[1].should.be.true
 
-    updateNodeProperty = (node) ->
-        describe 'updateNodeProperty', ->
-            it 'should pass', (done) ->
-                Q.all([
-                    neo.updateNodeProperty(node._id, 'gender', 'male')
-                    neo.updateNodeProperty(node._id, { 'name': 'Kieve Chua', 'age': 17 })
-                ])
-                .then (result) ->
-                    result[0].should.be.true
-                    result[1].should.be.true
-
-                    readNodeProperty(node)
-                    done()
-
-    readNode = (node) ->
-        describe 'readNode', ->
-            it 'should pass', (done) ->
-                neo.readNode(node._id).then((result) ->
-                    result.name.should.equal 'Kieve'
-
-                    updateNodeProperty(node)
-                    done()
-                )
-
-    createNode = ->
-        describe 'createNode', ->
-            it 'should pass', (done) ->
-                neo.createNode({ name: 'Kieve' }).then((node) ->
-                    node.name.should.equal 'Kieve'
-
-                    readNode(node)
-                    done()
-                )
-
-    createNode()
+    describe 'deleteNode', ->
+        it 'should pass', ->
+            neo.deleteNode(testNode._id).should.eventually.be.true
 
     # describe 'createUniqueNode', ->
     #     it 'should pass', (done) ->
