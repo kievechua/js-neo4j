@@ -1,6 +1,9 @@
 Q = require 'q'
 chai = require 'chai'
+chaiAsPromised = require 'chai-as-promised'
+
 chai.should()
+chai.use(chaiAsPromised)
 
 require("mocha-as-promised")()
 
@@ -34,7 +37,7 @@ describe 'Algorithm', ->
             )
 
     describe 'createIndex', ->
-        it 'should pass', (done) ->
+        it 'should pass', ->
             neo
             .findPath(testNode[0]._id, {
                 "to" : "http://localhost:7474/db/data/node/#{testNode[1]._id}",
@@ -48,8 +51,6 @@ describe 'Algorithm', ->
             .then((result) ->
                 result[0].start.should.equal "http://localhost:7474/db/data/node/#{testNode[0]._id}"
                 result[0].end.should.equal "http://localhost:7474/db/data/node/#{testNode[1]._id}"
-
-                done()
             )
 
     after (done) ->

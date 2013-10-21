@@ -17,12 +17,15 @@ module.exports =
     ```
     ###
     createNode: createNode = (params) ->
-        utils.post("#{@url}/db/data/node", params, (node) ->
-            id = node.body.self.split('/')
-            id = id[id.length - 1]
-            node.body.data._id = id
+        utils.post(
+            "#{@url}/db/data/node",
+            params,
+            (node) ->
+                id = node.body.self.split('/')
+                id = id[id.length - 1]
+                node.body.data._id = id
 
-            return node.body.data
+                return node.body.data
         )
     cNode: createNode
 
@@ -157,25 +160,26 @@ module.exports =
         utils.del(url, (node) -> node.ok)
     dNodeProperty: deleteNodeProperty
 
-    # ###read all nodes with a label
-    ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-all-nodes-with-a-label)
-    ```
-    neo
-    .readNodeByLabel('person')
-    ```
-    ###
-    # ###read nodes by label and property
-    ###
-    [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-nodes-by-label-and-property)
-    ```
-    neo
-    .readNodeByLabel('person', { name: 'kieve chua' })
-    ```
-    ###
-    readNodeByLabel: readNodeByLabel = (label, property) ->
-        if property
-            utils.get("#{@url}/db/data/label/#{label}/nodes", property)
-        else
-            utils.get("#{@url}/db/data/label/#{label}/nodes")
-    rNodeByLabel: readNodeByLabel
+    # # ###read all nodes with a label
+    # ###
+    # It crash the database, need further investigation
+    # [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-all-nodes-with-a-label)
+    # ```
+    # neo
+    # .readNodeByLabel('person')
+    # ```
+    # ###
+    # # ###read nodes by label and property
+    # ###
+    # [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-nodes-by-label-and-property)
+    # ```
+    # neo
+    # .readNodeByLabel('person', { name: 'kieve chua' })
+    # ```
+    # ###
+    # readNodeByLabel: readNodeByLabel = (label, property) ->
+    #     if property
+    #         utils.get("#{@url}/db/data/label/#{label}/nodes", property)
+    #     else
+    #         utils.get("#{@url}/db/data/label/#{label}/nodes")
+    # rNodeByLabel: readNodeByLabel

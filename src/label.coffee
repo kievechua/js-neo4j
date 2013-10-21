@@ -6,16 +6,14 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-listing-labels-for-a-node)
     ```
-    neo
-    .readLabel(1)
+    neo.readLabel(1)
     ```
     ###
     # ###List all labels
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-list-all-labels)
     ```
-    neo
-    .readLabel()
+    neo.readLabel()
     ```
     ###
     readLabel: readLabel = (nodeId) ->
@@ -48,8 +46,7 @@ module.exports =
             label = label.match /[A-Za-z]+/
             label = JSON.stringify(label[0])
         else if _.isArray label
-            for l in label
-                l = l.match(/[A-Za-z]+/)[0]
+            label = _.map label, (l) -> l.match(/[A-Za-z]+/)[0]
 
         utils.post("#{@url}/db/data/node/#{nodeId}/labels", label, (result) -> result.ok)
     cLabel: createLabel
@@ -77,5 +74,5 @@ module.exports =
     ```
     ###
     deleteLabel: deleteLabel = (nodeId, label) ->
-        utils.del("#{@url}/db/data/node/#{nodeId}/labels/#{label}")
+        utils.del("#{@url}/db/data/node/#{nodeId}/labels/#{label}", (result) -> result.ok)
     dLabel: deleteLabel

@@ -55,7 +55,7 @@ describe 'Traversal', ->
                 }
             })
             .then((result) ->
-                result.length.should.equal 1
+                result.should.have.length.of.at.least 1
             )
 
     describe 'traversePath', ->
@@ -69,7 +69,7 @@ describe 'Traversal', ->
                 }
             })
             .then((result) ->
-                result.length.should.equal 1
+                result.should.have.length.of.at.least 1
             )
 
     describe 'traverseNode', ->
@@ -82,7 +82,7 @@ describe 'Traversal', ->
                     "name" : "all"
                 }
             }).then((result) ->
-                result.length.should.equal 1
+                result.should.have.length.of.at.least 1
             )
 
     describe 'pagedTraverse', ->
@@ -90,7 +90,7 @@ describe 'Traversal', ->
             neo
             .pagedTraverse(testNode[0]._id, { pageSize: 1 })
             .then((result) ->
-                result.length.should.equal 1
+                result.should.have.length.of.at.least 1
             )
 
     after (done) ->
