@@ -91,7 +91,11 @@ module.exports =
     ```
     ###
     createPagedTraverse: createPagedTraverse = (nodeId, params) ->
-        utils.post("#{@url}/db/data/node/#{nodeId}/traverse/node", params, (result) -> result.body)
+        utils.post(
+            "#{@url}/db/data/node/#{nodeId}/traverse/node",
+            params,
+            (result) -> result.body
+        )
     cPagedTraverse: createPagedTraverse
 
     # ###Paging through the results of a paged traverser
@@ -111,4 +115,8 @@ module.exports =
         if _.isString params
             utils.get("#{@url}/db/data/node/#{nodeId}/paged/traverse/node/#{params}")
         else if _.isObject params
-            utils.get("#{@url}/db/data/node/#{nodeId}/paged/traverse/node", params)
+            utils.post(
+                "#{@url}/db/data/node/#{nodeId}/paged/traverse/node",
+                params,
+                (result) -> result.body
+            )

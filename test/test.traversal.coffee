@@ -1,6 +1,11 @@
 Q = require 'q'
 chai = require 'chai'
+chaiAsPromised = require 'chai-as-promised'
+
 chai.should()
+chai.use(chaiAsPromised)
+
+require("mocha-as-promised")()
 
 {Neo4js} = require '../src/main'
 
@@ -8,6 +13,7 @@ describe 'Traversal', ->
     neo = new Neo4js()
 
     testNode = null
+    testRelationship = null
 
     before (done) ->
         Q.all([
@@ -16,29 +22,22 @@ describe 'Traversal', ->
         ])
         .then (result) ->
             testNode = result
-            done()
 
-    # TODO
-    pagedTraverse = ->
-        describe 'pagedTraverse', ->
-            it 'should pass', (done) ->
-                neo
-                .pagedTraverse(testNode[0]._id, '411')
-                .then((result) ->
-                    console.log result
-                    # result.length.should.equal 1
+            neo
+            .createRelationship(
+                testNode[0]._id,
+                testNode[1]._id,
+                'testfriend',
+                { since: '10 years ago' }
+            )
+            .then((relationship) ->
+                testRelationship = relationship
 
-                    done()
-                )
-                .fail((result) ->
-                    console.log result
-                    # result.length.should.equal 1
-
-                    done()
-                )
+                done()
+            )
 
     describe 'createPagedTraverse', ->
-        it 'should pass', (done) ->
+        it 'should pass', ->
             neo
             .createPagedTraverse(testNode[0]._id, {
                 "prune_evaluator" : {
@@ -51,20 +50,16 @@ describe 'Traversal', ->
                 },
                 "order" : "depth_first",
                 "relationships" : {
-                    "type" : "NEXT",
+                    "type" : "testfriend",
                     "direction" : "out"
                 }
             })
             .then((result) ->
                 result.length.should.equal 1
-
-                # pagedTraverse()
-
-                done()
             )
 
     describe 'traversePath', ->
-        it 'should pass', (done) ->
+        it 'should pass', ->
             neo.traversePath(testNode[0]._id, {
                 "order" : "breadth_first",
                 "uniqueness" : "none",
@@ -75,12 +70,10 @@ describe 'Traversal', ->
             })
             .then((result) ->
                 result.length.should.equal 1
-
-                done()
             )
 
     describe 'traverseNode', ->
-        it 'should pass', (done) ->
+        it 'should pass', ->
             neo.traverseNode(testNode[0]._id, {
                 "order" : "breadth_first",
                 "uniqueness" : "none",
@@ -90,6 +83,23 @@ describe 'Traversal', ->
                 }
             }).then((result) ->
                 result.length.should.equal 1
-
-                done()
             )
+
+    describe 'pagedTraverse', ->
+        it 'should pass', ->
+            neo
+            .pagedTraverse(testNode[0]._id, { pageSize: 1 })
+            .then((result) ->
+                result.length.should.equal 1
+            )
+
+    after (done) ->
+        neo
+        .deleteRelationship(testRelationship._id)
+        .then(->
+            Q.all([
+                neo.deleteNode(testNode[0]._id)
+                neo.deleteNode(testNode[1]._id)
+            ])
+            .then(-> done())
+        )

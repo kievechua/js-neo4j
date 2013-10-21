@@ -2,6 +2,8 @@ Q = require 'q'
 chai = require 'chai'
 chai.should()
 
+require("mocha-as-promised")()
+
 {Neo4js} = require '../src/main'
 
 describe 'Algorithm', ->
@@ -31,17 +33,6 @@ describe 'Algorithm', ->
                 done()
             )
 
-    after (done) ->
-        neo
-        .deleteRelationship(testRelationship._id)
-        .then(->
-            Q.all([
-                neo.deleteNode(testNode[0]._id)
-                neo.deleteNode(testNode[1]._id)
-            ])
-            .then(-> done())
-        )
-
     describe 'createIndex', ->
         it 'should pass', (done) ->
             neo
@@ -60,3 +51,14 @@ describe 'Algorithm', ->
 
                 done()
             )
+
+    after (done) ->
+        neo
+        .deleteRelationship(testRelationship._id)
+        .then(->
+            Q.all([
+                neo.deleteNode(testNode[0]._id)
+                neo.deleteNode(testNode[1]._id)
+            ])
+            .then(-> done())
+        )

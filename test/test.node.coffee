@@ -26,7 +26,9 @@ describe 'Node', ->
 
     describe 'readNode', ->
         it 'should pass', ->
-            neo.readNode(testNode._id).then((result) ->
+            neo
+            .readNode(testNode._id)
+            .then((result) ->
                 result.name.should.equal 'Kieve'
             )
 

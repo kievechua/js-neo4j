@@ -18,13 +18,6 @@ describe 'Batch', ->
             testNode = result
             done()
 
-    after ->
-        Q.all([
-            neo.deleteNode(testNode[0]._id)
-            neo.deleteNode(testNode[1]._id)
-            neo.deleteNode(9999999)
-        ])
-
     describe 'executeBatch', ->
         it 'should pass', (done) ->
             neo
@@ -54,3 +47,10 @@ describe 'Batch', ->
 
                 done()
             )
+
+    after ->
+        Q.all([
+            neo.deleteNode(testNode[0]._id)
+            neo.deleteNode(testNode[1]._id)
+            neo.deleteNode(9999999)
+        ])

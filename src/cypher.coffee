@@ -70,7 +70,7 @@ class Cypher
                     when 'fn'
                         temp.push "<--(#{param})"
                     # To relationship, e.g. -[]->, -[r]->
-                    when 'tr'
+                    when 'tr', 'r'
                         temp.push "-[#{param}]->"
                     # From relationship, e.g. <-[]-, <-[r]-
                     when 'fr'
@@ -301,7 +301,6 @@ class Cypher
         return @
 
     toString: ->
-        console.log @_query.join(' '), @_params
         @_query.join(' ')
 
     execute: (query, params) ->
@@ -321,17 +320,20 @@ module.exports =
     .executeCypher(
         'CREATE (n:Person { name : {name} }) RETURN n'
         {
-            "name" : "Andres"
+            "name" : "Kieve"
         }
-    })
+    )
     ```
     ###
     executeCypher: (query, params) ->
-        utils.post("#{@url}/db/data/cypher", {
-            json:
+        utils.post(
+            "#{@url}/db/data/cypher"
+            {
                 query: query
                 params: params
-        })
+            }
+            (result) -> result.body
+        )
 
     # ###Return query builder class
     ###
