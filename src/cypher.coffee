@@ -1,22 +1,6 @@
 _ = require 'lodash'
 utils = require './utils'
 
-RESERVED = [ 'start', 'create', 'set', 'delete', 'foreach', 'match', 'where', 'with'
-             'return', 'skip', 'limit', 'order', 'by', 'asc', 'desc', 'on', 'when',
-             'case', 'then', 'else', 'drop', 'using', 'merge', 'constraint', 'assert'
-             'scan', 'remove', 'union', 'all', 'any', 'none', 'single', 'length',
-             'type', 'id', 'coalesce', 'head', 'last', 'timestamp', 'startnode',
-             'endNode', 'nodes', 'relationships', 'labels', 'extract', 'filter',
-             'tail', 'range', 'reduce', 'abs', 'acos', 'asin', 'atan', 'cos', 'cot',
-             'degrees', 'e', 'exp', 'floor', 'log', 'log10', 'pi', 'radians', 'rand',
-             'round', 'sign', 'sin', 'sqrt', 'tan', 'str', 'replace', 'substring',
-             'left', 'right', 'ltrim', 'rtrim', 'trim', 'lower', 'upper' ]
-
-INVALID_IDEN = /\W/
-
-QUERY_PARTS = [ 'start', 'match', 'where', 'with', 'set', 'delete', 'forach', 'return'
-                'union', 'union all', 'order by', 'limit', 'skip' ]
-
 ###
 neo
 .queryBuilder()
@@ -31,12 +15,33 @@ neo
 )
 ###
 class Cypher
-    constructor: (url) ->
-        if url
-            @url = url
-        else
-            @url = 'http://localhost:7474'
+    @FUNCTION_LIST = [
+        # Predicates
+        'ALL', 'ANY', 'NONE', 'SINGLE',
+        # Scalar functions
+        'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE',
+        # Collection functions
+        'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE',
+        # Mathematical functions
+        'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'COT', 'DEGREES', 'E', 'EXP', 'FLOOR', 'HAVERSIN', 'LOG', 'LOG10', 'PI', 'RADIANS', 'RAND', 'ROUND', 'SIGN', 'SIN', 'SQRT', 'TAN',
+        # String functions
+        'STR', 'REPLACE', 'SUBSTRING', 'LEFT', 'RIGHT', 'LTRIM', 'RTRIM', 'TRIM', 'LOWER', 'UPPER'
+    ]
 
+    @QUERY_LIST = [
+        'START', 'CREATE', 'SET', 'DELETE', 'FOREACH', 'MATCH', 'WHERE', 'WITH'
+        'RETURN', 'SKIP', 'LIMIT', 'ORDER', 'BY', 'ASC', 'DESC', 'ON', 'WHEN',
+        'CASE', 'THEN', 'ELSE', 'DROP', 'USING', 'MERGE', 'CONSTRAINT', 'ASSERT'
+        'SCAN', 'REMOVE', 'UNION'
+    ]
+
+    @OPERATION_LIST = [
+        '+', '-', '*', '/', '%',
+        '=', '<>', '<', '>', '<=', '>=',
+        'AND', 'OR', 'XOR', 'NOT'
+    ]
+
+    constructor: (@url) ->
         @_query = []
         @_params = {}
 
@@ -46,6 +51,7 @@ class Cypher
         return @
 
     ###
+    EXPERIMENTAL
     Node direction & relationship builder
     ```
     neo.direction('n=a/tr=love/n') // (a)-[love]->()
@@ -92,50 +98,38 @@ class Cypher
     ###
     Build start node
     ```
-    neo.start() // START
     neo.start('*') // START n = node(*)
     neo.start(1) // START n = node(1), { id: 1 }
-    neo.start([1, 2]) // START n = node([1, 2]), { id: [1, 2] }
-    neo.start([1, 2]) // START n = node([1, 2]), { id: [1, 2] }
+    neo.start({ r: '*' }) // START r = relationship(*)
+    neo.start('n = node(*)') // START n = node(*)
     ```
     ###
-    start: (query) ->
+    start: (query, isRelationship) ->
+        if isRelationship
+            holder = 'r'
+            label = 'relationship'
+        else
+            holder = 'n'
+            label = 'node'
+
         if query is '*'
-            query = 'START n = node(*)'
+            query = "START #{holder} = #{label}(*)"
         else if _.isNumber(query) or _.isArray(query)
             @_params['id'] = query
-            query = 'START n = node({id})'
-        else if _.isObject query
-            if _.isEmpty query.r
-                temp = 'START '
-
-                for key, value of query
-                    if temp isnt 'START ' then temp += ', '
-
-                    temp += "#{key} = node({#{key}})"
-
-                    @_params[key] = value
-
-                query = temp
-            else if query.r is '*'
-                query = 'START n = relationship(*)'
-            else if _.isNumber(query.r) or _.isArray(query.r) or query is '*'
-                @_params['id'] = query.r
-
-                query = 'START n = relationship({id})'
-            else if _.isObject query.r
-                temp = 'START '
-
-                for key, value of query.r
-                    if temp isnt 'START ' then temp += ', '
-
-                    temp += "#{key} = relationship({#{key}})"
-
-                    @_params[key] = value
-
-                query = temp
+            query = "START #{holder} = #{label}({id})"
         else if _.isString query
             query = "START #{query}"
+        else if _.isObject query
+            temp = 'START '
+
+            for key, value of query
+                if temp isnt 'START ' then temp += ', '
+
+                temp += "#{key} = #{label}({#{key}})"
+
+                @_params[key] = value
+
+            query = temp
         else
             throw new Error('Unsupported type')
 
@@ -143,10 +137,17 @@ class Cypher
 
         return @
 
+    # neo.create(n) // CREATE (n)
+    # neo.create(n, true) // CREATE UNIQUE (n)
     create: (query, param) ->
-        if param is 'unique' then query = "UNIQUE #{query}"
+        if param then query = "UNIQUE #{query}"
 
         @_query.push "CREATE #{query}"
+
+        return @
+
+    drop: (query) ->
+        @_query.push "DROP #{query}"
 
         return @
 
@@ -175,11 +176,6 @@ class Cypher
 
         return @
 
-    drop: (query) ->
-        @_query.push "DROP INDEX ON #{query}"
-
-        return @
-
     remove: (query) ->
         @_query.push "REMOVE #{query}"
 
@@ -198,27 +194,30 @@ class Cypher
 
         return @
 
-    return: (query) ->
+    return: (query, isRelationship) ->
+        if isRelationship
+            holder = 'r'
+        else
+            holder = 'n'
+
         if _.isArray query
             temp = 'RETURN '
 
             for q in query
                 if temp isnt 'RETURN ' then temp += ', '
 
-                temp += "n.#{q}"
+                temp += "#{holder}.#{q}"
 
             query = temp
         else if _.isObject query
-            unless _.isEmpty query.r
-                if _.isArray query.r
-                    temp = 'RETURN '
+            temp = 'RETURN '
 
-                    for q in query.r
-                        if temp isnt 'RETURN ' then temp += ', '
+            for key, value of query
+                if temp isnt 'RETURN ' then temp += ', '
 
-                        temp += "r.#{q}"
+                temp += "#{holder}.#{key} AS #{value}"
 
-                    query = temp
+            query = temp
         else if _.isString query
             query = "RETURN #{query}"
         else
@@ -228,11 +227,11 @@ class Cypher
 
         return @
 
-    using: (param, query) ->
-        if param isnt 'index' or param isnt 'scan'
-            query = "USING #{query}"
-        else
+    using: (query, param = '') ->
+        if param.toLowerCase() is 'index' or param.toLowerCase() is 'scan'
             query = "USING #{param.toUpperCase()} #{query}"
+        else
+            query = "USING #{query}"
 
         @_query.push query
 
@@ -248,37 +247,37 @@ class Cypher
 
         return @
 
-    orderBy: (query) ->
-        if _.isArray query
+    orderBy: (query, isRelationship) ->
+        if isRelationship
+            holder = 'r'
+        else
+            holder = 'n'
+
+        if _.isString query
+            query = "ORDER BY #{query}"
+        else if _.isArray query
             temp = 'ORDER BY '
 
             for q in query
                 if temp isnt 'ORDER BY ' then temp += ', '
 
-                temp += "n.#{q}"
+                temp += "#{holder}.#{q}"
 
             query = temp
         else if _.isObject query
-            if _.isEmpty query.r
-                temp = 'ORDER BY '
+            temp = 'ORDER BY '
 
-                for key, value of query
-                    if temp isnt 'ORDER BY ' then temp += ', '
+            for key, value of query
+                if temp isnt 'ORDER BY ' then temp += ', '
 
-                    temp += "n.#{key} " + if value.toUpperCase() is 'DESC' then 'DESC' else 'ASC'
+                if value and value.toLowerCase isnt 'desc'
+                    value = 'ASC'
+                else
+                    value = 'DESC'
 
-                query = temp
-            else
-                temp = 'ORDER BY '
+                temp += "#{holder}.#{key} #{value}"
 
-                for q in query
-                    if temp isnt 'ORDER BY ' then temp += ', '
-
-                    temp += "r.#{q}"
-
-                query = temp
-        else if _.isString query
-            query = "ORDER BY #{query}"
+            query = temp
         else
             throw new Error('Unsupported type')
 
@@ -286,10 +285,14 @@ class Cypher
 
         return @
 
-    limit: (query) ->
-        query = _.parseInt(query) or 0
+    limit: (limit, skip) ->
+        limit = _.parseInt(limit) or 0
+        skip = _.parseInt(skip) or 0
 
-        @_query.push "LIMIT #{query}"
+        if skip
+            @_query.push "LIMIT #{limit} SKIP #{skip}"
+        else
+            @_query.push "LIMIT #{limit}"
 
         return @
 
@@ -303,12 +306,28 @@ class Cypher
     toString: ->
         @_query.join(' ')
 
-    execute: (query, params) ->
-        utils.post("#{@url}/db/data/cypher", {
-            query: @toString()
-            params: @_params
-        })
+    getParams: -> @_params
 
+    # For development use only
+    getList: (keyword) ->
+        if keyword is 'function'
+            @constructor.FUNCTION_LIST
+        else if keyword is 'query'
+            @constructor.QUERY_LIST
+        else if keyword is 'operation'
+            @constructor.OPERATION_LIST
+        else
+            _.union @constructor.FUNCTION_LIST, @constructor.QUERY_LIST, @constructor.OPERATION_LIST
+
+    execute: (query, params) ->
+        utils.post(
+            "#{@url}/db/data/cypher",
+            {
+                query: @toString()
+                params: @_params
+            }
+            (result) -> result.body
+        )
 
 module.exports =
     # ###Execute cypher query
