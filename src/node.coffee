@@ -58,8 +58,7 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-read-node)
     ```
-    neo
-    .readNode(1)
+    neo.readNode(1)
     ```
     ###
     readNode: readNode = (nodeId) ->
@@ -78,8 +77,7 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-delete-node)
     ```
-    neo
-    .deleteNode(1)
+    neo.deleteNode(1)
     ```
     ###
     deleteNode: deleteNode = (nodeId) ->
@@ -90,8 +88,7 @@ module.exports =
     ###
     [Details](http://docs.neo4j.org/chunked/milestone/rest-api-node-properties.html#rest-api-read-properties-for-node)
     ```
-    neo
-    .readNodeProperty(1)
+    neo.readNodeProperty(1)
     ```
     ###
     readNodeProperty: readNodeProperty = (nodeId) ->

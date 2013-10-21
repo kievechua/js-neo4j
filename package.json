@@ -9,7 +9,7 @@
   },
   "main": "./src/main",
   "scripts": {
-    "test": "mocha --compilers coffee:coffee-script -R Spec"
+    "test": "node_modules/.bin/mocha --compilers coffee:coffee-script test"
   },
   "engines": {
     "node": "~0.8.19"
@@ -19,13 +19,13 @@
     "request": "~2.27.0",
     "lodash": "~2.2.1",
     "superagent": "~0.15.5",
-    "coffee-script": "~1.6.3",
-    "chai-as-promised": "~4.0.0"
+    "coffee-script": "~1.6.3"
   },
   "devDependencies": {
     "mocha": "1.13.0",
     "chai": "~1.8.1",
-    "mocha-as-promised": "~1.4.0"
+    "mocha-as-promised": "~1.4.0",
+    "chai-as-promised": "~4.0.0"
   },
   "licenses": [
     {
