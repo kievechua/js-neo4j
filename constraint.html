@@ -1,72 +1,62 @@
-<!DOCTYPE html><html lang="en"><head><title>constraint</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="constraint"><meta name="groc-project-path" content="src/constraint.coffee"><meta name="groc-github-url" content="https://github.com/kievechua/neo4js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/kievechua/neo4js/blob/master/src/constraint.coffee">src/constraint.coffee</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
-<span class="nv">Q = </span><span class="nx">require</span> <span class="s">&#39;q&#39;</span>
+<!DOCTYPE html><html lang="en"><head><title>constraint</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="constraint"><meta name="groc-project-path" content="src/constraint.coffee"><meta name="groc-github-url" content="https://github.com/kievechua/neo4js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/kievechua/neo4js/blob/master/src/constraint.coffee">src/constraint.coffee</a></div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils&#39;</span>
 
-<span class="nv">module.exports =</span>
-    <span class="nv">createUniquenessConstraint: </span><span class="nf">(label, constraint) -&gt;</span>
-        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-        <span class="nx">request</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+<span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-uniqueness-constraint">Create uniqueness constraint</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-create-uniqueness-constraint">Details</a></p>
+
+<pre><code>neo.createUniquenessConstraint('person', [ "name" ])
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createUniquenessConstraint: createUniquenessConstraint = </span><span class="nf">(label, constraint) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
             <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness&quot;</span>
-            <span class="nv">json:</span>
-                <span class="nv">property_keys: </span><span class="nx">constraint</span>
-            <span class="nf">(err, res, body) -&gt;</span>
-                <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
-                <span class="k">else</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+            <span class="nv">property_keys: </span><span class="nx">constraint</span>
+            <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">ok</span>
         <span class="p">)</span>
-        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-    <span class="nv">getUniquenessConstraint: </span><span class="nf">(label, property) -&gt;</span>
-        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+    <span class="nv">cUniquenessConstraint: </span><span class="nx">createUniquenessConstraint</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-a-specific-uniqueness-constraint">read a specific uniqueness constraint</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-a-specific-uniqueness-constraint">Details</a></p>
+
+<pre><code>neo.readUniquenessConstraint('person', 'name')
+</code></pre>
+
+<h3 id="read-all-uniqueness-constraints-for-a-label">read all uniqueness constraints for a label</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-uniqueness-constraints-for-a-label">Details</a></p>
+
+<pre><code>neo.readUniquenessConstraint('person')
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readUniquenessConstraint: readUniquenessConstraint = </span><span class="nf">(label, property) -&gt;</span>
+        <span class="k">if</span> <span class="nx">property</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness&quot;</span>
+
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+    <span class="nv">rUniquenessConstraint: </span><span class="nx">readUniquenessConstraint</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-all-constraints-for-a-label">read all constraints for a label</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-constraints-for-a-label">Details</a></p>
+
+<pre><code>neo.readConstraint('person')
+</code></pre>
+
+<h3 id="read-all-constraints">read all constraints</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-read-all-constraints">Details</a></p>
+
+<pre><code>neo.readConstraint()
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readConstraint: readConstraint = </span><span class="nf">(label) -&gt;</span>
+        <span class="k">if</span> <span class="nx">label</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">&quot;</span>
+        <span class="k">else</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint&quot;</span>
+
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+    <span class="nv">rConstraint: </span><span class="nx">readConstraint</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="drop-constraint">Drop constraint</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-schema-constraints.html#rest-api-drop-constraint">Details</a></p>
+
+<pre><code>neo.deleteConstraint('person', 'name')
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteConstraint: deleteConstraint = </span><span class="nf">(label, property) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span>
             <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
-            <span class="nf">(err, res, body) -&gt;</span>
-                <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
-                <span class="k">else</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
+            <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">ok</span>
         <span class="p">)</span>
-        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-    <span class="nv">getUniquenessConstraints: </span><span class="nf">(label) -&gt;</span>
-        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
-            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness&quot;</span>
-            <span class="nf">(err, res, body) -&gt;</span>
-                <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
-                <span class="k">else</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
-        <span class="p">)</span>
-        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-    <span class="nv">getLabelConstraints: </span><span class="nf">(label) -&gt;</span>
-        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
-            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">&quot;</span>
-            <span class="nf">(err, res, body) -&gt;</span>
-                <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
-                <span class="k">else</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
-        <span class="p">)</span>
-        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-    <span class="nv">getConstraints: </span><span class="nf">-&gt;</span>
-        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
-            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint&quot;</span>
-            <span class="nf">(err, res, body) -&gt;</span>
-                <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
-                <span class="k">else</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
-        <span class="p">)</span>
-        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span>
-    <span class="nv">deleteConstraint: </span><span class="nf">(label, property) -&gt;</span>
-        <span class="nv">deferred = </span><span class="nx">Q</span><span class="p">.</span><span class="nx">defer</span><span class="p">()</span>
-        <span class="nx">request</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
-            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
-            <span class="nf">(err, res, body) -&gt;</span>
-                <span class="k">if</span> <span class="nx">err</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">body</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">reject</span> <span class="nx">err</span>
-                <span class="k">else</span>
-                    <span class="nx">deferred</span><span class="p">.</span><span class="nx">resolve</span> <span class="nx">body</span>
-        <span class="p">)</span>
-        <span class="nx">deferred</span><span class="p">.</span><span class="nx">promise</span></div></div></div></div></body></html>
+    <span class="nv">dConstraint: </span><span class="nx">deleteConstraint</span></div></div></div></div></body></html>
