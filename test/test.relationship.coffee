@@ -84,43 +84,72 @@ describe 'Relationship', ->
     describe "neo.readTypedRelationship(nodeId, 'all')", ->
         describe 'when valid', ->
             it 'should return all relationship for a node', ->
-                # Q.all([
-                #     neo.readTypedRelationship(testNode[1]._id, 'all')
-                #     neo.readTypedRelationship(testNode[1]._id, 'in')
-                #     neo.readTypedRelationship(testNode[1]._id, 'out')
-                #     neo.readTypedRelationship(testNode[1]._id, 'all', 'friend')
-                #     neo.readTypedRelationship(testNode[1]._id, 'in', 'friend')
-                #     neo.readTypedRelationship(testNode[1]._id, 'out', 'friend')
-                #     neo.readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover'])
-                # ])
-                # .then((result) ->
-                #     result[0].should.have.length 1
-                #     result[1].should.have.length 1
-                #     result[2].should.be.empty
-                #     result[3].should.have.length 1
-                #     result[4].should.have.length 1
-                #     result[5].should.be.empty
-                #     result[6].should.have.length 1
-                # )
+                neo
+                .readTypedRelationship(testNode[1]._id, 'all')
+                .should.eventually.have.length 1
 
-    describe 'deleteRelationshipProperty', ->
-        describe 'delete with property', ->
-            it 'should pass', ->
+    describe "neo.readTypedRelationship(nodeId, 'in')", ->
+        describe 'when valid', ->
+            it 'should return all inbound relationship for a node', ->
+                neo
+                .readTypedRelationship(testNode[1]._id, 'in')
+                .should.eventually.have.length 1
+
+    describe "neo.readTypedRelationship(nodeId, 'out')", ->
+        describe 'when valid', ->
+            it 'should return all outbound relationship for a node', ->
+                neo
+                .readTypedRelationship(testNode[1]._id, 'out')
+                .should.eventually.be.empty
+
+    describe "neo.readTypedRelationship(nodeId, 'all', label)", ->
+        describe 'when valid', ->
+            it 'should return all outbound relationship for a node', ->
+                neo
+                .readTypedRelationship(testNode[1]._id, 'all', 'friend')
+                .should.eventually.have.length 1
+
+    describe "neo.readTypedRelationship(nodeId, 'in', label)", ->
+        describe 'when valid', ->
+            it 'should return all outbound relationship for a node', ->
+                neo
+                .readTypedRelationship(testNode[1]._id, 'in', 'friend')
+                .should.eventually.have.length 1
+
+    describe "neo.readTypedRelationship(nodeId, 'out', label)", ->
+        describe 'when valid', ->
+            it 'should return all outbound relationship for a node', ->
+                neo
+                .readTypedRelationship(testNode[1]._id, 'out', 'friend')
+                .should.eventually.be.empty
+
+    describe "neo.readTypedRelationship(nodeId, 'all', [labels])", ->
+        describe 'when valid', ->
+            it 'should return all outbound relationship for a node', ->
+                neo
+                .readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover'])
+                .should.eventually.have.length 1
+
+    describe 'neo.deleteRelationshipProperty(relationshipId, property)', ->
+        describe 'when valid', ->
+            it 'should delete relationships\'s property', ->
                 neo
                 .deleteRelationshipProperty(testRelationship._id, 'since')
                 .should.eventually.be.true
 
-        describe 'delete without property', ->
-            it 'should pass', ->
+    describe 'neo.deleteRelationshipProperty(relationshipId)', ->
+        describe 'when valid', ->
+            it 'should delete all relationships\'s properties', ->
                 neo
                 .deleteRelationshipProperty(testRelationship._id)
                 .should.eventually.be.true
 
-    describe 'deleteRelationship', ->
-        it 'should pass', ->
-            neo
-            .deleteRelationship(testRelationship._id)
-            .should.eventually.be.true
+    describe 'neo.deleteRelationship(relationshipId)', ->
+        describe 'when valid', ->
+            it 'should delete relationship', ->
+                neo
+                .deleteRelationship(testRelationship._id)
+                .should.eventually.be.true
 
     after ->
         Q.all([

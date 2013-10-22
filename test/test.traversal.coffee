@@ -36,41 +36,39 @@ describe 'Traversal', ->
                 done()
             )
 
-    describe 'createPagedTraverse', ->
-        it 'should pass', ->
-            neo
-            .createPagedTraverse(testNode[0]._id, {
-                "prune_evaluator" : {
-                    "language" : "builtin",
-                    "name" : "none"
-                },
-                "return_filter" : {
-                    "language" : "javascript",
-                    "body" : "position.endNode().getProperty('name').contains('Test traversal 1');"
-                },
-                "order" : "depth_first",
-                "relationships" : {
-                    "type" : "testfriend",
-                    "direction" : "out"
-                }
-            })
-            .then((result) ->
-                result.should.have.length.of.at.least 1
-            )
+    describe 'neo.createPagedTraverse(nodeId, {properties})', ->
+        describe 'when valid', ->
+            it 'should create a paged traverse', ->
+                neo
+                .createPagedTraverse(testNode[0]._id, {
+                    "prune_evaluator" : {
+                        "language" : "builtin",
+                        "name" : "none"
+                    },
+                    "return_filter" : {
+                        "language" : "javascript",
+                        "body" : "position.endNode().getProperty('name').contains('Test traversal 1');"
+                    },
+                    "order" : "depth_first",
+                    "relationships" : {
+                        "type" : "testfriend",
+                        "direction" : "out"
+                    }
+                })
+                .should.eventually.have.length.of.at.least 1
 
-    describe 'traversePath', ->
-        it 'should pass', ->
-            neo.traversePath(testNode[0]._id, {
-                "order" : "breadth_first",
-                "uniqueness" : "none",
-                "return_filter" : {
-                    "language" : "builtin",
-                    "name" : "all"
-                }
-            })
-            .then((result) ->
-                result.should.have.length.of.at.least 1
-            )
+    describe 'neo.traversePath(nodeId, {properties})', ->
+        describe 'when valid', ->
+            it 'should pass', ->
+                neo.traversePath(testNode[0]._id, {
+                    "order" : "breadth_first",
+                    "uniqueness" : "none",
+                    "return_filter" : {
+                        "language" : "builtin",
+                        "name" : "all"
+                    }
+                })
+                .should.eventually.have.length.of.at.least 1
 
     describe 'traverseNode', ->
         it 'should pass', ->
