@@ -35,6 +35,16 @@ module.exports =
             obj.included?.apply(@)
             this
 
+    objToStr: (obj) ->
+        query = '{ '
+
+        _.forOwn obj, (value, key) ->
+            if query isnt '{ ' then query += ', '
+
+            query += "#{key} : '#{value}'"
+
+        query += ' }'
+
     # Wrap GET request with promise
     get: (url, query, success) ->
         deferred = Q.defer()

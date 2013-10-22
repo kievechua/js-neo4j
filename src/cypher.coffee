@@ -143,7 +143,7 @@ class Cypher
 
         return @
 
-    create: (param, query) ->
+    create: (query, param) ->
         if param is 'unique' then query = "UNIQUE #{query}"
 
         @_query.push "CREATE #{query}"
@@ -305,9 +305,8 @@ class Cypher
 
     execute: (query, params) ->
         utils.post("#{@url}/db/data/cypher", {
-            json:
-                query: @toString()
-                params: @_params
+            query: @toString()
+            params: @_params
         })
 
 

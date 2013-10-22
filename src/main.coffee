@@ -31,11 +31,12 @@ class Neo4js extends utils.Module
     ###
     Without properties [Details](http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node)
     ```
-    neo
-    .service()
+    neo.service()
     ```
     ###
-    service: -> utils.get("#{@url}/db/data")
+    service: -> utils.get("#{@url}/db/data", (result) -> result.body)
+
+    utils: utils
 
 exports.version = '0.1.0'
 
