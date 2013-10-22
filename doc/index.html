@@ -2,8 +2,9 @@
 
 <hr />
 
-<p>Under development
-Not ready for production, as there's not test case yet.</p>
+<h2 id="installation">Installation</h2>
+
+<p><code>npm install neo4js</code></p>
 
 <h2 id="usage">Usage</h2>
 
@@ -12,19 +13,46 @@ Not ready for production, as there's not test case yet.</p>
 neo = new Neo4js()
 
 neo
+    .createNode()
+    .then((data) -&gt;
+        console.log data
+    )
+    .fail((data) -&gt;
+        console.log 'error', arguments
+    )
+
+neo
     .queryBuilder()
     .start('*')
     .return('*')
     .execute()
-    .fail((data) -&gt;
-        console.log 'error', arguments
-    )
     .then((data) -&gt;
         console.log data
     )
+    .fail((data) -&gt;
+        console.log 'error', arguments
+    )
 </code></pre>
 
-<p><a href="http://kievechua.github.io/neo4js/">Document</a></p>
+<p>Check out <a href="http://kievechua.github.io/neo4js/">api document</a></p>
+
+<p>Or <a href="http://kievechua.github.io/neo4js/doc/test/test.html">test generator document</a></p>
+
+<p>All Neo4js CRUB interface come with little shorthand</p>
+
+<pre><code>neo.createNode() = neo.cNode()
+neo.readNode() = neo.rNode()
+neo.updateNodeProperty() = neo.uNodeProperty()
+neo.deleteNode() = neo.dNode()
+// And etc
+</code></pre>
+
+<h2 id="development">Development</h2>
+
+<ol>
+<li>Start Neo4j server</li>
+<li>Run <code>npm test</code></li>
+</ol>
 
 <h2 id="required">Required</h2>
 
@@ -33,11 +61,9 @@ neo
 <h2 id="todo">TODO</h2>
 
 <ol>
-<li>Test case</li>
-<li>Refactor</li>
-<li>Write more document</li>
-<li>Publish to NPM</li>
+<li>Cypher sanitization</li>
+<li>Cover remaining api</li>
+<li>More documentation</li>
 <li>Browserify?</li>
 <li>Cache?</li>
-<li>Add feature</li>
 </ol></div></div></div></div></body></html>

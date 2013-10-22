@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>node</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="node"><meta name="groc-project-path" content="src/node.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/node.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<!DOCTYPE html><html lang="en"><head><title>node</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="node"><meta name="groc-project-path" content="src/node.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/node.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils&#39;</span>
 
 <span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-node">Create node</h3>
 
@@ -15,51 +15,74 @@
   name: 'Kieve'
 })
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createNode: createNode = </span><span class="nf">(params) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nf">(node) -&gt;</span>
-            <span class="nv">id = </span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">self</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
-            <span class="nv">id = </span><span class="nx">id</span><span class="p">[</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-            <span class="nv">node.body.data._id = </span><span class="nx">id</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node&quot;</span><span class="p">,</span>
+            <span class="nx">params</span><span class="p">,</span>
+            <span class="nf">(node) -&gt;</span>
+                <span class="nv">id = </span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">self</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+                <span class="nv">id = </span><span class="nx">id</span><span class="p">[</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="nv">node.body.data._id = </span><span class="nx">id</span>
 
-            <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span>
+                <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span>
         <span class="p">)</span>
-    <span class="nv">cNode: </span><span class="nx">createNode</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-or-create-unique-node-create">read or create unique node (create)</h3>
+    <span class="nv">cNode: </span><span class="nx">createNode</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Considering dropping this in favour of Constraint</p>
 
-<pre><code>neo
-.createUniqueNode('people', {
-    "key" : "name",
-    "value" : "Tobias",
-    "properties" : {
-        "name" : "Tobias",
-        "sequence" : 1
-    }
-})
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createUniqueNode: createUniqueNode = </span><span class="nf">(label, mode) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/index/node/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">?uniqueness=</span><span class="si">#{</span><span class="nx">mode</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span>
-    <span class="nv">cUniqueNode: </span><span class="nx">createUniqueNode</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-node">read node</h3>
+<h3 id="read-or-create-unique-node-create">read or create unique node (create)</h3>
+
+<pre><code>neo.createUniqueNode('people', 'name', 'Kieve', { age: 18 }, 'create_or_fail')
+</code></pre>
+
+<p>createUniqueNode: createUniqueNode = (label, key, value, params, mode = "get<em>or</em>create") ->
+    utils.post(
+        "#{@url}/db/data/index/node/#{label}?uniqueness=#{mode}",
+        {
+            key: key
+            value:  value
+            properties: params
+        },
+        (node) ->
+            id = node.body.self.split('/')
+            id = id[id.length - 1]
+            node.body.data._id = id</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><pre><code>        return node.body.data
+)
+</code></pre>
+
+<p>cUniqueNode: createUniqueNode</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-node">read node</h3>
 
 <p>Note that the response contains URI/templates for the available operations for readting properties and relationships.
 <a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-read-node">Details</a></p>
 
-<pre><code>neo
-.readNode(1)
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readNode: readNode = </span><span class="nf">(id) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+<pre><code>neo.readNode(1)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readNode: readNode = </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span>
+            <span class="nf">(node) -&gt;</span>
+                <span class="nv">id = </span><span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">self</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+                <span class="nv">id = </span><span class="nx">id</span><span class="p">[</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+                <span class="nv">node.body.data._id = </span><span class="nx">id</span>
+
+                <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span>
+        <span class="p">)</span>
     <span class="nv">rNode: </span><span class="nx">readNode</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="delete-node">Delete node</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-delete-node">Details</a></p>
 
-<pre><code>neo
-.deleteNode(1)
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteNode: deleteNode = </span><span class="nf">(id) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+<pre><code>neo.deleteNode(1)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteNode: deleteNode = </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(node) -&gt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
     <span class="nv">dNode: </span><span class="nx">deleteNode</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-properties-for-node">read properties for node</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-node-properties.html#rest-api-read-properties-for-node">Details</a></p>
 
-<pre><code>neo
-.readNodeProperty(1)
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readNodeProperty: readNodeProperty = </span><span class="nf">(id) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">)</span>
+<pre><code>neo.readNodeProperty(1)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readNodeProperty: readNodeProperty = </span><span class="nf">(nodeId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/properties&quot;</span><span class="p">,</span>
+            <span class="nf">(node) -&gt;</span>
+                <span class="nv">node.body._id = </span><span class="nx">nodeId</span>
+
+                <span class="k">return</span> <span class="nx">node</span><span class="p">.</span><span class="nx">body</span>
+        <span class="p">)</span>
     <span class="nv">rNodeProperty: </span><span class="nx">readNodeProperty</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="set-property-on-node">Set property on node</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-node-properties.html#rest-api-set-property-on-node">Details</a></p>
@@ -74,14 +97,19 @@
 
 <pre><code>neo
 .updateNodeProperty(1, { 'name': 'kieve' })
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">updateNodeProperty: updateNodeProperty = </span><span class="nf">(id, property, value) -&gt;</span>
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">updateNodeProperty: updateNodeProperty = </span><span class="nf">(nodeId, property, value) -&gt;</span>
         <span class="k">if</span> <span class="nx">value</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
+            <span class="nv">value = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
         <span class="k">else</span>
             <span class="nv">value = </span><span class="nx">property</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/properties&quot;</span>
 
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">value</span><span class="p">)</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span>
+            <span class="nx">url</span><span class="p">,</span>
+            <span class="nx">value</span><span class="p">,</span>
+            <span class="nf">(node) -&gt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ok</span>
+        <span class="p">)</span>
     <span class="nv">uNodeProperty: </span><span class="nx">updateNodeProperty</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="delete-all-properties-from-node">Delete all properties from node</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-node-properties.html#rest-api-delete-all-properties-from-node">Details</a></p>
@@ -96,30 +124,41 @@
 
 <pre><code>neo
 .deleteNodeProperty(1, 'name')
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteNodeProperty: deleteNodeProperty = </span><span class="nf">(id, property) -&gt;</span>
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteNodeProperty: deleteNodeProperty = </span><span class="nf">(nodeId, property) -&gt;</span>
         <span class="k">if</span> <span class="nx">property</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
         <span class="k">else</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/properties&quot;</span>
 
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
-    <span class="nv">dNodeProperty: </span><span class="nx">deleteNodeProperty</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-all-nodes-with-a-label">read all nodes with a label</h3>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">(node) -&gt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
+    <span class="nv">dNodeProperty: </span><span class="nx">deleteNodeProperty</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h1 id="read-all-nodes-with-a-label">###read all nodes with a label</h1>
 
-<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-all-nodes-with-a-label">Details</a></p>
+<h2 id="">#</h2>
+
+<p>It crash the database, need further investigation
+<a href="http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-all-nodes-with-a-label">Details</a></p>
 
 <pre><code>neo
 .readNodeByLabel('person')
 </code></pre>
 
-<h3 id="read-nodes-by-label-and-property">read nodes by label and property</h3>
+<h2 id="">#</h2>
+
+<h1 id="read-nodes-by-label-and-property">###read nodes by label and property</h1>
+
+<h2 id="">#</h2>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-node-labels.html#rest-api-read-nodes-by-label-and-property">Details</a></p>
 
 <pre><code>neo
 .readNodeByLabel('person', { name: 'kieve chua' })
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readNodeByLabel: readNodeByLabel = </span><span class="nf">(label, property) -&gt;</span>
-        <span class="k">if</span> <span class="nx">property</span>
-            <span class="k">return</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/label/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/nodes&quot;</span><span class="p">,</span> <span class="nx">property</span><span class="p">)</span>
-        <span class="k">else</span>
-            <span class="k">return</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/label/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/nodes&quot;</span><span class="p">)</span>
-    <span class="nv">rNodeByLabel: </span><span class="nx">readNodeByLabel</span></div></div></div></div></body></html>
+</code></pre>
+
+<h2 id="">#</h2>
+
+<p>readNodeByLabel: readNodeByLabel = (label, property) ->
+    if property
+        utils.get("#{@url}/db/data/label/#{label}/nodes", property)
+    else
+        utils.get("#{@url}/db/data/label/#{label}/nodes")
+rNodeByLabel: readNodeByLabel</p></div></div></div></div></body></html>

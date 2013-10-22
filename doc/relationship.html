@@ -1,60 +1,80 @@
-<!DOCTYPE html><html lang="en"><head><title>relationship</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="relationship"><meta name="groc-project-path" content="src/relationship.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/relationship.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils.coffee&#39;</span>
+<!DOCTYPE html><html lang="en"><head><title>relationship</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="relationship"><meta name="groc-project-path" content="src/relationship.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/relationship.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils&#39;</span>
+<span class="nv">_ = </span><span class="nx">require</span> <span class="s">&#39;lodash&#39;</span>
 
 <span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-all-relationships">read all relationships</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationship-types.html">Details</a></p>
 
-<pre><code>neo
-.readRelationshipType()
+<pre><code>neo.readRelationshipType()
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readRelationshipType: readRelationshipType = </span><span class="nf">-&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/types&quot;</span><span class="p">)</span>
-    <span class="nv">rRelationshipType: </span><span class="nx">readRelationshipType</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-all-relationships">read all relationships</h3>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/types&quot;</span><span class="p">,</span>
+            <span class="nf">(relationship) -&gt;</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span>
+        <span class="p">)</span>
+    <span class="nv">rRelationshipType: </span><span class="nx">readRelationshipType</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-relationship-by-id">read Relationship by ID</h3>
+
+<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-relationship-by-id">Details</a></p>
+
+<pre><code>neo.readRelationship(1)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readRelationship: readRelationship = </span><span class="nf">(relationshipId, type) -&gt;</span>
+        <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">relationshipId</span><span class="si">}</span><span class="s">&quot;</span>
+
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">(relationship) -&gt;</span>
+            <span class="nv">id = </span><span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">self</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+            <span class="nv">id = </span><span class="nx">id</span><span class="p">[</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="nv">relationship.body.data._id = </span><span class="nx">id</span>
+
+            <span class="k">return</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span>
+        <span class="p">)</span>
+    <span class="nv">rRelationship: </span><span class="nx">readRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-all-relationships">read all relationships</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-relationships">Details</a></p>
 
-<pre><code>neo
-.readRelationship(1, 'all')
+<pre><code>neo.readTypedRelationship(1, 'all')
 </code></pre>
 
 <h3 id="read-outgoing-relationships">read outgoing relationships</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-incoming-relationships">Details</a></p>
 
-<pre><code>neo
-.readRelationship(1, 'out')
+<pre><code>neo.readTypedRelationship(1, 'out')
 </code></pre>
 
 <h3 id="read-incoming-relationships">read incoming relationships</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-incoming-relationships">Details</a></p>
 
-<pre><code>neo
-.readRelationship(1, 'in')
+<pre><code>neo.readTypedRelationship(1, 'in')
 </code></pre>
 
-<h3 id="read-relationship-by-id">read Relationship by ID</h3>
-
-<p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-relationship-by-id">Details</a></p>
-
-<pre><code>neo
-.readRelationship(1)
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readRelationship: readRelationship = </span><span class="nf">(nodeId, type) -&gt;</span>
-        <span class="k">if</span> <span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;all&#39;</span> <span class="o">or</span> <span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;in&#39;</span> <span class="o">or</span> <span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;out&#39;</span>
-            <span class="nv">url = </span><span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/</span><span class="si">#{</span><span class="nx">type</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
-        <span class="k">else</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">&quot;</span>
-
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
-    <span class="nv">rRelationship: </span><span class="nx">readRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-typed-relationships">read typed relationships</h3>
+<h3 id="read-typed-relationships">read typed relationships</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-typed-relationships">Details</a></p>
 
-<pre><code>neo
-.readTypedRelationship(1, ['LIKES', 'HATES'])
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readTypedRelationship: readTypedRelationship = </span><span class="nf">(nodeId, types = []) -&gt;</span>
-        <span class="nv">types = </span><span class="nx">types</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s">&#39;%26&#39;</span><span class="p">)</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/all/</span><span class="si">#{</span><span class="nx">types</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
-    <span class="nv">rTypedRelationship: </span><span class="nx">readTypedRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-or-create-unique-relationship-create">read or create unique relationship (create)</h3>
+<pre><code>neo.readTypedRelationship(1, 'all', ['LIKES', 'HATES'])
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readTypedRelationship: readTypedRelationship = </span><span class="nf">(nodeId, type, relationships) -&gt;</span>
+        <span class="k">unless</span> <span class="nx">type</span> <span class="o">isnt</span> <span class="s">&#39;all&#39;</span> <span class="o">or</span> <span class="nx">type</span> <span class="o">isnt</span> <span class="s">&#39;in&#39;</span> <span class="o">or</span> <span class="nx">type</span> <span class="o">isnt</span> <span class="s">&#39;out&#39;</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&quot;Unsupported type </span><span class="si">#{</span><span class="nx">type</span><span class="si">}</span><span class="s">, e.g. all, in, out&quot;</span>
+
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isArray</span> <span class="nx">relationships</span>
+            <span class="nv">relationships = </span><span class="nx">relationships</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s">&#39;%26&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+                <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/</span><span class="si">#{</span><span class="nx">type</span><span class="si">}</span><span class="s">/</span><span class="si">#{</span><span class="nx">relationships</span><span class="si">}</span><span class="s">&quot;</span>
+                <span class="nf">(relationship) -&gt;</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span>
+            <span class="p">)</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">relationships</span>
+            <span class="k">return</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+                <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/</span><span class="si">#{</span><span class="nx">type</span><span class="si">}</span><span class="s">/</span><span class="si">#{</span><span class="nx">relationships</span><span class="si">}</span><span class="s">&quot;</span>
+                <span class="nf">(relationship) -&gt;</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span>
+            <span class="p">)</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+                <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">nodeId</span><span class="si">}</span><span class="s">/relationships/</span><span class="si">#{</span><span class="nx">type</span><span class="si">}</span><span class="s">&quot;</span>
+                <span class="nf">(relationship) -&gt;</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span>
+            <span class="p">)</span>
+    <span class="nv">rTypedRelationship: </span><span class="nx">readTypedRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Considering dropping this in favour of Constraint</p>
+
+<h3 id="read-or-create-unique-relationship-create">read or create unique relationship (create)</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-nodes.html#rest-api-create-node">Details</a></p>
 
@@ -66,73 +86,80 @@
     "end" : "http://localhost:7474/db/data/node/436",
     "type" : "knowledge"
 })
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createUniqueRelationship: createUniqueRelationship = </span><span class="nf">(label, mode) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/index/relationship/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">?uniqueness=</span><span class="si">#{</span><span class="nx">mode</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">params</span><span class="p">)</span>
-    <span class="nv">cUniqueRelationship: </span><span class="nx">createUniqueRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-relationship">Create relationship</h3>
+</code></pre>
+
+<p>createUniqueRelationship: createUniqueRelationship = (label, mode) ->
+    utils.post("#{@url}/db/data/index/relationship/#{label}?uniqueness=#{mode}", json: params)
+cUniqueRelationship: createUniqueRelationship</p></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-relationship">Create relationship</h3>
 
 <p>Upon successful creation of a relationship, the new relationship is returned.
 <a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-create-relationship">Details</a></p>
 
-<pre><code>neo
-.createRelationship(1, 2, 'love', { foo: bar })
+<pre><code>neo.createRelationship(1, 2, 'love', { foo: bar })
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createRelationship: createRelationship = </span><span class="nf">(fromNodeId, toNodeId, type, properties) -&gt;</span>
         <span class="nv">params =</span>
             <span class="nv">to: </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">toNodeId</span><span class="si">}</span><span class="s">&quot;</span>
             <span class="nv">type: </span><span class="nx">type</span>
             <span class="nv">data: </span><span class="nx">properties</span>
 
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">fromNodeId</span><span class="si">}</span><span class="s">/relationships&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/node/</span><span class="si">#{</span><span class="nx">fromNodeId</span><span class="si">}</span><span class="s">/relationships&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">,</span> <span class="nf">(relationship) -&gt;</span>
+            <span class="nv">id = </span><span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">self</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">)</span>
+            <span class="nv">id = </span><span class="nx">id</span><span class="p">[</span><span class="nx">id</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="nv">relationship.body.data._id = </span><span class="nx">id</span>
+
+            <span class="k">return</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">data</span>
+        <span class="p">)</span>
     <span class="nv">cRelationship: </span><span class="nx">createRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="delete-relationship">Delete relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-delete-relationship">Details</a></p>
 
-<pre><code>neo
-.deleteRelationship(1)
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteRelationship: deleteRelationship = </span><span class="nf">(id) -&gt;</span>
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span>
+<pre><code>neo.deleteRelationship(1)
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteRelationship: deleteRelationship = </span><span class="nf">(relationshipId) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">relationshipId</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(node) -&gt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
     <span class="nv">dRelationship: </span><span class="nx">deleteRelationship</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="read-all-properties-on-a-relationship">read all properties on a relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-properties-on-a-relationship">Details</a></p>
 
-<pre><code>neo
-.readRelationshipProperty(1)
+<pre><code>neo.readRelationshipProperty(1)
 </code></pre>
 
 <h3 id="read-all-properties-on-a-relationship">read all properties on a relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-read-all-properties-on-a-relationship">Details</a></p>
 
-<pre><code>neo
-.readRelationshipProperty(1, 'cost')
-</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readRelationshipProperty: readRelationshipProperty = </span><span class="nf">(id, property) -&gt;</span>
+<pre><code>neo.readRelationshipProperty(1, 'cost')
+</code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readRelationshipProperty: readRelationshipProperty = </span><span class="nf">(relationshipId, property) -&gt;</span>
         <span class="k">if</span> <span class="nx">property</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">relationshipId</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
         <span class="k">else</span>
-            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span>
+            <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">relationshipId</span><span class="si">}</span><span class="s">/properties&quot;</span>
 
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span>
+            <span class="nx">url</span><span class="p">,</span>
+            <span class="nf">(relationship) -&gt;</span>
+                <span class="nv">relationship.body._id = </span><span class="nx">relationshipId</span>
+
+                <span class="k">return</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">body</span>
+        <span class="p">)</span>
     <span class="nv">rRelationshipProperty: </span><span class="nx">readRelationshipProperty</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="set-single-property-on-a-relationship">Set single property on a relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-set-single-property-on-a-relationship">Details</a></p>
 
-<pre><code>neo
-.updateRelationshipProperty(1, 'happy', 'yes')
+<pre><code>neo.updateRelationshipProperty(1, 'happy', 'yes')
 </code></pre>
 
 <h3 id="update-relationship-properties">Update relationship properties</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationship-properties.html#rest-api-update-relationship-properties">Details</a></p>
 
-<pre><code>neo
-.updateRelationshipProperty(1, { age: 18 })
+<pre><code>neo.updateRelationshipProperty(1, { age: 18 })
 </code></pre>
 
 <h3 id="set-all-properties-on-a-relationship">Set all properties on a relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationships.html#rest-api-set-all-properties-on-a-relationship">Details</a></p>
 
-<pre><code>neo
-.updateRelationshipProperty(1, { happy: 'yes' })
+<pre><code>neo.updateRelationshipProperty(1, { happy: 'yes' })
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">updateRelationshipProperty: updateRelationshipProperty = </span><span class="nf">(id, property, value) -&gt;</span>
         <span class="k">if</span> <span class="nx">value</span>
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
@@ -140,26 +167,24 @@
             <span class="nv">value = </span><span class="nx">property</span>
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span>
 
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nv">json: </span><span class="nx">value</span><span class="p">)</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">put</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nf">(relationship) -&gt;</span> <span class="nx">relationship</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
     <span class="nv">uRelationshipProperty: </span><span class="nx">updateRelationshipProperty</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="remove-properties-from-a-relationship">Remove properties from a relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationship-properties.html#rest-api-remove-properties-from-a-relationship">Details</a></p>
 
-<pre><code>neo
-.deleteRelationshipProperty(1)
+<pre><code>neo.deleteRelationshipProperty(1)
 </code></pre>
 
 <h3 id="remove-property-from-a-relationship">Remove property from a relationship</h3>
 
 <p><a href="http://docs.neo4j.org/chunked/milestone/rest-api-relationship-properties.html#rest-api-remove-property-from-a-relationship">Details</a></p>
 
-<pre><code>neo
-.deleteRelationshipProperty(1, 'cost')
+<pre><code>neo.deleteRelationshipProperty(1, 'cost')
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteRelationshipProperty: deleteRelationshipProperty = </span><span class="nf">(id, property) -&gt;</span>
         <span class="k">if</span> <span class="nx">property</span>
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
         <span class="k">else</span>
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/relationship/</span><span class="si">#{</span><span class="nx">id</span><span class="si">}</span><span class="s">/properties&quot;</span>
 
-        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nf">(node) -&gt;</span> <span class="nx">node</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
     <span class="nv">dRelationshipProperty: </span><span class="nx">deleteRelationshipProperty</span></div></div></div></div></body></html>

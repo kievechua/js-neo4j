@@ -14,33 +14,37 @@ describe 'Constraint', ->
 
     randomProperty = 'name' + (Math.random() * (10000000 - 1) + 1)
 
-    describe 'createUniquenessConstraint', ->
-        it 'should pass', ->
-            neo
-            .createUniquenessConstraint('person', [randomProperty])
-            .then((result) ->
-                result.should.be.true
-            )
-            .fail((result) ->
-                console.log randomProperty
-            )
+    describe 'neo.createUniquenessConstraint(label, [property])', ->
+        describe 'when valid', ->
+            it 'should return true', ->
+                neo
+                .createUniquenessConstraint('person', [randomProperty])
+                .then((result) ->
+                    result.should.be.true
+                )
+                .fail((result) ->
+                    console.log randomProperty
+                )
 
-    describe 'readConstraint', ->
-        it 'should pass', ->
-            neo
-            .readConstraint()
-            .should.eventually.have.length.of.at.least 1
+    describe 'neo.readConstraint()', ->
+        describe 'when valid', ->
+            it 'should return all constraint', ->
+                neo
+                .readConstraint()
+                .should.eventually.have.length.of.at.least 1
 
-    describe 'readUniquenessConstraint', ->
-        it 'should pass', ->
-            neo
-            .readUniquenessConstraint('person', randomProperty)
-            .then((result) ->
-                result[0]['property-keys'][0].should.equal randomProperty
-            )
+    describe 'neo.readUniquenessConstraint(label, property)', ->
+        describe 'when valid', ->
+            it 'should return node with specified label and constraint', ->
+                neo
+                .readUniquenessConstraint('person', randomProperty)
+                .then((result) ->
+                    result[0]['property-keys'][0].should.equal randomProperty
+                )
 
-    describe 'deleteConstraint', ->
-        it 'should pass', ->
-            neo
-            .deleteConstraint('person', randomProperty)
-            .should.eventually.be.true
+    describe 'neo.deleteConstraint(label, property)', ->
+        describe 'when valid', ->
+            it 'should return true', ->
+                neo
+                .deleteConstraint('person', randomProperty)
+                .should.eventually.be.true

@@ -1,0 +1,19 @@
+<!DOCTYPE html><html lang="en"><head><title>indexing</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="indexing"><meta name="groc-project-path" content="src/indexing.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/indexing.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils&#39;</span>
+
+<span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-index">Create index</h3>
+
+<p>neo.createIndex('user', [ 'name' ])</p></div></div><div class="code"><div class="wrapper">    <span class="nv">createIndex: createIndex = </span><span class="nf">(index, params) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
+            <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/index/</span><span class="si">#{</span><span class="nx">index</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span>
+            <span class="nv">property_keys: </span><span class="nx">params</span><span class="p">,</span>
+            <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">body</span>
+        <span class="p">)</span>
+    <span class="nv">cIndex: </span><span class="nx">createIndex</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="list-indexes-for-a-label">List indexes for a label</h3>
+
+<p>neo.readIndex('user')</p></div></div><div class="code"><div class="wrapper">    <span class="nv">readIndex: readIndex = </span><span class="nf">(label) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/index/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">body</span><span class="p">)</span>
+    <span class="nv">rIndex: </span><span class="nx">readIndex</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="drop-index">Drop index</h3>
+
+<p>neo.deleteIndex('user', 'name')</p></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteIndex: deleteIndex = </span><span class="nf">(label, property) -&gt;</span>
+        <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/index/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span><span class="p">,</span> <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span>
+    <span class="nv">dIndex: </span><span class="nx">deleteIndex</span></div></div></div></div></body></html>

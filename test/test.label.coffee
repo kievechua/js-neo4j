@@ -24,34 +24,42 @@ describe 'Label', ->
 
             done()
 
-    describe 'createLabel', ->
-        it 'should pass', ->
-            neo
-            .createLabel(testNode[0]._id, ['testfriend', 'testcolleagu2e'])
-            .should.eventually.be.true
+    describe 'neo.createLabel(nodeId, [labels])', ->
+        describe 'when valid', ->
+            it 'should insert labels to a node', ->
+                neo
+                .createLabel(testNode[0]._id, ['testfriend', 'testcolleagu2e'])
+                .should.eventually.be.true
 
-        it 'should pass', ->
-            neo
-            .createLabel(testNode[1]._id, 'testfriend')
-            .should.eventually.be.true
+    describe 'neo.createLabel(nodeId, label)', ->
+        describe 'when valid', ->
+            it 'should insert label to a node', ->
+                neo
+                .createLabel(testNode[1]._id, 'testfriend')
+                .should.eventually.be.true
 
-    describe 'updateLabel', ->
-        it 'should pass', ->
-            neo
-            .updateLabel(testNode[0]._id, ['testbestfriend'])
-            .should.eventually.be.true
+    describe 'neo.updateLabel(nodeId, labels)', ->
+        describe 'when valid', ->
+            it 'should replace labels of a node', ->
+                neo
+                .updateLabel(testNode[0]._id, ['testbestfriend'])
+                .should.eventually.be.true
 
-    describe 'readLabel', ->
-        it 'should pass', ->
-            Q.all([
-                neo.readLabel(testNode[0]._id),
-                neo.readLabel()
-            ])
-            .then (result) ->
-                result[0].should.include 'testbestfriend'
+    describe 'neo.readLabel(nodeId)', ->
+        describe 'when valid', ->
+            it 'should return labels of a node', ->
+                neo
+                .readLabel(testNode[0]._id)
+                .should.eventually.include 'testbestfriend'
 
-                result[1].should.include 'testbestfriend'
-                result[1].should.include 'testfriend'
+    describe 'neo.readLabel()', ->
+        describe 'when valid', ->
+            it 'should return all labels of the database', ->
+                neo
+                .readLabel()
+                .then (result) ->
+                    result.should.include 'testbestfriend'
+                    result.should.include 'testfriend'
 
     # describe 'readNodeByLabel', ->
     #     it 'should pass', ->
@@ -99,11 +107,12 @@ describe 'Label', ->
     #             done()
     #         )
 
-    describe 'deleteLabel', ->
-        it 'should pass', ->
-            neo
-            .deleteLabel(testNode[1]._id, 'testfriend')
-            .should.eventually.be.true
+    describe 'neo.deleteLabel(nodeId, label)', ->
+        describe 'when valid', ->
+            it 'should remove label from a node', ->
+                neo
+                .deleteLabel(testNode[1]._id, 'testfriend')
+                .should.eventually.be.true
 
     after ->
         Q.all([

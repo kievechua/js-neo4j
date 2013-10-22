@@ -8,7 +8,7 @@
     {Neo4js} = require('neo4js')
 
     neo = new Neo4js()
-    
+
     neo
         .createNode()
         .then((data) ->
@@ -17,7 +17,7 @@
         .fail((data) ->
             console.log 'error', arguments
         )
-        
+
     neo
         .queryBuilder()
         .start('*')
@@ -30,7 +30,9 @@
             console.log 'error', arguments
         )
 
-[Document](http://kievechua.github.io/neo4js/)
+Check out [api document](http://kievechua.github.io/neo4js/)
+
+Or [test generator document](http://kievechua.github.io/neo4js/doc/test/test.html)
 
 All Neo4js CRUB interface come with little shorthand
 

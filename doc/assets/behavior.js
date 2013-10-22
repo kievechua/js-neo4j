@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/README.md",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
@@ -31,8 +31,24 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "type": "heading",
               "data": {
                 "level": 2,
+                "title": "Installation",
+                "slug": "installation"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
                 "title": "Usage",
                 "slug": "usage"
+              },
+              "depth": 2
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 2,
+                "title": "Development",
+                "slug": "development"
               },
               "depth": 2
             }, {
@@ -62,8 +78,24 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "type": "heading",
           "data": {
             "level": 2,
+            "title": "Installation",
+            "slug": "installation"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
             "title": "Usage",
             "slug": "usage"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Development",
+            "slug": "development"
           },
           "depth": 2
         }, {
@@ -97,54 +129,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/index.coffee",
-        "projectPath": "src/index.coffee",
-        "targetPath": "index",
-        "pageTitle": "index",
-        "title": "index"
-      },
-      "depth": 1,
-      "outline": [
-        {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Usage",
-            "slug": "usage"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "Required",
-            "slug": "required"
-          },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 2,
-            "title": "TODO",
-            "slug": "todo"
-          },
-          "depth": 2
-        }
-      ]
-    }, {
-      "type": "file",
-      "data": {
-        "language": {
-          "nameMatchers": [".coffee", "Cakefile"],
-          "pygmentsLexer": "coffee-script",
-          "multiLineComment": ["###*", " *", " ###", "###", "#", "###"],
-          "strictMultiLineEnd": false,
-          "singleLineComment": ["#"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "CoffeeScript"
-        },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/algorithm.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/algorithm.coffee",
         "projectPath": "src/algorithm.coffee",
         "targetPath": "algorithm",
         "pageTitle": "algorithm",
@@ -175,7 +160,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/batch.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/batch.coffee",
         "projectPath": "src/batch.coffee",
         "targetPath": "batch",
         "pageTitle": "batch",
@@ -194,11 +179,11 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "Execute multiple operations in batch streaming",
+            "level": 1,
+            "title": "###Execute multiple operations in batch streaming",
             "slug": "execute-multiple-operations-in-batch-streaming"
           },
-          "depth": 3
+          "depth": 1
         }
       ]
     }, {
@@ -214,7 +199,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/constraint.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/constraint.coffee",
         "projectPath": "src/constraint.coffee",
         "targetPath": "constraint",
         "pageTitle": "constraint",
@@ -285,7 +270,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/cypher.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/cypher.coffee",
         "projectPath": "src/cypher.coffee",
         "targetPath": "cypher",
         "pageTitle": "cypher",
@@ -324,7 +309,54 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/label.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/indexing.coffee",
+        "projectPath": "src/indexing.coffee",
+        "targetPath": "indexing",
+        "pageTitle": "indexing",
+        "title": "indexing"
+      },
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Create index",
+            "slug": "create-index"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "List indexes for a label",
+            "slug": "list-indexes-for-a-label"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "Drop index",
+            "slug": "drop-index"
+          },
+          "depth": 3
+        }
+      ]
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".coffee", "Cakefile"],
+          "pygmentsLexer": "coffee-script",
+          "multiLineComment": ["###*", " *", " ###", "###", "#", "###"],
+          "strictMultiLineEnd": false,
+          "singleLineComment": ["#"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "CoffeeScript"
+        },
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/label.coffee",
         "projectPath": "src/label.coffee",
         "targetPath": "label",
         "pageTitle": "label",
@@ -395,7 +427,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/main.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/main.coffee",
         "projectPath": "src/main.coffee",
         "targetPath": "main",
         "pageTitle": "main",
@@ -426,7 +458,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/node.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/node.coffee",
         "projectPath": "src/node.coffee",
         "targetPath": "node",
         "pageTitle": "node",
@@ -509,19 +541,19 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }, {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "read all nodes with a label",
+            "level": 1,
+            "title": "###read all nodes with a label",
             "slug": "read-all-nodes-with-a-label"
           },
-          "depth": 3
+          "depth": 1
         }, {
           "type": "heading",
           "data": {
-            "level": 3,
-            "title": "read nodes by label and property",
+            "level": 1,
+            "title": "###read nodes by label and property",
             "slug": "read-nodes-by-label-and-property"
           },
-          "depth": 3
+          "depth": 1
         }
       ]
     }, {
@@ -537,7 +569,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/relationship.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/relationship.coffee",
         "projectPath": "src/relationship.coffee",
         "targetPath": "relationship",
         "pageTitle": "relationship",
@@ -551,6 +583,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 3,
             "title": "read all relationships",
             "slug": "read-all-relationships"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "read Relationship by ID",
+            "slug": "read-relationship-by-id"
           },
           "depth": 3
         }, {
@@ -575,14 +615,6 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 3,
             "title": "read incoming relationships",
             "slug": "read-incoming-relationships"
-          },
-          "depth": 3
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 3,
-            "title": "read Relationship by ID",
-            "slug": "read-relationship-by-id"
           },
           "depth": 3
         }, {
@@ -676,6 +708,851 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }
       ]
     }, {
+      "type": "folder",
+      "data": {
+        "path": "test",
+        "title": "test"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/test/test.md",
+            "projectPath": "test/test.md",
+            "targetPath": "test/test",
+            "pageTitle": "test/test",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "TOC",
+                "slug": "toc",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "TOC"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Algorithm",
+                "slug": "algorithm"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.findPath()",
+                    "slug": "neofindpath"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Batch",
+                "slug": "batch"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "executeBatch",
+                    "slug": "executebatch"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Constraint",
+                "slug": "constraint"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "createUniquenessConstraint",
+                    "slug": "createuniquenessconstraint"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readConstraint",
+                    "slug": "readconstraint"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readUniquenessConstraint",
+                    "slug": "readuniquenessconstraint"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteConstraint",
+                    "slug": "deleteconstraint"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Cypher",
+                "slug": "cypher"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "executeCypher",
+                    "slug": "executecypher"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "queryBuilder",
+                    "slug": "querybuilder"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "cypher",
+                        "slug": "cypher"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "direction",
+                        "slug": "direction"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "n",
+                            "slug": "n"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "tn",
+                            "slug": "tn"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "fn",
+                            "slug": "fn"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "r",
+                            "slug": "r"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "tr",
+                            "slug": "tr"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "fr",
+                            "slug": "fr"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "or",
+                            "slug": "or"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "ir",
+                            "slug": "ir"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "chaining",
+                            "slug": "chaining"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "start",
+                        "slug": "start"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "node",
+                            "slug": "node"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "relationship",
+                            "slug": "relationship"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "create",
+                        "slug": "create"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "normal",
+                            "slug": "normal"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "unique",
+                            "slug": "unique"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "match",
+                        "slug": "match"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "where",
+                        "slug": "where"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "with",
+                        "slug": "with"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "set",
+                        "slug": "set"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "merge",
+                        "slug": "merge"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "drop",
+                        "slug": "drop"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "remove",
+                        "slug": "remove"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "delete",
+                        "slug": "delete"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "string",
+                            "slug": "string"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "array",
+                            "slug": "array"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "foreach",
+                        "slug": "foreach"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "return",
+                        "slug": "return"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "node",
+                            "slug": "node"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "relationship",
+                            "slug": "relationship"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "union",
+                        "slug": "union"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "using",
+                        "slug": "using"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "without param",
+                            "slug": "without-param"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "with param",
+                            "slug": "with-param"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "orderBy",
+                        "slug": "orderby"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "node",
+                            "slug": "node"
+                          },
+                          "depth": 4
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "relationship",
+                            "slug": "relationship"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "skip",
+                        "slug": "skip"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "limit",
+                        "slug": "limit"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "getFunctionList",
+                        "slug": "getfunctionlist"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "execute",
+                        "slug": "execute"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Index",
+                "slug": "index"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "createIndex",
+                    "slug": "createindex"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readIndex",
+                    "slug": "readindex"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteIndex",
+                    "slug": "deleteindex"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Label",
+                "slug": "label"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "createLabel",
+                    "slug": "createlabel"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "updateLabel",
+                    "slug": "updatelabel"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readLabel",
+                    "slug": "readlabel"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteLabel",
+                    "slug": "deletelabel"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Main",
+                "slug": "main"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "create new connection",
+                    "slug": "create-new-connection"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "Default config",
+                        "slug": "default-config"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "custom config",
+                        "slug": "custom-config"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "create new connection",
+                    "slug": "create-new-connection"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Node",
+                "slug": "node"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "createNode",
+                    "slug": "createnode"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readNode",
+                    "slug": "readnode"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "updateNodeProperty",
+                    "slug": "updatenodeproperty"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readNodeProperty",
+                    "slug": "readnodeproperty"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteNodeProperty",
+                    "slug": "deletenodeproperty"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteNode",
+                    "slug": "deletenode"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Relationship",
+                "slug": "relationship"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "createRelationship",
+                    "slug": "createrelationship"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readRelationship",
+                    "slug": "readrelationship"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "updateRelationshipProperty",
+                    "slug": "updaterelationshipproperty"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readRelationshipProperty",
+                    "slug": "readrelationshipproperty"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readRelationshipType",
+                    "slug": "readrelationshiptype"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "readTypedRelationship",
+                    "slug": "readtypedrelationship"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteRelationshipProperty",
+                    "slug": "deleterelationshipproperty"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "delete with property",
+                        "slug": "delete-with-property"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "delete without property",
+                        "slug": "delete-without-property"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "deleteRelationship",
+                    "slug": "deleterelationship"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Traversal",
+                "slug": "traversal"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "createPagedTraverse",
+                    "slug": "createpagedtraverse"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "traversePath",
+                    "slug": "traversepath"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "traverseNode",
+                    "slug": "traversenode"
+                  },
+                  "depth": 2
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "pagedTraverse",
+                    "slug": "pagedtraverse"
+                  },
+                  "depth": 2
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Utils",
+                "slug": "utils"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "objToStr",
+                    "slug": "objtostr"
+                  },
+                  "depth": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, {
       "type": "file",
       "data": {
         "language": {
@@ -688,7 +1565,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/traversal.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/traversal.coffee",
         "projectPath": "src/traversal.coffee",
         "targetPath": "traversal",
         "pageTitle": "traversal",
@@ -751,7 +1628,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/utils.coffee",
+        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/utils.coffee",
         "projectPath": "src/utils.coffee",
         "targetPath": "utils",
         "pageTitle": "utils",

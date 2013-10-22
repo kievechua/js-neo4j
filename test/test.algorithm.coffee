@@ -36,22 +36,23 @@ describe 'Algorithm', ->
                 done()
             )
 
-    describe 'createIndex', ->
-        it 'should pass', ->
-            neo
-            .findPath(testNode[0]._id, {
-                "to" : "http://localhost:7474/db/data/node/#{testNode[1]._id}",
-                "max_depth" : 3,
-                "relationships" : {
-                    "type" : "testfriend",
-                    "direction" : "out"
-                },
-                "algorithm" : "shortestPath"
-            })
-            .then((result) ->
-                result[0].start.should.equal "http://localhost:7474/db/data/node/#{testNode[0]._id}"
-                result[0].end.should.equal "http://localhost:7474/db/data/node/#{testNode[1]._id}"
-            )
+    describe 'neo.findPath(nodeId, {parameters})', ->
+        describe 'when valid', ->
+            it 'should return path detail from A to B', ->
+                neo
+                .findPath(testNode[0]._id, {
+                    "to" : "http://localhost:7474/db/data/node/#{testNode[1]._id}",
+                    "max_depth" : 3,
+                    "relationships" : {
+                        "type" : "testfriend",
+                        "direction" : "out"
+                    },
+                    "algorithm" : "shortestPath"
+                })
+                .then((result) ->
+                    result[0].start.should.equal "http://localhost:7474/db/data/node/#{testNode[0]._id}"
+                    result[0].end.should.equal "http://localhost:7474/db/data/node/#{testNode[1]._id}"
+                )
 
     after (done) ->
         neo

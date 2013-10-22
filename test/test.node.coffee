@@ -14,55 +14,68 @@ describe 'Node', ->
 
     testNode = null
 
-    describe 'createNode', ->
-        it 'should pass', ->
-            neo
-            .createNode({ name: 'Kieve' })
-            .then((node) ->
-                node.should.have.property('name').equal 'Kieve'
+    describe 'neo.createNode({properties})', ->
+        describe 'when valid', ->
+            it 'should create a new node', ->
+                neo
+                .createNode({ name: 'Kieve' })
+                .then((node) ->
+                    node.should.have.property('name').equal 'Kieve'
 
-                testNode = node
-            )
+                    testNode = node
+                )
 
-    describe 'readNode', ->
-        it 'should pass', ->
-            neo
-            .readNode(testNode._id)
-            .then((result) ->
-                result.name.should.equal 'Kieve'
-            )
+    describe 'neo.readNode(nodeId)', ->
+        describe 'when valid', ->
+            it 'should return node details', ->
+                neo
+                .readNode(testNode._id)
+                .then((result) ->
+                    result.name.should.equal 'Kieve'
+                )
 
-    describe 'updateNodeProperty', ->
-        it 'should pass', ->
-            Q.all([
-                neo.updateNodeProperty(testNode._id, 'gender', 'male')
-                neo.updateNodeProperty(testNode._id, { 'name': 'Kieve Chua', 'age': 17 })
-            ])
-            .then (result) ->
-                result[0].should.be.true
-                result[1].should.be.true
+    describe 'neo.updateNodeProperty(nodeId, property, value)', ->
+        describe 'when valid', ->
+            it 'should update node property', ->
+                neo
+                .updateNodeProperty(testNode._id, 'gender', 'male')
+                .should.eventually.be.true
 
-    describe 'readNodeProperty', ->
-        it 'should pass', ->
-            neo
-            .readNodeProperty(testNode._id)
-            .then (result) ->
-                result.name.should.equal 'Kieve Chua'
-                result.age.should.equal 17
+    describe 'neo.updateNodeProperty(nodeId, {properties})', ->
+        describe 'when valid', ->
+            it 'should update node properties', ->
+                neo
+                .updateNodeProperty(testNode._id, { 'name': 'Kieve Chua', 'age': 17 })
+                .should.eventually.be.true
 
-    describe 'deleteNodeProperty', ->
-        it 'should pass', ->
-            Q.all([
+    describe 'neo.readNodeProperty(nodeId)', ->
+        describe 'when valid', ->
+            it 'should return properties of a node', ->
+                neo
+                .readNodeProperty(testNode._id)
+                .then (result) ->
+                    result.name.should.equal 'Kieve Chua'
+                    result.age.should.equal 17
+
+    describe 'neo.deleteNodeProperty(nodeId, property)', ->
+        describe 'when valid', ->
+            it 'should delete node property', ->
                 neo.deleteNodeProperty(testNode._id, 'name')
-                neo.deleteNodeProperty(testNode._id)
-            ])
-            .then (result) ->
-                result[0].should.be.true
-                result[1].should.be.true
+                .should.eventually.be.true
 
-    describe 'deleteNode', ->
-        it 'should pass', ->
-            neo.deleteNode(testNode._id).should.eventually.be.true
+    describe 'neo.deleteNodeProperty(nodeId)', ->
+        describe 'when valid', ->
+            it 'should delete all property of a node', ->
+                neo
+                .deleteNodeProperty(testNode._id)
+                .should.eventually.be.true
+
+    describe 'neo.deleteNode(nodeId)', ->
+        describe 'when valid', ->
+            it 'should delete a node', ->
+                neo
+                .deleteNode(testNode._id)
+                .should.eventually.be.true
 
     # describe 'createUniqueNode', ->
     #     it 'should pass', (done) ->

@@ -23,22 +23,23 @@ describe 'Batch', ->
             testNode = result
             done()
 
-    describe 'executeBatch', ->
-        it 'should pass', ->
-            neo
-            .executeBatch([{
-                "method" : "GET",
-                "to" : "/node/#{testNode[0]._id}",
-                "id" : parseInt(testNode[0]._id)
-            }, {
-                "method" : "GET",
-                "to" : "/node/#{testNode[1]._id}",
-                "id" : parseInt(testNode[1]._id)
-            }])
-            .then((result) ->
-                result[0].id.should.equal parseInt(testNode[0]._id)
-                result[1].id.should.equal parseInt(testNode[1]._id)
-            )
+    describe 'neo.executeBatch([tasks])', ->
+        describe 'when valid', ->
+            it 'should return all task result', ->
+                neo
+                .executeBatch([{
+                    "method" : "GET",
+                    "to" : "/node/#{testNode[0]._id}",
+                    "id" : parseInt(testNode[0]._id)
+                }, {
+                    "method" : "GET",
+                    "to" : "/node/#{testNode[1]._id}",
+                    "id" : parseInt(testNode[1]._id)
+                }])
+                .then((result) ->
+                    result[0].id.should.equal parseInt(testNode[0]._id)
+                    result[1].id.should.equal parseInt(testNode[1]._id)
+                )
 
     after ->
         Q.all([

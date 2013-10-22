@@ -1,0 +1,1062 @@
+<!DOCTYPE html><html lang="en"><head><title>test/test</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="test/test"><meta name="groc-project-path" content="test/test.md"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path">test/test.md</div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="toc">TOC</h1>
+
+<ul>
+<li><a href="#algorithm">Algorithm</a>
+<ul><li><a href="#algorithm-neofindpath">neo.findPath()</a></li></ul></li>
+<li><a href="#batch">Batch</a>
+<ul><li><a href="#batch-executebatch">executeBatch</a></li></ul></li>
+<li><a href="#constraint">Constraint</a>
+<ul><li><a href="#constraint-createuniquenessconstraint">createUniquenessConstraint</a></li>
+<li><a href="#constraint-readconstraint">readConstraint</a></li>
+<li><a href="#constraint-readuniquenessconstraint">readUniquenessConstraint</a></li>
+<li><a href="#constraint-deleteconstraint">deleteConstraint</a></li></ul></li>
+<li><a href="#cypher">Cypher</a>
+<ul><li><a href="#cypher-executecypher">executeCypher</a></li>
+<li><a href="#cypher-querybuilder">queryBuilder</a>
+<ul><li><a href="#cypher-querybuilder-cypher">cypher</a></li>
+<li><a href="#cypher-querybuilder-direction">direction</a>
+<ul><li><a href="#cypher-querybuilder-direction-n">n</a></li>
+<li><a href="#cypher-querybuilder-direction-tn">tn</a></li>
+<li><a href="#cypher-querybuilder-direction-fn">fn</a></li>
+<li><a href="#cypher-querybuilder-direction-r">r</a></li>
+<li><a href="#cypher-querybuilder-direction-tr">tr</a></li>
+<li><a href="#cypher-querybuilder-direction-fr">fr</a></li>
+<li><a href="#cypher-querybuilder-direction-or">or</a></li>
+<li><a href="#cypher-querybuilder-direction-ir">ir</a></li>
+<li><a href="#cypher-querybuilder-direction---">--</a></li>
+<li><a href="#cypher-querybuilder-direction-chaining">chaining</a></li></ul></li>
+<li><a href="#cypher-querybuilder-start">start</a>
+<ul><li><a href="#cypher-querybuilder-start-node">node</a></li>
+<li><a href="#cypher-querybuilder-start-relationship">relationship</a></li></ul></li>
+<li><a href="#cypher-querybuilder-create">create</a>
+<ul><li><a href="#cypher-querybuilder-create-normal">normal</a></li>
+<li><a href="#cypher-querybuilder-create-unique">unique</a></li></ul></li>
+<li><a href="#cypher-querybuilder-match">match</a></li>
+<li><a href="#cypher-querybuilder-where">where</a></li>
+<li><a href="#cypher-querybuilder-with">with</a></li>
+<li><a href="#cypher-querybuilder-set">set</a></li>
+<li><a href="#cypher-querybuilder-merge">merge</a></li>
+<li><a href="#cypher-querybuilder-drop">drop</a></li>
+<li><a href="#cypher-querybuilder-remove">remove</a></li>
+<li><a href="#cypher-querybuilder-delete">delete</a>
+<ul><li><a href="#cypher-querybuilder-delete-string">string</a></li>
+<li><a href="#cypher-querybuilder-delete-array">array</a></li></ul></li>
+<li><a href="#cypher-querybuilder-foreach">foreach</a></li>
+<li><a href="#cypher-querybuilder-return">return</a>
+<ul><li><a href="#cypher-querybuilder-return-node">node</a></li>
+<li><a href="#cypher-querybuilder-return-relationship">relationship</a></li></ul></li>
+<li><a href="#cypher-querybuilder-union">union</a></li>
+<li><a href="#cypher-querybuilder-using">using</a>
+<ul><li><a href="#cypher-querybuilder-using-without-param">without param</a></li>
+<li><a href="#cypher-querybuilder-using-with-param">with param</a></li></ul></li>
+<li><a href="#cypher-querybuilder-orderby">orderBy</a>
+<ul><li><a href="#cypher-querybuilder-orderby-node">node</a></li>
+<li><a href="#cypher-querybuilder-orderby-relationship">relationship</a></li></ul></li>
+<li><a href="#cypher-querybuilder-skip">skip</a></li>
+<li><a href="#cypher-querybuilder-limit">limit</a></li>
+<li><a href="#cypher-querybuilder-getfunctionlist">getFunctionList</a></li>
+<li><a href="#cypher-querybuilder-execute">execute</a></li></ul></li></ul></li>
+<li><a href="#index">Index</a>
+<ul><li><a href="#index-createindex">createIndex</a></li>
+<li><a href="#index-readindex">readIndex</a></li>
+<li><a href="#index-deleteindex">deleteIndex</a></li></ul></li>
+<li><a href="#label">Label</a>
+<ul><li><a href="#label-createlabel">createLabel</a></li>
+<li><a href="#label-updatelabel">updateLabel</a></li>
+<li><a href="#label-readlabel">readLabel</a></li>
+<li><a href="#label-deletelabel">deleteLabel</a></li></ul></li>
+<li><a href="#main">Main</a>
+<ul><li><a href="#main-create-new-connection">create new connection</a>
+<ul><li><a href="#main-create-new-connection-default-config">Default config</a></li>
+<li><a href="#main-create-new-connection-custom-config">custom config</a></li></ul></li></ul></li>
+<li><a href="#node">Node</a>
+<ul><li><a href="#node-createnode">createNode</a></li>
+<li><a href="#node-readnode">readNode</a></li>
+<li><a href="#node-updatenodeproperty">updateNodeProperty</a></li>
+<li><a href="#node-readnodeproperty">readNodeProperty</a></li>
+<li><a href="#node-deletenodeproperty">deleteNodeProperty</a></li>
+<li><a href="#node-deletenode">deleteNode</a></li></ul></li>
+<li><a href="#relationship">Relationship</a>
+<ul><li><a href="#relationship-createrelationship">createRelationship</a></li>
+<li><a href="#relationship-readrelationship">readRelationship</a></li>
+<li><a href="#relationship-updaterelationshipproperty">updateRelationshipProperty</a></li>
+<li><a href="#relationship-readrelationshipproperty">readRelationshipProperty</a></li>
+<li><a href="#relationship-readrelationshiptype">readRelationshipType</a></li>
+<li><a href="#relationship-readtypedrelationship">readTypedRelationship</a></li>
+<li><a href="#relationship-deleterelationshipproperty">deleteRelationshipProperty</a>
+<ul><li><a href="#relationship-deleterelationshipproperty-delete-with-property">delete with property</a></li>
+<li><a href="#relationship-deleterelationshipproperty-delete-without-property">delete without property</a></li></ul></li>
+<li><a href="#relationship-deleterelationship">deleteRelationship</a></li></ul></li>
+<li><a href="#traversal">Traversal</a>
+<ul><li><a href="#traversal-createpagedtraverse">createPagedTraverse</a></li>
+<li><a href="#traversal-traversepath">traversePath</a></li>
+<li><a href="#traversal-traversenode">traverseNode</a></li>
+<li><a href="#traversal-pagedtraverse">pagedTraverse</a></li></ul></li>
+<li><a href="#utils">Utils</a>
+<ul><li><a href="#utils-objtostr">objToStr</a>
+<a name=""></a></li></ul></li>
+</ul>
+
+<p><a name="algorithm"></a></p>
+
+<h1 id="algorithm">Algorithm</h1>
+
+<p><a name="algorithm-neofindpath"></a></p>
+
+<h2 id="neofindpath">neo.findPath()</h2>
+
+<p>should return path detail from A to B.</p>
+
+<pre><code class="js">return neo.findPath(testNode[0]._id, {
+  "to": "http://localhost:7474/db/data/node/" + testNode[1]._id,
+  "max_depth": 3,
+  "relationships": {
+    "type": "testfriend",
+    "direction": "out"
+  },
+  "algorithm": "shortestPath"
+}).then(function(result) {
+  result[0].start.should.equal("http://localhost:7474/db/data/node/" + testNode[0]._id);
+  return result[0].end.should.equal("http://localhost:7474/db/data/node/" + testNode[1]._id);
+});
+</code></pre>
+
+<p><a name="batch"></a></p>
+
+<h1 id="batch">Batch</h1>
+
+<p><a name="batch-executebatch"></a></p>
+
+<h2 id="executebatch">executeBatch</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.executeBatch([
+  {
+    "method": "GET",
+    "to": "/node/" + testNode[0]._id,
+    "id": parseInt(testNode[0]._id)
+  }, {
+    "method": "GET",
+    "to": "/node/" + testNode[1]._id,
+    "id": parseInt(testNode[1]._id)
+  }
+]).then(function(result) {
+  result[0].id.should.equal(parseInt(testNode[0]._id));
+  return result[1].id.should.equal(parseInt(testNode[1]._id));
+});
+</code></pre>
+
+<p><a name="constraint"></a></p>
+
+<h1 id="constraint">Constraint</h1>
+
+<p><a name="constraint-createuniquenessconstraint"></a></p>
+
+<h2 id="createuniquenessconstraint">createUniquenessConstraint</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createUniquenessConstraint('person', [randomProperty]).then(function(result) {
+  return result.should.be["true"];
+}).fail(function(result) {
+  return console.log(randomProperty);
+});
+</code></pre>
+
+<p><a name="constraint-readconstraint"></a></p>
+
+<h2 id="readconstraint">readConstraint</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readConstraint().should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="constraint-readuniquenessconstraint"></a></p>
+
+<h2 id="readuniquenessconstraint">readUniquenessConstraint</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readUniquenessConstraint('person', randomProperty).then(function(result) {
+  return result[0]['property-keys'][0].should.equal(randomProperty);
+});
+</code></pre>
+
+<p><a name="constraint-deleteconstraint"></a></p>
+
+<h2 id="deleteconstraint">deleteConstraint</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteConstraint('person', randomProperty).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="cypher"></a></p>
+
+<h1 id="cypher">Cypher</h1>
+
+<p><a name="cypher-executecypher"></a></p>
+
+<h2 id="executecypher">executeCypher</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.executeCypher('START n = node({nodeId}) RETURN n', {
+  "nodeId": parseInt(testNode[0]._id)
+}).then(function(result) {
+  return result.should.include.keys('columns');
+});
+</code></pre>
+
+<p><a name="cypher-querybuilder"></a></p>
+
+<h2 id="querybuilder">queryBuilder</h2>
+
+<p><a name="cypher-querybuilder-cypher"></a></p>
+
+<h3 id="cypher">cypher</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.cypher('START n = node(*)').toString().should.equal('START n = node(*)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction"></a></p>
+
+<h3 id="direction">direction</h3>
+
+<p><a name="cypher-querybuilder-direction-n"></a></p>
+
+<h4 id="n">n</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('n').toString().should.equal('()');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-tn"></a></p>
+
+<h4 id="tn">tn</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('tn=n').toString().should.equal('--&gt;(n)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-fn"></a></p>
+
+<h4 id="fn">fn</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('fn=n').toString().should.equal('&lt;--(n)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-r"></a></p>
+
+<h4 id="r">r</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('r=r').toString().should.equal('-[r]-&gt;');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-tr"></a></p>
+
+<h4 id="tr">tr</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('tr=r').toString().should.equal('-[r]-&gt;');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-fr"></a></p>
+
+<h4 id="fr">fr</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('fr=r').toString().should.equal('&lt;-[r]-');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-or"></a></p>
+
+<h4 id="or">or</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('or=r').toString().should.equal('&lt;-[r]-&gt;');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-ir"></a></p>
+
+<h4 id="ir">ir</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('ir=r').toString().should.equal('-[r]-');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction---"></a></p>
+
+<h4 id="">--</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('--').toString().should.equal('--');
+</code></pre>
+
+<p><a name="cypher-querybuilder-direction-chaining"></a></p>
+
+<h4 id="chaining">chaining</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.direction('n=n/r=friend/n=m').toString().should.equal('(n)-[friend]-&gt;(m)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-start"></a></p>
+
+<h3 id="start">start</h3>
+
+<p><a name="cypher-querybuilder-start-node"></a></p>
+
+<h4 id="node">node</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.start('*').toString().should.equal('START n = node(*)');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">queryBuilder.start(1).toString().should.equal('START n = node({id})');
+queryBuilder.getParams().should.include.keys('id');
+return queryBuilder.getParams().id.should.equal(1);
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.start('n = node(*)').toString().should.equal('START n = node(*)');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">queryBuilder.start({
+  name: 'Kieve'
+}).toString().should.equal('START name = node({name})');
+queryBuilder.getParams().should.include.keys('name');
+return queryBuilder.getParams().name.should.equal('Kieve');
+</code></pre>
+
+<p><a name="cypher-querybuilder-start-relationship"></a></p>
+
+<h4 id="relationship">relationship</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.start('*', true).toString().should.equal('START r = relationship(*)');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">queryBuilder.start(1, true).toString().should.equal('START r = relationship({id})');
+queryBuilder.getParams().should.include.keys('id');
+return queryBuilder.getParams().id.should.equal(1);
+</code></pre>
+
+<p><a name="cypher-querybuilder-create"></a></p>
+
+<h3 id="create">create</h3>
+
+<p><a name="cypher-querybuilder-create-normal"></a></p>
+
+<h4 id="normal">normal</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.create('n').toString().should.equal('CREATE n');
+</code></pre>
+
+<p><a name="cypher-querybuilder-create-unique"></a></p>
+
+<h4 id="unique">unique</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.create('n', true).toString().should.equal('CREATE UNIQUE n');
+</code></pre>
+
+<p><a name="cypher-querybuilder-match"></a></p>
+
+<h3 id="match">match</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.match('(movie:Movie)').toString().should.equal('MATCH (movie:Movie)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-where"></a></p>
+
+<h3 id="where">where</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.where('n:Swedish').toString().should.equal('WHERE n:Swedish');
+</code></pre>
+
+<p><a name="cypher-querybuilder-with"></a></p>
+
+<h3 id="with">with</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder["with"]('m').toString().should.equal('WITH m');
+</code></pre>
+
+<p><a name="cypher-querybuilder-set"></a></p>
+
+<h3 id="set">set</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.set("n.surname = 'Kieve'").toString().should.equal("SET n.surname = 'Kieve'");
+</code></pre>
+
+<p><a name="cypher-querybuilder-merge"></a></p>
+
+<h3 id="merge">merge</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.merge('kieve:Critic').toString().should.equal('MERGE (kieve:Critic)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-drop"></a></p>
+
+<h3 id="drop">drop</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.drop('(movie:Movie)').toString().should.equal('DROP (movie:Movie)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-remove"></a></p>
+
+<h3 id="remove">remove</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.remove('kieve.age').toString().should.equal('REMOVE kieve.age');
+</code></pre>
+
+<p><a name="cypher-querybuilder-delete"></a></p>
+
+<h3 id="delete">delete</h3>
+
+<p><a name="cypher-querybuilder-delete-string"></a></p>
+
+<h4 id="string">string</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.del('n').toString().should.equal('DELETE n');
+</code></pre>
+
+<p><a name="cypher-querybuilder-delete-array"></a></p>
+
+<h4 id="array">array</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.del(['n', 'm']).toString().should.equal('DELETE n, m');
+</code></pre>
+
+<p><a name="cypher-querybuilder-foreach"></a></p>
+
+<h3 id="foreach">foreach</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.foreach('(n IN nodes(p)| SET n.marked = TRUE )').toString().should.equal('FOREACH (n IN nodes(p)| SET n.marked = TRUE )');
+</code></pre>
+
+<p><a name="cypher-querybuilder-return"></a></p>
+
+<h3 id="return">return</h3>
+
+<p><a name="cypher-querybuilder-return-node"></a></p>
+
+<h4 id="node">node</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder["return"]('n').toString().should.equal('RETURN n');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder["return"](['name', 'age']).toString().should.equal('RETURN n.name, n.age');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder["return"]({
+  'name': 'Name',
+  'age': 'Age'
+}).toString().should.equal('RETURN n.name AS Name, n.age AS Age');
+</code></pre>
+
+<p><a name="cypher-querybuilder-return-relationship"></a></p>
+
+<h4 id="relationship">relationship</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder["return"](['name', 'age'], true).toString().should.equal('RETURN r.name, r.age');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder["return"]({
+  'name': 'Name',
+  'age': 'Age'
+}, true).toString().should.equal('RETURN r.name AS Name, r.age AS Age');
+</code></pre>
+
+<p><a name="cypher-querybuilder-union"></a></p>
+
+<h3 id="union">union</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.union('all').toString().should.equal('UNION ALL');
+</code></pre>
+
+<p><a name="cypher-querybuilder-using"></a></p>
+
+<h3 id="using">using</h3>
+
+<p><a name="cypher-querybuilder-using-without-param"></a></p>
+
+<h4 id="without-param">without param</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.using('n:Swedish(surname)').toString().should.equal('USING n:Swedish(surname)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-using-with-param"></a></p>
+
+<h4 id="with-param">with param</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.using('n:Swedish(surname)', 'INDEX').toString().should.equal('USING INDEX n:Swedish(surname)');
+</code></pre>
+
+<p><a name="cypher-querybuilder-orderby"></a></p>
+
+<h3 id="orderby">orderBy</h3>
+
+<p><a name="cypher-querybuilder-orderby-node"></a></p>
+
+<h4 id="node">node</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.orderBy('n.name').toString().should.equal('ORDER BY n.name');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.orderBy(['name', 'age']).toString().should.equal('ORDER BY n.name, n.age');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.orderBy({
+  'name': 'asc',
+  'age': 1,
+  'gender': true
+}).toString().should.equal('ORDER BY n.name ASC, n.age ASC, n.gender ASC');
+</code></pre>
+
+<p><a name="cypher-querybuilder-orderby-relationship"></a></p>
+
+<h4 id="relationship">relationship</h4>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.orderBy(['name', 'age'], true).toString().should.equal('ORDER BY r.name, r.age');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.orderBy({
+  'name': 'asc',
+  'age': 1,
+  'gender': true
+}, true).toString().should.equal('ORDER BY r.name ASC, r.age ASC, r.gender ASC');
+</code></pre>
+
+<p><a name="cypher-querybuilder-skip"></a></p>
+
+<h3 id="skip">skip</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.skip(1).toString().should.equal('SKIP 1');
+</code></pre>
+
+<p><a name="cypher-querybuilder-limit"></a></p>
+
+<h3 id="limit">limit</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.limit(1).toString().should.equal('LIMIT 1');
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.limit(1, 2).toString().should.equal('LIMIT 1 SKIP 2');
+</code></pre>
+
+<p><a name="cypher-querybuilder-getfunctionlist"></a></p>
+
+<h3 id="getfunctionlist">getFunctionList</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return queryBuilder.getList('function').should.deep.equal(['ALL', 'ANY', 'NONE', 'SINGLE', 'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE', 'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'COT', 'DEGREES', 'E', 'EXP', 'FLOOR', 'HAVERSIN', 'LOG', 'LOG10', 'PI', 'RADIANS', 'RAND', 'ROUND', 'SIGN', 'SIN', 'SQRT', 'TAN', 'STR', 'REPLACE', 'SUBSTRING', 'LEFT', 'RIGHT', 'LTRIM', 'RTRIM', 'TRIM', 'LOWER', 'UPPER']);
+</code></pre>
+
+<p><a name="cypher-querybuilder-execute"></a></p>
+
+<h3 id="execute">execute</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">var result;
+true.should.be["true"];
+result = queryBuilder.start('*')["return"]('*').execute();
+return result.should.eventually.include.keys('data');
+</code></pre>
+
+<p><a name="index"></a></p>
+
+<h1 id="index">Index</h1>
+
+<p><a name="index-createindex"></a></p>
+
+<h2 id="createindex">createIndex</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createIndex('testuser', ['name']).then(function(result) {
+  result.label.should.equal('testuser');
+  return result['property-keys'].should.include('name');
+});
+</code></pre>
+
+<p><a name="index-readindex"></a></p>
+
+<h2 id="readindex">readIndex</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readIndex('testuser').then(function(result) {
+  result[0].label.should.equal('testuser');
+  return result[0]['property-keys'].should.include('name');
+});
+</code></pre>
+
+<p><a name="index-deleteindex"></a></p>
+
+<h2 id="deleteindex">deleteIndex</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteIndex('testuser', 'name').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label"></a></p>
+
+<h1 id="label">Label</h1>
+
+<p><a name="label-createlabel"></a></p>
+
+<h2 id="createlabel">createLabel</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createLabel(testNode[0]._id, ['testfriend', 'testcolleagu2e']).should.eventually.be["true"];
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createLabel(testNode[1]._id, 'testfriend').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label-updatelabel"></a></p>
+
+<h2 id="updatelabel">updateLabel</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.updateLabel(testNode[0]._id, ['testbestfriend']).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label-readlabel"></a></p>
+
+<h2 id="readlabel">readLabel</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return Q.all([neo.readLabel(testNode[0]._id), neo.readLabel()]).then(function(result) {
+  result[0].should.include('testbestfriend');
+  result[1].should.include('testbestfriend');
+  return result[1].should.include('testfriend');
+});
+</code></pre>
+
+<p><a name="label-deletelabel"></a></p>
+
+<h2 id="deletelabel">deleteLabel</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteLabel(testNode[1]._id, 'testfriend').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="main"></a></p>
+
+<h1 id="main">Main</h1>
+
+<p><a name="main-create-new-connection"></a></p>
+
+<h2 id="create-new-connection">create new connection</h2>
+
+<p><a name="main-create-new-connection-default-config"></a></p>
+
+<h3 id="default-config">Default config</h3>
+
+<p>should return default Neo4j connection.</p>
+
+<pre><code class="js">return neo.url.should.equal('http://localhost:7474');
+</code></pre>
+
+<p><a name="main-create-new-connection-custom-config"></a></p>
+
+<h3 id="custom-config">custom config</h3>
+
+<p>should return default Neo4j connection.</p>
+
+<pre><code class="js">return neo.url.should.equal('http://localhost:8484');
+</code></pre>
+
+<p><a name="main-create-new-connection"></a></p>
+
+<h2 id="create-new-connection">create new connection</h2>
+
+<p>should return default Neo4j setting.</p>
+
+<pre><code class="js">return neo.service().should.eventually.have.contain.keys('node', 'node_index', 'relationship_index', 'extensions_info');
+</code></pre>
+
+<p><a name="node"></a></p>
+
+<h1 id="node">Node</h1>
+
+<p><a name="node-createnode"></a></p>
+
+<h2 id="createnode">createNode</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createNode({
+  name: 'Kieve'
+}).then(function(node) {
+  node.should.have.property('name').equal('Kieve');
+  return testNode = node;
+});
+</code></pre>
+
+<p><a name="node-readnode"></a></p>
+
+<h2 id="readnode">readNode</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readNode(testNode._id).then(function(result) {
+  return result.name.should.equal('Kieve');
+});
+</code></pre>
+
+<p><a name="node-updatenodeproperty"></a></p>
+
+<h2 id="updatenodeproperty">updateNodeProperty</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return Q.all([
+  neo.updateNodeProperty(testNode._id, 'gender', 'male'), neo.updateNodeProperty(testNode._id, {
+    'name': 'Kieve Chua',
+    'age': 17
+  })
+]).then(function(result) {
+  result[0].should.be["true"];
+  return result[1].should.be["true"];
+});
+</code></pre>
+
+<p><a name="node-readnodeproperty"></a></p>
+
+<h2 id="readnodeproperty">readNodeProperty</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readNodeProperty(testNode._id).then(function(result) {
+  result.name.should.equal('Kieve Chua');
+  return result.age.should.equal(17);
+});
+</code></pre>
+
+<p><a name="node-deletenodeproperty"></a></p>
+
+<h2 id="deletenodeproperty">deleteNodeProperty</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return Q.all([neo.deleteNodeProperty(testNode._id, 'name'), neo.deleteNodeProperty(testNode._id)]).then(function(result) {
+  result[0].should.be["true"];
+  return result[1].should.be["true"];
+});
+</code></pre>
+
+<p><a name="node-deletenode"></a></p>
+
+<h2 id="deletenode">deleteNode</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteNode(testNode._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship"></a></p>
+
+<h1 id="relationship">Relationship</h1>
+
+<p><a name="relationship-createrelationship"></a></p>
+
+<h2 id="createrelationship">createRelationship</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createRelationship(testNode[0]._id, testNode[1]._id, 'friend', {
+  since: '10 years ago'
+}).then(function(relationship) {
+  testRelationship = relationship;
+  return relationship.since.should.equal('10 years ago');
+});
+</code></pre>
+
+<p><a name="relationship-readrelationship"></a></p>
+
+<h2 id="readrelationship">readRelationship</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readRelationship(testRelationship._id).then(function(result) {
+  return result.since.should.equal('10 years ago');
+});
+</code></pre>
+
+<p><a name="relationship-updaterelationshipproperty"></a></p>
+
+<h2 id="updaterelationshipproperty">updateRelationshipProperty</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.updateRelationshipProperty(testRelationship._id, 'since', '11 years ago').then(function(result) {
+  return result.should.be["true"];
+});
+</code></pre>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.updateRelationshipProperty(testRelationship._id, {
+  'since': '12 years ago',
+  'sinceAge': 17
+}).then(function(result) {
+  return result.should.be["true"];
+});
+</code></pre>
+
+<p><a name="relationship-readrelationshipproperty"></a></p>
+
+<h2 id="readrelationshipproperty">readRelationshipProperty</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readRelationshipProperty(testRelationship._id).then(function(result) {
+  result.since.should.equal('12 years ago');
+  return result.sinceAge.should.equal(17);
+});
+</code></pre>
+
+<p><a name="relationship-readrelationshiptype"></a></p>
+
+<h2 id="readrelationshiptype">readRelationshipType</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.readRelationshipType().then(function(result) {
+  return result.should.include('friend');
+});
+</code></pre>
+
+<p><a name="relationship-readtypedrelationship"></a></p>
+
+<h2 id="readtypedrelationship">readTypedRelationship</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return Q.all([neo.readTypedRelationship(testNode[1]._id, 'all'), neo.readTypedRelationship(testNode[1]._id, 'in'), neo.readTypedRelationship(testNode[1]._id, 'out'), neo.readTypedRelationship(testNode[1]._id, 'all', 'friend'), neo.readTypedRelationship(testNode[1]._id, 'in', 'friend'), neo.readTypedRelationship(testNode[1]._id, 'out', 'friend'), neo.readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover'])]).then(function(result) {
+  result[0].should.have.length(1);
+  result[1].should.have.length(1);
+  result[2].should.be.empty;
+  result[3].should.have.length(1);
+  result[4].should.have.length(1);
+  result[5].should.be.empty;
+  return result[6].should.have.length(1);
+});
+</code></pre>
+
+<p><a name="relationship-deleterelationshipproperty"></a></p>
+
+<h2 id="deleterelationshipproperty">deleteRelationshipProperty</h2>
+
+<p><a name="relationship-deleterelationshipproperty-delete-with-property"></a></p>
+
+<h3 id="delete-with-property">delete with property</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteRelationshipProperty(testRelationship._id, 'since').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship-deleterelationshipproperty-delete-without-property"></a></p>
+
+<h3 id="delete-without-property">delete without property</h3>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteRelationshipProperty(testRelationship._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship-deleterelationship"></a></p>
+
+<h2 id="deleterelationship">deleteRelationship</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.deleteRelationship(testRelationship._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="traversal"></a></p>
+
+<h1 id="traversal">Traversal</h1>
+
+<p><a name="traversal-createpagedtraverse"></a></p>
+
+<h2 id="createpagedtraverse">createPagedTraverse</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.createPagedTraverse(testNode[0]._id, {
+  "prune_evaluator": {
+    "language": "builtin",
+    "name": "none"
+  },
+  "return_filter": {
+    "language": "javascript",
+    "body": "position.endNode().getProperty('name').contains('Test traversal 1');"
+  },
+  "order": "depth_first",
+  "relationships": {
+    "type": "testfriend",
+    "direction": "out"
+  }
+}).then(function(result) {
+  return result.should.have.length.of.at.least(1);
+});
+</code></pre>
+
+<p><a name="traversal-traversepath"></a></p>
+
+<h2 id="traversepath">traversePath</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.traversePath(testNode[0]._id, {
+  "order": "breadth_first",
+  "uniqueness": "none",
+  "return_filter": {
+    "language": "builtin",
+    "name": "all"
+  }
+}).then(function(result) {
+  return result.should.have.length.of.at.least(1);
+});
+</code></pre>
+
+<p><a name="traversal-traversenode"></a></p>
+
+<h2 id="traversenode">traverseNode</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.traverseNode(testNode[0]._id, {
+  "order": "breadth_first",
+  "uniqueness": "none",
+  "return_filter": {
+    "language": "builtin",
+    "name": "all"
+  }
+}).then(function(result) {
+  return result.should.have.length.of.at.least(1);
+});
+</code></pre>
+
+<p><a name="traversal-pagedtraverse"></a></p>
+
+<h2 id="pagedtraverse">pagedTraverse</h2>
+
+<p>should pass.</p>
+
+<pre><code class="js">return neo.pagedTraverse(testNode[0]._id, {
+  pageSize: 1
+}).then(function(result) {
+  return result.should.have.length.of.at.least(1);
+});
+</code></pre>
+
+<p><a name="utils"></a></p>
+
+<h1 id="utils">Utils</h1>
+
+<p><a name="utils-objtostr"></a></p>
+
+<h2 id="objtostr">objToStr</h2>
+
+<p>should return stringify object.</p>
+
+<pre><code class="js">return utils.objToStr({
+  name: 'kieve',
+  age: 18
+}).should.equal("{ name : 'kieve', age : '18' }");
+</code></pre></div></div></div></div></body></html>

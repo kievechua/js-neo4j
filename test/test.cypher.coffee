@@ -24,210 +24,327 @@ describe 'Cypher', ->
 
             done()
 
-    describe 'executeCypher', ->
-        it 'should pass', ->
-            neo
-            .executeCypher(
-                'START n = node({nodeId}) RETURN n'
-                {
-                    "nodeId" : parseInt(testNode[0]._id)
-                }
-            )
-            .then((result) ->
-                result.should.include.keys('columns')
-            )
+    describe 'neo.executeCypher(query, parameters)', ->
+        describe 'when valid', ->
+            it 'should pass', ->
+                neo
+                .executeCypher(
+                    'START n = node({nodeId}) RETURN n'
+                    {
+                        "nodeId" : parseInt(testNode[0]._id)
+                    }
+                )
+                .then((result) ->
+                    result.should.include.keys('columns')
+                )
 
-    describe 'queryBuilder', ->
+    describe 'neo.queryBuilder()', ->
         queryBuilder = null
 
         beforeEach ->
             queryBuilder = neo.queryBuilder()
 
-        describe 'cypher', ->
-            it 'should pass', ->
-                queryBuilder.cypher('START n = node(*)').toString().should.equal 'START n = node(*)'
+        describe 'queryBuilder.cypher(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .cypher('START n = node(*)')
+                    .toString().should.equal 'START n = node(*)'
 
-        describe 'direction', ->
+        describe 'queryBuilder.direction(query)', ->
             describe 'n', ->
-                it 'should pass', ->
-                    queryBuilder.direction('n').toString().should.equal '()'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('n')
+                        .toString().should.equal '()'
 
             describe 'tn', ->
-                it 'should pass', ->
-                    queryBuilder.direction('tn=n').toString().should.equal '-->(n)'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('tn=n')
+                        .toString().should.equal '-->(n)'
 
             describe 'fn', ->
-                it 'should pass', ->
-                    queryBuilder.direction('fn=n').toString().should.equal '<--(n)'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('fn=n')
+                        .toString().should.equal '<--(n)'
 
             describe 'r', ->
-                it 'should pass', ->
-                    queryBuilder.direction('r=r').toString().should.equal '-[r]->'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('r=r')
+                        .toString().should.equal '-[r]->'
 
             describe 'tr', ->
-                it 'should pass', ->
-                    queryBuilder.direction('tr=r').toString().should.equal '-[r]->'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('tr=r')
+                        .toString().should.equal '-[r]->'
 
             describe 'fr', ->
-                it 'should pass', ->
-                    queryBuilder.direction('fr=r').toString().should.equal '<-[r]-'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('fr=r')
+                        .toString().should.equal '<-[r]-'
 
             describe 'or', ->
-                it 'should pass', ->
-                    queryBuilder.direction('or=r').toString().should.equal '<-[r]->'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('or=r')
+                        .toString().should.equal '<-[r]->'
 
             describe 'ir', ->
-                it 'should pass', ->
-                    queryBuilder.direction('ir=r').toString().should.equal '-[r]-'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('ir=r')
+                        .toString().should.equal '-[r]-'
 
             describe '--', ->
-                it 'should pass', ->
-                    queryBuilder.direction('--').toString().should.equal '--'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('--')
+                        .toString().should.equal '--'
 
             describe 'chaining', ->
-                it 'should pass', ->
-                    queryBuilder.direction('n=n/r=friend/n=m').toString().should.equal '(n)-[friend]->(m)'
+                describe 'when valid', ->
+                    it 'should construct correct cypher query', ->
+                        queryBuilder
+                        .direction('n=n/r=friend/n=m')
+                        .toString().should.equal '(n)-[friend]->(m)'
 
-        describe 'start', ->
+        describe 'queryBuilder.start()', ->
             describe 'node', ->
                 it 'should pass', ->
-                    queryBuilder.start('*').toString().should.equal 'START n = node(*)'
+                    queryBuilder
+                    .start('*')
+                    .toString().should.equal 'START n = node(*)'
 
                 it 'should pass', ->
-                    queryBuilder.start(1).toString().should.equal 'START n = node({id})'
-                    queryBuilder.getParams().should.include.keys('id')
-                    queryBuilder.getParams().id.should.equal 1
+                    queryBuilder
+                    .start(1)
+                    .toString().should.equal 'START n = node({id})'
+
+                    queryBuilder
+                    .getParams().should.include.keys('id')
+
+                    queryBuilder
+                    .getParams().id.should.equal 1
 
                 it 'should pass', ->
-                    queryBuilder.start('n = node(*)').toString().should.equal 'START n = node(*)'
+                    queryBuilder
+                    .start('n = node(*)')
+                    .toString().should.equal 'START n = node(*)'
 
                 it 'should pass', ->
-                    queryBuilder.start({ name: 'Kieve' }).toString().should.equal 'START name = node({name})'
-                    queryBuilder.getParams().should.include.keys('name')
-                    queryBuilder.getParams().name.should.equal 'Kieve'
+                    queryBuilder
+                    .start({ name: 'Kieve' })
+                    .toString().should.equal 'START name = node({name})'
+
+                    queryBuilder
+                    .getParams().should.include.keys('name')
+
+                    queryBuilder
+                    .getParams().name.should.equal 'Kieve'
 
             describe 'relationship', ->
                 it 'should pass', ->
-                    queryBuilder.start('*', true).toString().should.equal 'START r = relationship(*)'
+                    queryBuilder
+                    .start('*', true)
+                    .toString().should.equal 'START r = relationship(*)'
 
                 it 'should pass', ->
-                    queryBuilder.start(1, true).toString().should.equal 'START r = relationship({id})'
-                    queryBuilder.getParams().should.include.keys('id')
-                    queryBuilder.getParams().id.should.equal 1
+                    queryBuilder
+                    .start(1, true)
+                    .toString().should.equal 'START r = relationship({id})'
 
-        describe 'create', ->
-            describe 'normal', ->
+                    queryBuilder
+                    .getParams().should.include.keys('id')
+
+                    queryBuilder
+                    .getParams().id.should.equal 1
+
+        describe 'queryBuilder.create(query)', ->
+            describe 'when valid', ->
+                it 'should create normal query', ->
+                    queryBuilder
+                    .create('n')
+                    .toString().should.equal 'CREATE n'
+
+        describe 'queryBuilder.create(query, true)', ->
+            describe 'when valid', ->
+                it 'should create unique query', ->
+                    queryBuilder
+                    .create('n', true)
+                    .toString().should.equal 'CREATE UNIQUE n'
+
+        describe 'queryBuilder.match(query)', ->
+            describe 'when valid', ->
                 it 'should pass', ->
-                    queryBuilder.create('n').toString().should.equal 'CREATE n'
-
-            describe 'unique', ->
-                it 'should pass', ->
-                    queryBuilder.create('n', true).toString().should.equal 'CREATE UNIQUE n'
-
-        describe 'match', ->
-            it 'should pass', ->
-                queryBuilder.match('(movie:Movie)').toString().should.equal 'MATCH (movie:Movie)'
+                    queryBuilder
+                    .match('(movie:Movie)')
+                    .toString().should.equal 'MATCH (movie:Movie)'
 
         describe 'where', ->
             it 'should pass', ->
-                queryBuilder.where('n:Swedish').toString().should.equal 'WHERE n:Swedish'
+                queryBuilder
+                .where('n:Swedish')
+                .toString().should.equal 'WHERE n:Swedish'
 
         describe 'with', ->
             it 'should pass', ->
-                queryBuilder.with('m').toString().should.equal 'WITH m'
+                queryBuilder
+                .with('m')
+                .toString().should.equal 'WITH m'
 
         describe 'set', ->
             it 'should pass', ->
-                queryBuilder.set("n.surname = 'Kieve'").toString().should.equal "SET n.surname = 'Kieve'"
+                queryBuilder
+                .set("n.surname = 'Kieve'")
+                .toString().should.equal "SET n.surname = 'Kieve'"
 
         describe 'merge', ->
             it 'should pass', ->
-                queryBuilder.merge('kieve:Critic').toString().should.equal 'MERGE (kieve:Critic)'
+                queryBuilder
+                .merge('kieve:Critic')
+                .toString().should.equal 'MERGE (kieve:Critic)'
 
         describe 'drop', ->
             it 'should pass', ->
-                queryBuilder.drop('(movie:Movie)').toString().should.equal 'DROP (movie:Movie)'
+                queryBuilder
+                .drop('(movie:Movie)')
+                .toString().should.equal 'DROP (movie:Movie)'
 
         describe 'remove', ->
             it 'should pass', ->
-                queryBuilder.remove('kieve.age').toString().should.equal 'REMOVE kieve.age'
+                queryBuilder
+                .remove('kieve.age')
+                .toString().should.equal 'REMOVE kieve.age'
 
         describe 'delete', ->
             describe 'string', ->
                 it 'should pass', ->
-                    queryBuilder.del('n').toString().should.equal 'DELETE n'
+                    queryBuilder
+                    .del('n')
+                    .toString().should.equal 'DELETE n'
 
             describe 'array', ->
                 it 'should pass', ->
-                    queryBuilder.del(['n', 'm']).toString().should.equal 'DELETE n, m'
+                    queryBuilder
+                    .del(['n', 'm'])
+                    .toString().should.equal 'DELETE n, m'
 
         describe 'foreach', ->
             it 'should pass', ->
-                queryBuilder.foreach('(n IN nodes(p)| SET n.marked = TRUE )').toString().should.equal 'FOREACH (n IN nodes(p)| SET n.marked = TRUE )'
+                queryBuilder
+                .foreach('(n IN nodes(p)| SET n.marked = TRUE )')
+                .toString().should.equal 'FOREACH (n IN nodes(p)| SET n.marked = TRUE )'
 
         describe 'return', ->
             describe 'node', ->
                 it 'should pass', ->
-                    queryBuilder.return('n').toString().should.equal 'RETURN n'
+                    queryBuilder
+                    .return('n')
+                    .toString().should.equal 'RETURN n'
 
                 it 'should pass', ->
-                    queryBuilder.return(['name', 'age']).toString().should.equal 'RETURN n.name, n.age'
+                    queryBuilder
+                    .return(['name', 'age'])
+                    .toString().should.equal 'RETURN n.name, n.age'
 
                 it 'should pass', ->
-                    queryBuilder.return({'name': 'Name', 'age': 'Age'}).toString().should.equal 'RETURN n.name AS Name, n.age AS Age'
+                    queryBuilder
+                    .return({'name': 'Name', 'age': 'Age'})
+                    .toString().should.equal 'RETURN n.name AS Name, n.age AS Age'
 
             describe 'relationship', ->
                 it 'should pass', ->
-                    queryBuilder.return(['name', 'age'], true).toString().should.equal 'RETURN r.name, r.age'
+                    queryBuilder
+                    .return(['name', 'age'], true)
+                    .toString().should.equal 'RETURN r.name, r.age'
 
                 it 'should pass', ->
-                    queryBuilder.return({'name': 'Name', 'age': 'Age'}, true).toString().should.equal 'RETURN r.name AS Name, r.age AS Age'
+                    queryBuilder
+                    .return({'name': 'Name', 'age': 'Age'}, true)
+                    .toString().should.equal 'RETURN r.name AS Name, r.age AS Age'
 
         describe 'union', ->
             it 'should pass', ->
-                queryBuilder.union('all').toString().should.equal 'UNION ALL'
+                queryBuilder
+                .union('all')
+                .toString().should.equal 'UNION ALL'
 
         describe 'using', ->
             describe 'without param', ->
                 it 'should pass', ->
-                    queryBuilder.using('n:Swedish(surname)').toString().should.equal 'USING n:Swedish(surname)'
+                    queryBuilder
+                    .using('n:Swedish(surname)')
+                    .toString().should.equal 'USING n:Swedish(surname)'
 
             describe 'with param', ->
                 it 'should pass', ->
-                    queryBuilder.using('n:Swedish(surname)', 'INDEX').toString().should.equal 'USING INDEX n:Swedish(surname)'
+                    queryBuilder
+                    .using('n:Swedish(surname)', 'INDEX')
+                    .toString().should.equal 'USING INDEX n:Swedish(surname)'
 
         describe 'orderBy', ->
             describe 'node', ->
                 it 'should pass', ->
-                    queryBuilder.orderBy('n.name').toString().should.equal 'ORDER BY n.name'
+                    queryBuilder
+                    .orderBy('n.name')
+                    .toString().should.equal 'ORDER BY n.name'
 
                 it 'should pass', ->
-                    queryBuilder.orderBy(['name', 'age']).toString().should.equal 'ORDER BY n.name, n.age'
+                    queryBuilder
+                    .orderBy(['name', 'age'])
+                    .toString().should.equal 'ORDER BY n.name, n.age'
 
                 it 'should pass', ->
-                    queryBuilder.orderBy({ 'name': 'asc', 'age': 1, 'gender': true }).toString().should.equal 'ORDER BY n.name ASC, n.age ASC, n.gender ASC'
+                    queryBuilder
+                    .orderBy({ 'name': 'asc', 'age': 1, 'gender': true })
+                    .toString().should.equal 'ORDER BY n.name ASC, n.age ASC, n.gender ASC'
 
             describe 'relationship', ->
                 it 'should pass', ->
-                    queryBuilder.orderBy(['name', 'age'], true).toString().should.equal 'ORDER BY r.name, r.age'
+                    queryBuilder
+                    .orderBy(['name', 'age'], true)
+                    .toString().should.equal 'ORDER BY r.name, r.age'
 
                 it 'should pass', ->
-                    queryBuilder.orderBy({ 'name': 'asc', 'age': 1, 'gender': true }, true).toString().should.equal 'ORDER BY r.name ASC, r.age ASC, r.gender ASC'
+                    queryBuilder
+                    .orderBy({ 'name': 'asc', 'age': 1, 'gender': true }, true)
+                    .toString().should.equal 'ORDER BY r.name ASC, r.age ASC, r.gender ASC'
 
         describe 'skip', ->
             it 'should pass', ->
-                queryBuilder.skip(1).toString().should.equal 'SKIP 1'
+                queryBuilder
+                .skip(1)
+                .toString().should.equal 'SKIP 1'
 
         describe 'limit', ->
             it 'should pass', ->
-                queryBuilder.limit(1).toString().should.equal 'LIMIT 1'
+                queryBuilder
+                .limit(1)
+                .toString().should.equal 'LIMIT 1'
 
             it 'should pass', ->
-                queryBuilder.limit(1, 2).toString().should.equal 'LIMIT 1 SKIP 2'
+                queryBuilder
+                .limit(1, 2)
+                .toString().should.equal 'LIMIT 1 SKIP 2'
 
         describe 'getFunctionList', ->
             it 'should pass', ->
-                queryBuilder.getList('function').should.deep.equal [
+                queryBuilder
+                .getList('function').should.deep.equal [
                     'ALL', 'ANY', 'NONE', 'SINGLE',
                     'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE',
                     'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE',
