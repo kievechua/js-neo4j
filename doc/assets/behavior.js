@@ -2706,6 +2706,25 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "depth": 3
                     }
                   ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.get(url)",
+                    "slug": "neogeturl"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }

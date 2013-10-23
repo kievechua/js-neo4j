@@ -16,3 +16,12 @@ describe 'Utils', ->
         describe 'when valid', ->
             it 'should return stringified object', ->
                 utils.objToStr(name: 'kieve', age: 18).should.equal "{ name : 'kieve', age : '18' }"
+
+    describe 'neo.get(url)', ->
+        describe 'when valid', ->
+            it 'should return stringified object', ->
+                utils
+                .get('http://localhost:7474/db/data')
+                .then((result) ->
+                    result.ok.should.be.true
+                )

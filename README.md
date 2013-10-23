@@ -55,5 +55,6 @@ Neo4j, 2.0
 1. Cypher sanitization
 - Cover remaining api
 - More documentation
+- Integrate with Travis CI
 - Browserify?
 - Cache?

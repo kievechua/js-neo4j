@@ -204,7 +204,9 @@
 <ul><li><a href="#traversal-neopagedtraversenodeid-parameters-when-valid">when valid</a></li></ul></li></ul></li>
 <li><a href="#utils">Utils</a>
 <ul><li><a href="#utils-neoobjtostrobject">neo.objToStr({object})</a>
-<ul><li><a href="#utils-neoobjtostrobject-when-valid">when valid</a>
+<ul><li><a href="#utils-neoobjtostrobject-when-valid">when valid</a></li></ul></li>
+<li><a href="#utils-neogeturl">neo.get(url)</a>
+<ul><li><a href="#utils-neogeturl-when-valid">when valid</a>
 <a name=""></a></li></ul></li></ul></li>
 </ul>
 
@@ -1643,4 +1645,19 @@ return result.should.eventually.include.keys('data');
   name: 'kieve',
   age: 18
 }).should.equal("{ name : 'kieve', age : '18' }");
+</code></pre>
+
+<p><a name="utils-neogeturl"></a></p>
+
+<h2 id="neogeturl">neo.get(url)</h2>
+
+<p><a name="utils-neogeturl-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return stringified object.</p>
+
+<pre><code class="js">return utils.get('http://localhost:7474/db/data').then(function(result) {
+  return result.ok.should.be["true"];
+});
 </code></pre></div></div></div></div></body></html>

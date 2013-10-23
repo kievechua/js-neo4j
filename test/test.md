@@ -203,6 +203,8 @@
    - [Utils](#utils)
      - [neo.objToStr({object})](#utils-neoobjtostrobject)
        - [when valid](#utils-neoobjtostrobject-when-valid)
+     - [neo.get(url)](#utils-neogeturl)
+       - [when valid](#utils-neogeturl-when-valid)
 <a name=""></a>
  
 <a name="algorithm"></a>
@@ -1324,5 +1326,17 @@ return utils.objToStr({
   name: 'kieve',
   age: 18
 }).should.equal("{ name : 'kieve', age : '18' }");
+```
+
+<a name="utils-neogeturl"></a>
+## neo.get(url)
+<a name="utils-neogeturl-when-valid"></a>
+### when valid
+should return stringified object.
+
+```js
+return utils.get('http://localhost:7474/db/data').then(function(result) {
+  return result.ok.should.be["true"];
+});
 ```
 

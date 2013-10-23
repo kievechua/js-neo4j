@@ -21,12 +21,12 @@ module.exports = (grunt) ->
                     require: 'coffee-script'
                     captureFile: 'test/test.md'
                 src: ['test/**/*.coffee']
-            coverage:
-                options:
-                    reporter: 'html-cov',
-                    quiet: true,
-                    captureFile: 'coverage.html'
-                src: ['test/**/*.coffee']
+            # coverage:
+            #     options:
+            #         reporter: 'html-cov',
+            #         quiet: true,
+            #         captureFile: 'coverage.html'
+            #     src: ['test/**/*.coffee']
 
         groc:
             generate:
@@ -37,6 +37,7 @@ module.exports = (grunt) ->
                 ]
             github:
                 options:
+                    "out": "doc/"
                     "github": true
                 javascript: [
                     "tasks/*.coffee", "README.md", "test.md"
@@ -59,3 +60,6 @@ module.exports = (grunt) ->
 
     # Default task.
     grunt.registerTask "default", ["mochaTest"]
+
+    grunt.registerTask "doc", ["mochaTest:generate", "groc:generate"]
+    grunt.registerTask "docupload", ["mochaTest:generate", "groc:github"]

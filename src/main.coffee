@@ -10,15 +10,6 @@ Node = require './node'
 Relationship = require './relationship'
 Traversal = require './traversal'
 
-#  Register coffee-coverage if coverage is enabled.
-# if process.env.COVERAGE
-require('coffee-coverage').register({
-    path: 'abbr',
-    basePath: __dirname,
-    exclude: ['/test', '/node_modules', '/.git'],
-    initAll: true
-})
-
 class Neo4js extends utils.Module
     @include Algorithm
     @include Batch
