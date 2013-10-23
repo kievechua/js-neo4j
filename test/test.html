@@ -1,0 +1,1663 @@
+<!DOCTYPE html><html lang="en"><head><title>test/test</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content="../"><meta name="groc-document-path" content="test/test"><meta name="groc-project-path" content="test/test.md"><meta name="groc-github-url" content="https://github.com/kievechua/neo4js"><link rel="stylesheet" type="text/css" media="all" href="../assets/style.css"><script type="text/javascript" src="../assets/behavior.js"></script><body><div id="meta"><div class="file-path"><a href="https://github.com/kievechua/neo4js/blob/master/test/test.md">test/test.md</a></div></div><div id="document"><div class="segment"><div class="comments "><div class="wrapper"><h1 id="toc">TOC</h1>
+
+<ul>
+<li><a href="#algorithm">Algorithm</a>
+<ul><li><a href="#algorithm-neofindpathnodeid-parameters">neo.findPath(nodeId, {parameters})</a>
+<ul><li><a href="#algorithm-neofindpathnodeid-parameters-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#batch">Batch</a>
+<ul><li><a href="#batch-neoexecutebatchtasks">neo.executeBatch([tasks])</a>
+<ul><li><a href="#batch-neoexecutebatchtasks-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#constraint">Constraint</a>
+<ul><li><a href="#constraint-neocreateuniquenessconstraintlabel-property">neo.createUniquenessConstraint(label, [property])</a>
+<ul><li><a href="#constraint-neocreateuniquenessconstraintlabel-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#constraint-neoreadconstraint">neo.readConstraint()</a>
+<ul><li><a href="#constraint-neoreadconstraint-when-valid">when valid</a></li></ul></li>
+<li><a href="#constraint-neoreaduniquenessconstraintlabel-property">neo.readUniquenessConstraint(label, property)</a>
+<ul><li><a href="#constraint-neoreaduniquenessconstraintlabel-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#constraint-neodeleteconstraintlabel-property">neo.deleteConstraint(label, property)</a>
+<ul><li><a href="#constraint-neodeleteconstraintlabel-property-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#cypher">Cypher</a>
+<ul><li><a href="#cypher-neoexecutecypherquery-parameters">neo.executeCypher(query, parameters)</a>
+<ul><li><a href="#cypher-neoexecutecypherquery-parameters-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder">neo.queryBuilder()</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildercypherquery">queryBuilder.cypher(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildercypherquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery">queryBuilder.direction(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-n">n</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-n-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-tn">tn</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-tn-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-fn">fn</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-fn-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-r">r</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-r-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-tr">tr</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-tr-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-fr">fr</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-fr-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-or">or</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-or-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-ir">ir</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-ir-when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery---">--</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery----when-valid">when valid</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-chaining">chaining</a></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdirectionquery-chaining-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderstartquery">queryBuilder.start(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderstartquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderstartnodeid">queryBuilder.start(nodeId)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderstartnodeid-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderstartquery">queryBuilder.start({query})</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderstartquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderstartquery-true">queryBuilder.start(query, true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderstartquery-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderstartnodeid-true">queryBuilder.start(nodeId, true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderstartnodeid-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuildercreatequery">queryBuilder.create(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildercreatequery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuildercreatequery-true">queryBuilder.create(query, true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildercreatequery-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuildermatchquery">queryBuilder.match(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildermatchquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderwherequery">queryBuilder.where(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderwherequery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderwithquery">queryBuilder.with(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderwithquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuildersetquery">queryBuilder.set(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildersetquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuildermergequery">queryBuilder.merge(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildermergequery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdropquery">queryBuilder.drop(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderdropquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderremovequery">queryBuilder.remove(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderremovequery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdelquery">queryBuilder.del(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderdelquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderdelquery">queryBuilder.del([query])</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderdelquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderforeachquery">queryBuilder.foreach([query])</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderforeachquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderreturnquery">queryBuilder.return(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderreturnquery">queryBuilder.return([query])</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderreturnquery">queryBuilder.return({query})</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-true">queryBuilder.return([query], true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-true">queryBuilder.return({query}, true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderunionquery">queryBuilder.union([query])</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderunionquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderusingquery">queryBuilder.using(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderusingquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderusingquery-parameter">queryBuilder.using(query, parameter)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderusingquery-parameter-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery">queryBuilder.orderBy(query)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery">queryBuilder.orderBy([query])</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery">queryBuilder.orderBy({query})</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-true">queryBuilder.orderBy([query], true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-true">queryBuilder.orderBy({query}, true)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderskipskip">queryBuilder.skip(skip)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderskipskip-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderlimitlimit">queryBuilder.limit(limit)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderlimitlimit-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderlimitlimit-step">queryBuilder.limit(limit, step)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderlimitlimit-step-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuildergetlisttype">queryBuilder.getList(type)</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuildergetlisttype-when-valid">when valid</a></li></ul></li>
+<li><a href="#cypher-neoquerybuilder-querybuilderexecute">queryBuilder.execute()</a>
+<ul><li><a href="#cypher-neoquerybuilder-querybuilderexecute-when-valid">when valid</a></li></ul></li></ul></li></ul></li>
+<li><a href="#index">Index</a>
+<ul><li><a href="#index-neocreateindexlabel-property">neo.createIndex(label, [property])</a>
+<ul><li><a href="#index-neocreateindexlabel-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#index-neoreadindexlabel">neo.readIndex(label)</a>
+<ul><li><a href="#index-neoreadindexlabel-when-valid">when valid</a></li></ul></li>
+<li><a href="#index-neodeleteindexlabel-property">neo.deleteIndex(label, property)</a>
+<ul><li><a href="#index-neodeleteindexlabel-property-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#label">Label</a>
+<ul><li><a href="#label-neocreatelabelnodeid-labels">neo.createLabel(nodeId, [labels])</a>
+<ul><li><a href="#label-neocreatelabelnodeid-labels-when-valid">when valid</a></li></ul></li>
+<li><a href="#label-neocreatelabelnodeid-label">neo.createLabel(nodeId, label)</a>
+<ul><li><a href="#label-neocreatelabelnodeid-label-when-valid">when valid</a></li></ul></li>
+<li><a href="#label-neoupdatelabelnodeid-labels">neo.updateLabel(nodeId, labels)</a>
+<ul><li><a href="#label-neoupdatelabelnodeid-labels-when-valid">when valid</a></li></ul></li>
+<li><a href="#label-neoreadlabelnodeid">neo.readLabel(nodeId)</a>
+<ul><li><a href="#label-neoreadlabelnodeid-when-valid">when valid</a></li></ul></li>
+<li><a href="#label-neoreadlabel">neo.readLabel()</a>
+<ul><li><a href="#label-neoreadlabel-when-valid">when valid</a></li></ul></li>
+<li><a href="#label-neodeletelabelnodeid-label">neo.deleteLabel(nodeId, label)</a>
+<ul><li><a href="#label-neodeletelabelnodeid-label-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#main">Main</a>
+<ul><li><a href="#main-create-new-connection">create new connection</a>
+<ul><li><a href="#main-create-new-connection-new-neo4js">new Neo4js()</a>
+<ul><li><a href="#main-create-new-connection-new-neo4js-when-valid">when valid</a></li></ul></li>
+<li><a href="#main-create-new-connection-new-neo4jsurl">new Neo4js(url)</a>
+<ul><li><a href="#main-create-new-connection-new-neo4jsurl-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#main-neoservice">neo.service()</a>
+<ul><li><a href="#main-neoservice-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#node">Node</a>
+<ul><li><a href="#node-neocreatenodeproperties">neo.createNode({properties})</a>
+<ul><li><a href="#node-neocreatenodeproperties-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neoreadnodenodeid">neo.readNode(nodeId)</a>
+<ul><li><a href="#node-neoreadnodenodeid-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neoupdatenodepropertynodeid-property-value">neo.updateNodeProperty(nodeId, property, value)</a>
+<ul><li><a href="#node-neoupdatenodepropertynodeid-property-value-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neoupdatenodepropertynodeid-properties">neo.updateNodeProperty(nodeId, {properties})</a>
+<ul><li><a href="#node-neoupdatenodepropertynodeid-properties-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neoreadnodepropertynodeid">neo.readNodeProperty(nodeId)</a>
+<ul><li><a href="#node-neoreadnodepropertynodeid-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neodeletenodepropertynodeid-property">neo.deleteNodeProperty(nodeId, property)</a>
+<ul><li><a href="#node-neodeletenodepropertynodeid-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neodeletenodepropertynodeid">neo.deleteNodeProperty(nodeId)</a>
+<ul><li><a href="#node-neodeletenodepropertynodeid-when-valid">when valid</a></li></ul></li>
+<li><a href="#node-neodeletenodenodeid">neo.deleteNode(nodeId)</a>
+<ul><li><a href="#node-neodeletenodenodeid-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#relationship">Relationship</a>
+<ul><li><a href="#relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty">neo.createRelationship(fromNodeId, toNodeId, relationship, relationshipProperty)</a>
+<ul><li><a href="#relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadrelationshiprelationshipid">neo.readRelationship(relationshipId)</a>
+<ul><li><a href="#relationship-neoreadrelationshiprelationshipid-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoupdaterelationshippropertyrelationshipid-property-value">neo.updateRelationshipProperty(relationshipId, property, value)</a>
+<ul><li><a href="#relationship-neoupdaterelationshippropertyrelationshipid-property-value-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoupdaterelationshippropertyrelationshipid-properties">neo.updateRelationshipProperty(relationshipId, {properties})</a>
+<ul><li><a href="#relationship-neoupdaterelationshippropertyrelationshipid-properties-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadrelationshippropertyrelationshipid">neo.readRelationshipProperty(relationshipId)</a>
+<ul><li><a href="#relationship-neoreadrelationshippropertyrelationshipid-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadrelationshiptype">neo.readRelationshipType()</a>
+<ul><li><a href="#relationship-neoreadrelationshiptype-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-all">neo.readTypedRelationship(nodeId, 'all')</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-all-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-in">neo.readTypedRelationship(nodeId, 'in')</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-in-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-out">neo.readTypedRelationship(nodeId, 'out')</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-out-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-all-label">neo.readTypedRelationship(nodeId, 'all', label)</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-all-label-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-in-label">neo.readTypedRelationship(nodeId, 'in', label)</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-in-label-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-out-label">neo.readTypedRelationship(nodeId, 'out', label)</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-out-label-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neoreadtypedrelationshipnodeid-all-labels">neo.readTypedRelationship(nodeId, 'all', [labels])</a>
+<ul><li><a href="#relationship-neoreadtypedrelationshipnodeid-all-labels-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neodeleterelationshippropertyrelationshipid-property">neo.deleteRelationshipProperty(relationshipId, property)</a>
+<ul><li><a href="#relationship-neodeleterelationshippropertyrelationshipid-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neodeleterelationshippropertyrelationshipid">neo.deleteRelationshipProperty(relationshipId)</a>
+<ul><li><a href="#relationship-neodeleterelationshippropertyrelationshipid-when-valid">when valid</a></li></ul></li>
+<li><a href="#relationship-neodeleterelationshiprelationshipid">neo.deleteRelationship(relationshipId)</a>
+<ul><li><a href="#relationship-neodeleterelationshiprelationshipid-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#traversal">Traversal</a>
+<ul><li><a href="#traversal-neocreatepagedtraversenodeid-properties">neo.createPagedTraverse(nodeId, {properties})</a>
+<ul><li><a href="#traversal-neocreatepagedtraversenodeid-properties-when-valid">when valid</a></li></ul></li>
+<li><a href="#traversal-neotraversepathnodeid-properties">neo.traversePath(nodeId, {properties})</a>
+<ul><li><a href="#traversal-neotraversepathnodeid-properties-when-valid">when valid</a></li></ul></li>
+<li><a href="#traversal-neotraversenodenodeid-property">neo.traverseNode(nodeId, {property})</a>
+<ul><li><a href="#traversal-neotraversenodenodeid-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#traversal-neotraverserelationshipnodeid-property">neo.traverseRelationship(nodeId, {property})</a>
+<ul><li><a href="#traversal-neotraverserelationshipnodeid-property-when-valid">when valid</a></li></ul></li>
+<li><a href="#traversal-neopagedtraversenodeid-parameters">neo.pagedTraverse(nodeId, {parameters})</a>
+<ul><li><a href="#traversal-neopagedtraversenodeid-parameters-when-valid">when valid</a></li></ul></li></ul></li>
+<li><a href="#utils">Utils</a>
+<ul><li><a href="#utils-neoobjtostrobject">neo.objToStr({object})</a>
+<ul><li><a href="#utils-neoobjtostrobject-when-valid">when valid</a></li></ul></li>
+<li><a href="#utils-neogeturl">neo.get(url)</a>
+<ul><li><a href="#utils-neogeturl-when-valid">when valid</a>
+<a name=""></a></li></ul></li></ul></li>
+</ul>
+
+<p><a name="algorithm"></a></p>
+
+<h1 id="algorithm">Algorithm</h1>
+
+<p><a name="algorithm-neofindpathnodeid-parameters"></a></p>
+
+<h2 id="neofindpathnodeid-parameters">neo.findPath(nodeId, {parameters})</h2>
+
+<p><a name="algorithm-neofindpathnodeid-parameters-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return path detail from A to B.</p>
+
+<pre><code class="js">return neo.findPath(testNode[0]._id, {
+  "to": "http://localhost:7474/db/data/node/" + testNode[1]._id,
+  "max_depth": 3,
+  "relationships": {
+    "type": "testfriend",
+    "direction": "out"
+  },
+  "algorithm": "shortestPath"
+}).then(function(result) {
+  result[0].start.should.equal("http://localhost:7474/db/data/node/" + testNode[0]._id);
+  return result[0].end.should.equal("http://localhost:7474/db/data/node/" + testNode[1]._id);
+});
+</code></pre>
+
+<p><a name="batch"></a></p>
+
+<h1 id="batch">Batch</h1>
+
+<p><a name="batch-neoexecutebatchtasks"></a></p>
+
+<h2 id="neoexecutebatchtasks">neo.executeBatch([tasks])</h2>
+
+<p><a name="batch-neoexecutebatchtasks-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all task result.</p>
+
+<pre><code class="js">return neo.executeBatch([
+  {
+    "method": "GET",
+    "to": "/node/" + testNode[0]._id,
+    "id": parseInt(testNode[0]._id)
+  }, {
+    "method": "GET",
+    "to": "/node/" + testNode[1]._id,
+    "id": parseInt(testNode[1]._id)
+  }
+]).then(function(result) {
+  result[0].id.should.equal(parseInt(testNode[0]._id));
+  return result[1].id.should.equal(parseInt(testNode[1]._id));
+});
+</code></pre>
+
+<p><a name="constraint"></a></p>
+
+<h1 id="constraint">Constraint</h1>
+
+<p><a name="constraint-neocreateuniquenessconstraintlabel-property"></a></p>
+
+<h2 id="neocreateuniquenessconstraintlabel-property">neo.createUniquenessConstraint(label, [property])</h2>
+
+<p><a name="constraint-neocreateuniquenessconstraintlabel-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return true.</p>
+
+<pre><code class="js">return neo.createUniquenessConstraint('person', [randomProperty]).then(function(result) {
+  return result.should.be["true"];
+}).fail(function(result) {
+  return console.log(randomProperty);
+});
+</code></pre>
+
+<p><a name="constraint-neoreadconstraint"></a></p>
+
+<h2 id="neoreadconstraint">neo.readConstraint()</h2>
+
+<p><a name="constraint-neoreadconstraint-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all constraint.</p>
+
+<pre><code class="js">return neo.readConstraint().should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="constraint-neoreaduniquenessconstraintlabel-property"></a></p>
+
+<h2 id="neoreaduniquenessconstraintlabel-property">neo.readUniquenessConstraint(label, property)</h2>
+
+<p><a name="constraint-neoreaduniquenessconstraintlabel-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return node with specified label and constraint.</p>
+
+<pre><code class="js">return neo.readUniquenessConstraint('person', randomProperty).then(function(result) {
+  return result[0]['property-keys'][0].should.equal(randomProperty);
+});
+</code></pre>
+
+<p><a name="constraint-neodeleteconstraintlabel-property"></a></p>
+
+<h2 id="neodeleteconstraintlabel-property">neo.deleteConstraint(label, property)</h2>
+
+<p><a name="constraint-neodeleteconstraintlabel-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return true.</p>
+
+<pre><code class="js">return neo.deleteConstraint('person', randomProperty).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="cypher"></a></p>
+
+<h1 id="cypher">Cypher</h1>
+
+<p><a name="cypher-neoexecutecypherquery-parameters"></a></p>
+
+<h2 id="neoexecutecypherquery-parameters">neo.executeCypher(query, parameters)</h2>
+
+<p><a name="cypher-neoexecutecypherquery-parameters-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should run cypher query.</p>
+
+<pre><code class="js">return neo.executeCypher('START n = node({nodeId}) RETURN n', {
+  "nodeId": parseInt(testNode[0]._id)
+}).then(function(result) {
+  return result.should.include.keys('columns');
+});
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder"></a></p>
+
+<h2 id="neoquerybuilder">neo.queryBuilder()</h2>
+
+<p><a name="cypher-neoquerybuilder-querybuildercypherquery"></a></p>
+
+<h3 id="querybuildercypherquery">queryBuilder.cypher(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildercypherquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.cypher('START n = node(*)').toString().should.equal('START n = node(*)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery"></a></p>
+
+<h3 id="querybuilderdirectionquery">queryBuilder.direction(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-n"></a></p>
+
+<h4 id="n">n</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-n-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('n').toString().should.equal('()');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-tn"></a></p>
+
+<h4 id="tn">tn</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-tn-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('tn=n').toString().should.equal('--&gt;(n)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-fn"></a></p>
+
+<h4 id="fn">fn</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-fn-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('fn=n').toString().should.equal('&lt;--(n)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-r"></a></p>
+
+<h4 id="r">r</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-r-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('r=r').toString().should.equal('-[r]-&gt;');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-tr"></a></p>
+
+<h4 id="tr">tr</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-tr-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('tr=r').toString().should.equal('-[r]-&gt;');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-fr"></a></p>
+
+<h4 id="fr">fr</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-fr-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('fr=r').toString().should.equal('&lt;-[r]-');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-or"></a></p>
+
+<h4 id="or">or</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-or-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('or=r').toString().should.equal('&lt;-[r]-&gt;');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-ir"></a></p>
+
+<h4 id="ir">ir</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-ir-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('ir=r').toString().should.equal('-[r]-');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery---"></a></p>
+
+<h4 id="">--</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery----when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('--').toString().should.equal('--');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-chaining"></a></p>
+
+<h4 id="chaining">chaining</h4>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdirectionquery-chaining-when-valid"></a></p>
+
+<h5 id="when-valid">when valid</h5>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.direction('n=n/r=friend/n=m').toString().should.equal('(n)-[friend]-&gt;(m)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery"></a></p>
+
+<h3 id="querybuilderstartquery">queryBuilder.start(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.start('*').toString().should.equal('START n = node(*)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartnodeid"></a></p>
+
+<h3 id="querybuilderstartnodeid">queryBuilder.start(nodeId)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartnodeid-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">queryBuilder.start(1).toString().should.equal('START n = node({id})');
+queryBuilder.getParams().should.include.keys('id');
+return queryBuilder.getParams().id.should.equal(1);
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery"></a></p>
+
+<h3 id="querybuilderstartquery">queryBuilder.start(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.start('n = node(*)').toString().should.equal('START n = node(*)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery"></a></p>
+
+<h3 id="querybuilderstartquery">queryBuilder.start({query})</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">queryBuilder.start({
+  name: 'Kieve'
+}).toString().should.equal('START name = node({name})');
+queryBuilder.getParams().should.include.keys('name');
+return queryBuilder.getParams().name.should.equal('Kieve');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery-true"></a></p>
+
+<h3 id="querybuilderstartquery-true">queryBuilder.start(query, true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartquery-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.start('*', true).toString().should.equal('START r = relationship(*)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartnodeid-true"></a></p>
+
+<h3 id="querybuilderstartnodeid-true">queryBuilder.start(nodeId, true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderstartnodeid-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">queryBuilder.start(1, true).toString().should.equal('START r = relationship({id})');
+queryBuilder.getParams().should.include.keys('id');
+return queryBuilder.getParams().id.should.equal(1);
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuildercreatequery"></a></p>
+
+<h3 id="querybuildercreatequery">queryBuilder.create(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildercreatequery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should create normal query.</p>
+
+<pre><code class="js">return queryBuilder.create('n').toString().should.equal('CREATE n');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuildercreatequery-true"></a></p>
+
+<h3 id="querybuildercreatequery-true">queryBuilder.create(query, true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildercreatequery-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should create unique query.</p>
+
+<pre><code class="js">return queryBuilder.create('n', true).toString().should.equal('CREATE UNIQUE n');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuildermatchquery"></a></p>
+
+<h3 id="querybuildermatchquery">queryBuilder.match(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildermatchquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.match('(movie:Movie)').toString().should.equal('MATCH (movie:Movie)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderwherequery"></a></p>
+
+<h3 id="querybuilderwherequery">queryBuilder.where(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderwherequery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.where('n:Swedish').toString().should.equal('WHERE n:Swedish');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderwithquery"></a></p>
+
+<h3 id="querybuilderwithquery">queryBuilder.with(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderwithquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder["with"]('m').toString().should.equal('WITH m');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuildersetquery"></a></p>
+
+<h3 id="querybuildersetquery">queryBuilder.set(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildersetquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.set("n.surname = 'Kieve'").toString().should.equal("SET n.surname = 'Kieve'");
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuildermergequery"></a></p>
+
+<h3 id="querybuildermergequery">queryBuilder.merge(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildermergequery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.merge('kieve:Critic').toString().should.equal('MERGE (kieve:Critic)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdropquery"></a></p>
+
+<h3 id="querybuilderdropquery">queryBuilder.drop(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdropquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.drop('(movie:Movie)').toString().should.equal('DROP (movie:Movie)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderremovequery"></a></p>
+
+<h3 id="querybuilderremovequery">queryBuilder.remove(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderremovequery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.remove('kieve.age').toString().should.equal('REMOVE kieve.age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdelquery"></a></p>
+
+<h3 id="querybuilderdelquery">queryBuilder.del(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdelquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.del('n').toString().should.equal('DELETE n');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdelquery"></a></p>
+
+<h3 id="querybuilderdelquery">queryBuilder.del([query])</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderdelquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.del(['n', 'm']).toString().should.equal('DELETE n, m');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderforeachquery"></a></p>
+
+<h3 id="querybuilderforeachquery">queryBuilder.foreach([query])</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderforeachquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.foreach('(n IN nodes(p)| SET n.marked = TRUE )').toString().should.equal('FOREACH (n IN nodes(p)| SET n.marked = TRUE )');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery"></a></p>
+
+<h3 id="querybuilderreturnquery">queryBuilder.return(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder["return"]('n').toString().should.equal('RETURN n');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery"></a></p>
+
+<h3 id="querybuilderreturnquery">queryBuilder.return([query])</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder["return"](['name', 'age']).toString().should.equal('RETURN n.name, n.age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery"></a></p>
+
+<h3 id="querybuilderreturnquery">queryBuilder.return({query})</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder["return"]({
+  'name': 'Name',
+  'age': 'Age'
+}).toString().should.equal('RETURN n.name AS Name, n.age AS Age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-true"></a></p>
+
+<h3 id="querybuilderreturnquery-true">queryBuilder.return([query], true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder["return"](['name', 'age'], true).toString().should.equal('RETURN r.name, r.age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-true"></a></p>
+
+<h3 id="querybuilderreturnquery-true">queryBuilder.return({query}, true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder["return"]({
+  'name': 'Name',
+  'age': 'Age'
+}, true).toString().should.equal('RETURN r.name AS Name, r.age AS Age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderunionquery"></a></p>
+
+<h3 id="querybuilderunionquery">queryBuilder.union([query])</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderunionquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.union('all').toString().should.equal('UNION ALL');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderusingquery"></a></p>
+
+<h3 id="querybuilderusingquery">queryBuilder.using(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderusingquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.using('n:Swedish(surname)').toString().should.equal('USING n:Swedish(surname)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderusingquery-parameter"></a></p>
+
+<h3 id="querybuilderusingquery-parameter">queryBuilder.using(query, parameter)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderusingquery-parameter-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.using('n:Swedish(surname)', 'INDEX').toString().should.equal('USING INDEX n:Swedish(surname)');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery"></a></p>
+
+<h3 id="querybuilderorderbyquery">queryBuilder.orderBy(query)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.orderBy('n.name').toString().should.equal('ORDER BY n.name');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery"></a></p>
+
+<h3 id="querybuilderorderbyquery">queryBuilder.orderBy([query])</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.orderBy(['name', 'age']).toString().should.equal('ORDER BY n.name, n.age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery"></a></p>
+
+<h3 id="querybuilderorderbyquery">queryBuilder.orderBy({query})</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.orderBy({
+  'name': 'asc',
+  'age': 1,
+  'gender': true
+}).toString().should.equal('ORDER BY n.name ASC, n.age ASC, n.gender ASC');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-true"></a></p>
+
+<h3 id="querybuilderorderbyquery-true">queryBuilder.orderBy([query], true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.orderBy(['name', 'age'], true).toString().should.equal('ORDER BY r.name, r.age');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-true"></a></p>
+
+<h3 id="querybuilderorderbyquery-true">queryBuilder.orderBy({query}, true)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.orderBy({
+  'name': 'asc',
+  'age': 1,
+  'gender': true
+}, true).toString().should.equal('ORDER BY r.name ASC, r.age ASC, r.gender ASC');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderskipskip"></a></p>
+
+<h3 id="querybuilderskipskip">queryBuilder.skip(skip)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderskipskip-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.skip(1).toString().should.equal('SKIP 1');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderlimitlimit"></a></p>
+
+<h3 id="querybuilderlimitlimit">queryBuilder.limit(limit)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderlimitlimit-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.limit(1).toString().should.equal('LIMIT 1');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderlimitlimit-step"></a></p>
+
+<h3 id="querybuilderlimitlimit-step">queryBuilder.limit(limit, step)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderlimitlimit-step-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.limit(1, 2).toString().should.equal('LIMIT 1 SKIP 2');
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuildergetlisttype"></a></p>
+
+<h3 id="querybuildergetlisttype">queryBuilder.getList(type)</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuildergetlisttype-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should construct correct cypher query.</p>
+
+<pre><code class="js">return queryBuilder.getList('function').should.deep.equal(['ALL', 'ANY', 'NONE', 'SINGLE', 'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE', 'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'COT', 'DEGREES', 'E', 'EXP', 'FLOOR', 'HAVERSIN', 'LOG', 'LOG10', 'PI', 'RADIANS', 'RAND', 'ROUND', 'SIGN', 'SIN', 'SQRT', 'TAN', 'STR', 'REPLACE', 'SUBSTRING', 'LEFT', 'RIGHT', 'LTRIM', 'RTRIM', 'TRIM', 'LOWER', 'UPPER']);
+</code></pre>
+
+<p><a name="cypher-neoquerybuilder-querybuilderexecute"></a></p>
+
+<h3 id="querybuilderexecute">queryBuilder.execute()</h3>
+
+<p><a name="cypher-neoquerybuilder-querybuilderexecute-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should run cypher query.</p>
+
+<pre><code class="js">var result;
+result = queryBuilder.start('*')["return"]('*').execute();
+return result.should.eventually.include.keys('data');
+</code></pre>
+
+<p><a name="index"></a></p>
+
+<h1 id="index">Index</h1>
+
+<p><a name="index-neocreateindexlabel-property"></a></p>
+
+<h2 id="neocreateindexlabel-property">neo.createIndex(label, [property])</h2>
+
+<p><a name="index-neocreateindexlabel-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should create an index.</p>
+
+<pre><code class="js">return neo.createIndex('testuser', ['name']).then(function(result) {
+  result.label.should.equal('testuser');
+  return result['property-keys'].should.include('name');
+});
+</code></pre>
+
+<p><a name="index-neoreadindexlabel"></a></p>
+
+<h2 id="neoreadindexlabel">neo.readIndex(label)</h2>
+
+<p><a name="index-neoreadindexlabel-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return nodes under specified label.</p>
+
+<pre><code class="js">return neo.readIndex('testuser').then(function(result) {
+  result[0].label.should.equal('testuser');
+  return result[0]['property-keys'].should.include('name');
+});
+</code></pre>
+
+<p><a name="index-neodeleteindexlabel-property"></a></p>
+
+<h2 id="neodeleteindexlabel-property">neo.deleteIndex(label, property)</h2>
+
+<p><a name="index-neodeleteindexlabel-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should drop index.</p>
+
+<pre><code class="js">return neo.deleteIndex('testuser', 'name').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label"></a></p>
+
+<h1 id="label">Label</h1>
+
+<p><a name="label-neocreatelabelnodeid-labels"></a></p>
+
+<h2 id="neocreatelabelnodeid-labels">neo.createLabel(nodeId, [labels])</h2>
+
+<p><a name="label-neocreatelabelnodeid-labels-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should insert labels to a node.</p>
+
+<pre><code class="js">return neo.createLabel(testNode[0]._id, ['testfriend', 'testcolleagu2e']).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label-neocreatelabelnodeid-label"></a></p>
+
+<h2 id="neocreatelabelnodeid-label">neo.createLabel(nodeId, label)</h2>
+
+<p><a name="label-neocreatelabelnodeid-label-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should insert label to a node.</p>
+
+<pre><code class="js">return neo.createLabel(testNode[1]._id, 'testfriend').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label-neoupdatelabelnodeid-labels"></a></p>
+
+<h2 id="neoupdatelabelnodeid-labels">neo.updateLabel(nodeId, labels)</h2>
+
+<p><a name="label-neoupdatelabelnodeid-labels-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should replace labels of a node.</p>
+
+<pre><code class="js">return neo.updateLabel(testNode[0]._id, ['testbestfriend']).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="label-neoreadlabelnodeid"></a></p>
+
+<h2 id="neoreadlabelnodeid">neo.readLabel(nodeId)</h2>
+
+<p><a name="label-neoreadlabelnodeid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return labels of a node.</p>
+
+<pre><code class="js">return neo.readLabel(testNode[0]._id).should.eventually.include('testbestfriend');
+</code></pre>
+
+<p><a name="label-neoreadlabel"></a></p>
+
+<h2 id="neoreadlabel">neo.readLabel()</h2>
+
+<p><a name="label-neoreadlabel-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all labels of the database.</p>
+
+<pre><code class="js">return neo.readLabel().then(function(result) {
+  result.should.include('testbestfriend');
+  return result.should.include('testfriend');
+});
+</code></pre>
+
+<p><a name="label-neodeletelabelnodeid-label"></a></p>
+
+<h2 id="neodeletelabelnodeid-label">neo.deleteLabel(nodeId, label)</h2>
+
+<p><a name="label-neodeletelabelnodeid-label-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should remove label from a node.</p>
+
+<pre><code class="js">return neo.deleteLabel(testNode[1]._id, 'testfriend').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="main"></a></p>
+
+<h1 id="main">Main</h1>
+
+<p><a name="main-create-new-connection"></a></p>
+
+<h2 id="create-new-connection">create new connection</h2>
+
+<p><a name="main-create-new-connection-new-neo4js"></a></p>
+
+<h3 id="new-neo4js">new Neo4js()</h3>
+
+<p><a name="main-create-new-connection-new-neo4js-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should return default Neo4j connection.</p>
+
+<pre><code class="js">return neo.url.should.equal('http://localhost:7474');
+</code></pre>
+
+<p><a name="main-create-new-connection-new-neo4jsurl"></a></p>
+
+<h3 id="new-neo4jsurl">new Neo4js(url)</h3>
+
+<p><a name="main-create-new-connection-new-neo4jsurl-when-valid"></a></p>
+
+<h4 id="when-valid">when valid</h4>
+
+<p>should return default Neo4j connection.</p>
+
+<pre><code class="js">return neo.url.should.equal('http://localhost:8484');
+</code></pre>
+
+<p><a name="main-neoservice"></a></p>
+
+<h2 id="neoservice">neo.service()</h2>
+
+<p><a name="main-neoservice-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return Neo4j setting.</p>
+
+<pre><code class="js">return neo.service().should.eventually.have.contain.keys('node', 'node_index', 'relationship_index', 'extensions_info');
+</code></pre>
+
+<p><a name="node"></a></p>
+
+<h1 id="node">Node</h1>
+
+<p><a name="node-neocreatenodeproperties"></a></p>
+
+<h2 id="neocreatenodeproperties">neo.createNode({properties})</h2>
+
+<p><a name="node-neocreatenodeproperties-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should create a new node.</p>
+
+<pre><code class="js">return neo.createNode({
+  name: 'Kieve'
+}).then(function(node) {
+  node.should.have.property('name').equal('Kieve');
+  return testNode = node;
+});
+</code></pre>
+
+<p><a name="node-neoreadnodenodeid"></a></p>
+
+<h2 id="neoreadnodenodeid">neo.readNode(nodeId)</h2>
+
+<p><a name="node-neoreadnodenodeid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return node details.</p>
+
+<pre><code class="js">return neo.readNode(testNode._id).then(function(result) {
+  return result.name.should.equal('Kieve');
+});
+</code></pre>
+
+<p><a name="node-neoupdatenodepropertynodeid-property-value"></a></p>
+
+<h2 id="neoupdatenodepropertynodeid-property-value">neo.updateNodeProperty(nodeId, property, value)</h2>
+
+<p><a name="node-neoupdatenodepropertynodeid-property-value-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should update node property.</p>
+
+<pre><code class="js">return neo.updateNodeProperty(testNode._id, 'gender', 'male').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="node-neoupdatenodepropertynodeid-properties"></a></p>
+
+<h2 id="neoupdatenodepropertynodeid-properties">neo.updateNodeProperty(nodeId, {properties})</h2>
+
+<p><a name="node-neoupdatenodepropertynodeid-properties-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should update node properties.</p>
+
+<pre><code class="js">return neo.updateNodeProperty(testNode._id, {
+  'name': 'Kieve Chua',
+  'age': 17
+}).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="node-neoreadnodepropertynodeid"></a></p>
+
+<h2 id="neoreadnodepropertynodeid">neo.readNodeProperty(nodeId)</h2>
+
+<p><a name="node-neoreadnodepropertynodeid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return properties of a node.</p>
+
+<pre><code class="js">return neo.readNodeProperty(testNode._id).then(function(result) {
+  result.name.should.equal('Kieve Chua');
+  return result.age.should.equal(17);
+});
+</code></pre>
+
+<p><a name="node-neodeletenodepropertynodeid-property"></a></p>
+
+<h2 id="neodeletenodepropertynodeid-property">neo.deleteNodeProperty(nodeId, property)</h2>
+
+<p><a name="node-neodeletenodepropertynodeid-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should delete node property.</p>
+
+<pre><code class="js">return neo.deleteNodeProperty(testNode._id, 'name').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="node-neodeletenodepropertynodeid"></a></p>
+
+<h2 id="neodeletenodepropertynodeid">neo.deleteNodeProperty(nodeId)</h2>
+
+<p><a name="node-neodeletenodepropertynodeid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should delete all property of a node.</p>
+
+<pre><code class="js">return neo.deleteNodeProperty(testNode._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="node-neodeletenodenodeid"></a></p>
+
+<h2 id="neodeletenodenodeid">neo.deleteNode(nodeId)</h2>
+
+<p><a name="node-neodeletenodenodeid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should delete a node.</p>
+
+<pre><code class="js">return neo.deleteNode(testNode._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship"></a></p>
+
+<h1 id="relationship">Relationship</h1>
+
+<p><a name="relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty"></a></p>
+
+<h2 id="neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty">neo.createRelationship(fromNodeId, toNodeId, relationship, relationshipProperty)</h2>
+
+<p><a name="relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should create relationship between nodes.</p>
+
+<pre><code class="js">return neo.createRelationship(testNode[0]._id, testNode[1]._id, 'friend', {
+  since: '10 years ago'
+}).then(function(relationship) {
+  testRelationship = relationship;
+  return relationship.since.should.equal('10 years ago');
+});
+</code></pre>
+
+<p><a name="relationship-neoreadrelationshiprelationshipid"></a></p>
+
+<h2 id="neoreadrelationshiprelationshipid">neo.readRelationship(relationshipId)</h2>
+
+<p><a name="relationship-neoreadrelationshiprelationshipid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return details of a relationship.</p>
+
+<pre><code class="js">return neo.readRelationship(testRelationship._id).then(function(result) {
+  return result.since.should.equal('10 years ago');
+});
+</code></pre>
+
+<p><a name="relationship-neoupdaterelationshippropertyrelationshipid-property-value"></a></p>
+
+<h2 id="neoupdaterelationshippropertyrelationshipid-property-value">neo.updateRelationshipProperty(relationshipId, property, value)</h2>
+
+<p><a name="relationship-neoupdaterelationshippropertyrelationshipid-property-value-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should update relationship's property value.</p>
+
+<pre><code class="js">return neo.updateRelationshipProperty(testRelationship._id, 'since', '11 years ago').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship-neoupdaterelationshippropertyrelationshipid-properties"></a></p>
+
+<h2 id="neoupdaterelationshippropertyrelationshipid-properties">neo.updateRelationshipProperty(relationshipId, {properties})</h2>
+
+<p><a name="relationship-neoupdaterelationshippropertyrelationshipid-properties-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should update relationship's properties value.</p>
+
+<pre><code class="js">return neo.updateRelationshipProperty(testRelationship._id, {
+  'since': '12 years ago',
+  'sinceAge': 17
+}).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship-neoreadrelationshippropertyrelationshipid"></a></p>
+
+<h2 id="neoreadrelationshippropertyrelationshipid">neo.readRelationshipProperty(relationshipId)</h2>
+
+<p><a name="relationship-neoreadrelationshippropertyrelationshipid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return properties of a relationship.</p>
+
+<pre><code class="js">return neo.readRelationshipProperty(testRelationship._id).then(function(result) {
+  result.since.should.equal('12 years ago');
+  return result.sinceAge.should.equal(17);
+});
+</code></pre>
+
+<p><a name="relationship-neoreadrelationshiptype"></a></p>
+
+<h2 id="neoreadrelationshiptype">neo.readRelationshipType()</h2>
+
+<p><a name="relationship-neoreadrelationshiptype-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all relationships type.</p>
+
+<pre><code class="js">return neo.readRelationshipType().should.eventually.include('friend');
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-all"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-all">neo.readTypedRelationship(nodeId, 'all')</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-all-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'all').should.eventually.have.length(1);
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-in"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-in">neo.readTypedRelationship(nodeId, 'in')</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-in-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all inbound relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'in').should.eventually.have.length(1);
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-out"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-out">neo.readTypedRelationship(nodeId, 'out')</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-out-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all outbound relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'out').should.eventually.be.empty;
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-all-label"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-all-label">neo.readTypedRelationship(nodeId, 'all', label)</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-all-label-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all outbound relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'all', 'friend').should.eventually.have.length(1);
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-in-label"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-in-label">neo.readTypedRelationship(nodeId, 'in', label)</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-in-label-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all outbound relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'in', 'friend').should.eventually.have.length(1);
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-out-label"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-out-label">neo.readTypedRelationship(nodeId, 'out', label)</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-out-label-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all outbound relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'out', 'friend').should.eventually.be.empty;
+</code></pre>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-all-labels"></a></p>
+
+<h2 id="neoreadtypedrelationshipnodeid-all-labels">neo.readTypedRelationship(nodeId, 'all', [labels])</h2>
+
+<p><a name="relationship-neoreadtypedrelationshipnodeid-all-labels-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return all outbound relationship for a node.</p>
+
+<pre><code class="js">return neo.readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover']).should.eventually.have.length(1);
+</code></pre>
+
+<p><a name="relationship-neodeleterelationshippropertyrelationshipid-property"></a></p>
+
+<h2 id="neodeleterelationshippropertyrelationshipid-property">neo.deleteRelationshipProperty(relationshipId, property)</h2>
+
+<p><a name="relationship-neodeleterelationshippropertyrelationshipid-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should delete relationships's property.</p>
+
+<pre><code class="js">return neo.deleteRelationshipProperty(testRelationship._id, 'since').should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship-neodeleterelationshippropertyrelationshipid"></a></p>
+
+<h2 id="neodeleterelationshippropertyrelationshipid">neo.deleteRelationshipProperty(relationshipId)</h2>
+
+<p><a name="relationship-neodeleterelationshippropertyrelationshipid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should delete all relationships's properties.</p>
+
+<pre><code class="js">return neo.deleteRelationshipProperty(testRelationship._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="relationship-neodeleterelationshiprelationshipid"></a></p>
+
+<h2 id="neodeleterelationshiprelationshipid">neo.deleteRelationship(relationshipId)</h2>
+
+<p><a name="relationship-neodeleterelationshiprelationshipid-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should delete relationship.</p>
+
+<pre><code class="js">return neo.deleteRelationship(testRelationship._id).should.eventually.be["true"];
+</code></pre>
+
+<p><a name="traversal"></a></p>
+
+<h1 id="traversal">Traversal</h1>
+
+<p><a name="traversal-neocreatepagedtraversenodeid-properties"></a></p>
+
+<h2 id="neocreatepagedtraversenodeid-properties">neo.createPagedTraverse(nodeId, {properties})</h2>
+
+<p><a name="traversal-neocreatepagedtraversenodeid-properties-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should create a paged traverse.</p>
+
+<pre><code class="js">return neo.createPagedTraverse(testNode[0]._id, {
+  "prune_evaluator": {
+    "language": "builtin",
+    "name": "none"
+  },
+  "return_filter": {
+    "language": "javascript",
+    "body": "position.endNode().getProperty('name').contains('Test traversal 1');"
+  },
+  "order": "depth_first",
+  "relationships": {
+    "type": "testfriend",
+    "direction": "out"
+  }
+}).should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="traversal-neotraversepathnodeid-properties"></a></p>
+
+<h2 id="neotraversepathnodeid-properties">neo.traversePath(nodeId, {properties})</h2>
+
+<p><a name="traversal-neotraversepathnodeid-properties-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return traversed path.</p>
+
+<pre><code class="js">return neo.traversePath(testNode[0]._id, {
+  "order": "breadth_first",
+  "uniqueness": "none",
+  "return_filter": {
+    "language": "builtin",
+    "name": "all"
+  }
+}).should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="traversal-neotraversenodenodeid-property"></a></p>
+
+<h2 id="neotraversenodenodeid-property">neo.traverseNode(nodeId, {property})</h2>
+
+<p><a name="traversal-neotraversenodenodeid-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return traversed node.</p>
+
+<pre><code class="js">return neo.traverseNode(testNode[0]._id, {
+  "order": "breadth_first",
+  "uniqueness": "none",
+  "return_filter": {
+    "language": "builtin",
+    "name": "all"
+  }
+}).should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="traversal-neotraverserelationshipnodeid-property"></a></p>
+
+<h2 id="neotraverserelationshipnodeid-property">neo.traverseRelationship(nodeId, {property})</h2>
+
+<p><a name="traversal-neotraverserelationshipnodeid-property-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return traversed node.</p>
+
+<pre><code class="js">return neo.traverseRelationship(testNode[0]._id, {
+  "order": "breadth_first",
+  "uniqueness": "none",
+  "return_filter": {
+    "language": "builtin",
+    "name": "all"
+  }
+}).should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="traversal-neopagedtraversenodeid-parameters"></a></p>
+
+<h2 id="neopagedtraversenodeid-parameters">neo.pagedTraverse(nodeId, {parameters})</h2>
+
+<p><a name="traversal-neopagedtraversenodeid-parameters-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return paged traverse path.</p>
+
+<pre><code class="js">return neo.pagedTraverse(testNode[0]._id, {
+  pageSize: 1
+}).should.eventually.have.length.of.at.least(1);
+</code></pre>
+
+<p><a name="utils"></a></p>
+
+<h1 id="utils">Utils</h1>
+
+<p><a name="utils-neoobjtostrobject"></a></p>
+
+<h2 id="neoobjtostrobject">neo.objToStr({object})</h2>
+
+<p><a name="utils-neoobjtostrobject-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return stringified object.</p>
+
+<pre><code class="js">return utils.objToStr({
+  name: 'kieve',
+  age: 18
+}).should.equal("{ name : 'kieve', age : '18' }");
+</code></pre>
+
+<p><a name="utils-neogeturl"></a></p>
+
+<h2 id="neogeturl">neo.get(url)</h2>
+
+<p><a name="utils-neogeturl-when-valid"></a></p>
+
+<h3 id="when-valid">when valid</h3>
+
+<p>should return stringified object.</p>
+
+<pre><code class="js">return utils.get('http://localhost:7474/db/data').then(function(result) {
+  return result.ok.should.be["true"];
+});
+</code></pre></div></div></div></div></body></html>

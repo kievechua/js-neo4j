@@ -708,6 +708,2030 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         }
       ]
     }, {
+      "type": "folder",
+      "data": {
+        "path": "test",
+        "title": "test"
+      },
+      "depth": 1,
+      "children": [
+        {
+          "type": "file",
+          "data": {
+            "language": {
+              "nameMatchers": [".md"],
+              "commentsOnly": true,
+              "name": "Markdown"
+            },
+            "sourcePath": "/Users/kieve/Shoppa/neo4js/test/test.md",
+            "projectPath": "test/test.md",
+            "targetPath": "test/test",
+            "pageTitle": "test/test",
+            "firstHeader": {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "TOC",
+                "slug": "toc",
+                "isFileHeader": true
+              },
+              "depth": 1
+            },
+            "title": "TOC"
+          },
+          "depth": 2,
+          "outline": [
+            {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Algorithm",
+                "slug": "algorithm"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.findPath(nodeId, {parameters})",
+                    "slug": "neofindpathnodeid-parameters"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Batch",
+                "slug": "batch"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.executeBatch([tasks])",
+                    "slug": "neoexecutebatchtasks"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Constraint",
+                "slug": "constraint"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createUniquenessConstraint(label, [property])",
+                    "slug": "neocreateuniquenessconstraintlabel-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readConstraint()",
+                    "slug": "neoreadconstraint"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readUniquenessConstraint(label, property)",
+                    "slug": "neoreaduniquenessconstraintlabel-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteConstraint(label, property)",
+                    "slug": "neodeleteconstraintlabel-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Cypher",
+                "slug": "cypher"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.executeCypher(query, parameters)",
+                    "slug": "neoexecutecypherquery-parameters"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.queryBuilder()",
+                    "slug": "neoquerybuilder"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.cypher(query)",
+                        "slug": "querybuildercypherquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.direction(query)",
+                        "slug": "querybuilderdirectionquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "n",
+                            "slug": "n"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "tn",
+                            "slug": "tn"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "fn",
+                            "slug": "fn"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "r",
+                            "slug": "r"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "tr",
+                            "slug": "tr"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "fr",
+                            "slug": "fr"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "or",
+                            "slug": "or"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "ir",
+                            "slug": "ir"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }, {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }, {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "chaining",
+                            "slug": "chaining"
+                          },
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.start(query)",
+                        "slug": "querybuilderstartquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.start(nodeId)",
+                        "slug": "querybuilderstartnodeid"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.start(query)",
+                        "slug": "querybuilderstartquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.start({query})",
+                        "slug": "querybuilderstartquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.start(query, true)",
+                        "slug": "querybuilderstartquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.start(nodeId, true)",
+                        "slug": "querybuilderstartnodeid-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.create(query)",
+                        "slug": "querybuildercreatequery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.create(query, true)",
+                        "slug": "querybuildercreatequery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.match(query)",
+                        "slug": "querybuildermatchquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.where(query)",
+                        "slug": "querybuilderwherequery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.with(query)",
+                        "slug": "querybuilderwithquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.set(query)",
+                        "slug": "querybuildersetquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.merge(query)",
+                        "slug": "querybuildermergequery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.drop(query)",
+                        "slug": "querybuilderdropquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.remove(query)",
+                        "slug": "querybuilderremovequery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.del(query)",
+                        "slug": "querybuilderdelquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.del([query])",
+                        "slug": "querybuilderdelquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.foreach([query])",
+                        "slug": "querybuilderforeachquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return(query)",
+                        "slug": "querybuilderreturnquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return([query])",
+                        "slug": "querybuilderreturnquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return({query})",
+                        "slug": "querybuilderreturnquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return([query], true)",
+                        "slug": "querybuilderreturnquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return({query}, true)",
+                        "slug": "querybuilderreturnquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.union([query])",
+                        "slug": "querybuilderunionquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.using(query)",
+                        "slug": "querybuilderusingquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.using(query, parameter)",
+                        "slug": "querybuilderusingquery-parameter"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy(query)",
+                        "slug": "querybuilderorderbyquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy([query])",
+                        "slug": "querybuilderorderbyquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy({query})",
+                        "slug": "querybuilderorderbyquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy([query], true)",
+                        "slug": "querybuilderorderbyquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy({query}, true)",
+                        "slug": "querybuilderorderbyquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.skip(skip)",
+                        "slug": "querybuilderskipskip"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.limit(limit)",
+                        "slug": "querybuilderlimitlimit"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.limit(limit, step)",
+                        "slug": "querybuilderlimitlimit-step"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.getList(type)",
+                        "slug": "querybuildergetlisttype"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.execute()",
+                        "slug": "querybuilderexecute"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Index",
+                "slug": "index"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createIndex(label, [property])",
+                    "slug": "neocreateindexlabel-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readIndex(label)",
+                    "slug": "neoreadindexlabel"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteIndex(label, property)",
+                    "slug": "neodeleteindexlabel-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Label",
+                "slug": "label"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createLabel(nodeId, [labels])",
+                    "slug": "neocreatelabelnodeid-labels"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createLabel(nodeId, label)",
+                    "slug": "neocreatelabelnodeid-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateLabel(nodeId, labels)",
+                    "slug": "neoupdatelabelnodeid-labels"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readLabel(nodeId)",
+                    "slug": "neoreadlabelnodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readLabel()",
+                    "slug": "neoreadlabel"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteLabel(nodeId, label)",
+                    "slug": "neodeletelabelnodeid-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Main",
+                "slug": "main"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "create new connection",
+                    "slug": "create-new-connection"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "new Neo4js()",
+                        "slug": "new-neo4js"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "new Neo4js(url)",
+                        "slug": "new-neo4jsurl"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.service()",
+                    "slug": "neoservice"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Node",
+                "slug": "node"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createNode({properties})",
+                    "slug": "neocreatenodeproperties"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readNode(nodeId)",
+                    "slug": "neoreadnodenodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateNodeProperty(nodeId, property, value)",
+                    "slug": "neoupdatenodepropertynodeid-property-value"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateNodeProperty(nodeId, {properties})",
+                    "slug": "neoupdatenodepropertynodeid-properties"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readNodeProperty(nodeId)",
+                    "slug": "neoreadnodepropertynodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteNodeProperty(nodeId, property)",
+                    "slug": "neodeletenodepropertynodeid-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteNodeProperty(nodeId)",
+                    "slug": "neodeletenodepropertynodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteNode(nodeId)",
+                    "slug": "neodeletenodenodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Relationship",
+                "slug": "relationship"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createRelationship(fromNodeId, toNodeId, relationship, relationshipProperty)",
+                    "slug": "neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readRelationship(relationshipId)",
+                    "slug": "neoreadrelationshiprelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateRelationshipProperty(relationshipId, property, value)",
+                    "slug": "neoupdaterelationshippropertyrelationshipid-property-value"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateRelationshipProperty(relationshipId, {properties})",
+                    "slug": "neoupdaterelationshippropertyrelationshipid-properties"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readRelationshipProperty(relationshipId)",
+                    "slug": "neoreadrelationshippropertyrelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readRelationshipType()",
+                    "slug": "neoreadrelationshiptype"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'all')",
+                    "slug": "neoreadtypedrelationshipnodeid-all"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'in')",
+                    "slug": "neoreadtypedrelationshipnodeid-in"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'out')",
+                    "slug": "neoreadtypedrelationshipnodeid-out"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'all', label)",
+                    "slug": "neoreadtypedrelationshipnodeid-all-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'in', label)",
+                    "slug": "neoreadtypedrelationshipnodeid-in-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'out', label)",
+                    "slug": "neoreadtypedrelationshipnodeid-out-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'all', [labels])",
+                    "slug": "neoreadtypedrelationshipnodeid-all-labels"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteRelationshipProperty(relationshipId, property)",
+                    "slug": "neodeleterelationshippropertyrelationshipid-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteRelationshipProperty(relationshipId)",
+                    "slug": "neodeleterelationshippropertyrelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteRelationship(relationshipId)",
+                    "slug": "neodeleterelationshiprelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Traversal",
+                "slug": "traversal"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.createPagedTraverse(nodeId, {properties})",
+                    "slug": "neocreatepagedtraversenodeid-properties"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.traversePath(nodeId, {properties})",
+                    "slug": "neotraversepathnodeid-properties"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.traverseNode(nodeId, {property})",
+                    "slug": "neotraversenodenodeid-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.traverseRelationship(nodeId, {property})",
+                    "slug": "neotraverserelationshipnodeid-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.pagedTraverse(nodeId, {parameters})",
+                    "slug": "neopagedtraversenodeid-parameters"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }, {
+              "type": "heading",
+              "data": {
+                "level": 1,
+                "title": "Utils",
+                "slug": "utils"
+              },
+              "depth": 1,
+              "children": [
+                {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.objToStr({object})",
+                    "slug": "neoobjtostrobject"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.get(url)",
+                    "slug": "neogeturl"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }, {
       "type": "file",
       "data": {
         "language": {
