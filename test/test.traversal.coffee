@@ -59,8 +59,9 @@ describe 'Traversal', ->
 
     describe 'neo.traversePath(nodeId, {properties})', ->
         describe 'when valid', ->
-            it 'should pass', ->
-                neo.traversePath(testNode[0]._id, {
+            it 'should return traversed path', ->
+                neo
+                .traversePath(testNode[0]._id, {
                     "order" : "breadth_first",
                     "uniqueness" : "none",
                     "return_filter" : {
@@ -70,26 +71,40 @@ describe 'Traversal', ->
                 })
                 .should.eventually.have.length.of.at.least 1
 
-    describe 'traverseNode', ->
-        it 'should pass', ->
-            neo.traverseNode(testNode[0]._id, {
-                "order" : "breadth_first",
-                "uniqueness" : "none",
-                "return_filter" : {
-                    "language" : "builtin",
-                    "name" : "all"
-                }
-            }).then((result) ->
-                result.should.have.length.of.at.least 1
-            )
+    describe 'neo.traverseNode(nodeId, {property})', ->
+        describe 'when valid', ->
+            it 'should return traversed node', ->
+                neo
+                .traverseNode(testNode[0]._id, {
+                    "order" : "breadth_first",
+                    "uniqueness" : "none",
+                    "return_filter" : {
+                        "language" : "builtin",
+                        "name" : "all"
+                    }
+                })
+                .should.eventually.have.length.of.at.least 1
 
-    describe 'pagedTraverse', ->
-        it 'should pass', ->
-            neo
-            .pagedTraverse(testNode[0]._id, { pageSize: 1 })
-            .then((result) ->
-                result.should.have.length.of.at.least 1
-            )
+    describe 'neo.traverseRelationship(nodeId, {property})', ->
+        describe 'when valid', ->
+            it 'should return traversed node', ->
+                neo
+                .traverseRelationship(testNode[0]._id, {
+                    "order" : "breadth_first",
+                    "uniqueness" : "none",
+                    "return_filter" : {
+                        "language" : "builtin",
+                        "name" : "all"
+                    }
+                })
+                .should.eventually.have.length.of.at.least 1
+
+    describe 'neo.pagedTraverse(nodeId, {parameters})', ->
+        describe 'when valid', ->
+            it 'should return paged traverse path', ->
+                neo
+                .pagedTraverse(testNode[0]._id, { pageSize: 1 })
+                .should.eventually.have.length.of.at.least 1
 
     after (done) ->
         neo

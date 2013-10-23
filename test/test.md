@@ -41,39 +41,76 @@
            - [when valid](#cypher-neoquerybuilder-querybuilderdirectionquery----when-valid)
          - [chaining](#cypher-neoquerybuilder-querybuilderdirectionquery-chaining)
            - [when valid](#cypher-neoquerybuilder-querybuilderdirectionquery-chaining-when-valid)
-       - [queryBuilder.start()](#cypher-neoquerybuilder-querybuilderstart)
-         - [node](#cypher-neoquerybuilder-querybuilderstart-node)
-         - [relationship](#cypher-neoquerybuilder-querybuilderstart-relationship)
+       - [queryBuilder.start(query)](#cypher-neoquerybuilder-querybuilderstartquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderstartquery-when-valid)
+       - [queryBuilder.start(nodeId)](#cypher-neoquerybuilder-querybuilderstartnodeid)
+         - [when valid](#cypher-neoquerybuilder-querybuilderstartnodeid-when-valid)
+       - [queryBuilder.start({query})](#cypher-neoquerybuilder-querybuilderstartquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderstartquery-when-valid)
+       - [queryBuilder.start(query, true)](#cypher-neoquerybuilder-querybuilderstartquery-true)
+         - [when valid](#cypher-neoquerybuilder-querybuilderstartquery-true-when-valid)
+       - [queryBuilder.start(nodeId, true)](#cypher-neoquerybuilder-querybuilderstartnodeid-true)
+         - [when valid](#cypher-neoquerybuilder-querybuilderstartnodeid-true-when-valid)
        - [queryBuilder.create(query)](#cypher-neoquerybuilder-querybuildercreatequery)
          - [when valid](#cypher-neoquerybuilder-querybuildercreatequery-when-valid)
        - [queryBuilder.create(query, true)](#cypher-neoquerybuilder-querybuildercreatequery-true)
          - [when valid](#cypher-neoquerybuilder-querybuildercreatequery-true-when-valid)
        - [queryBuilder.match(query)](#cypher-neoquerybuilder-querybuildermatchquery)
          - [when valid](#cypher-neoquerybuilder-querybuildermatchquery-when-valid)
-       - [where](#cypher-neoquerybuilder-where)
-       - [with](#cypher-neoquerybuilder-with)
-       - [set](#cypher-neoquerybuilder-set)
-       - [merge](#cypher-neoquerybuilder-merge)
-       - [drop](#cypher-neoquerybuilder-drop)
-       - [remove](#cypher-neoquerybuilder-remove)
-       - [delete](#cypher-neoquerybuilder-delete)
-         - [string](#cypher-neoquerybuilder-delete-string)
-         - [array](#cypher-neoquerybuilder-delete-array)
-       - [foreach](#cypher-neoquerybuilder-foreach)
-       - [return](#cypher-neoquerybuilder-return)
-         - [node](#cypher-neoquerybuilder-return-node)
-         - [relationship](#cypher-neoquerybuilder-return-relationship)
-       - [union](#cypher-neoquerybuilder-union)
-       - [using](#cypher-neoquerybuilder-using)
-         - [without param](#cypher-neoquerybuilder-using-without-param)
-         - [with param](#cypher-neoquerybuilder-using-with-param)
-       - [orderBy](#cypher-neoquerybuilder-orderby)
-         - [node](#cypher-neoquerybuilder-orderby-node)
-         - [relationship](#cypher-neoquerybuilder-orderby-relationship)
-       - [skip](#cypher-neoquerybuilder-skip)
-       - [limit](#cypher-neoquerybuilder-limit)
-       - [getFunctionList](#cypher-neoquerybuilder-getfunctionlist)
-       - [execute](#cypher-neoquerybuilder-execute)
+       - [queryBuilder.where(query)](#cypher-neoquerybuilder-querybuilderwherequery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderwherequery-when-valid)
+       - [queryBuilder.with(query)](#cypher-neoquerybuilder-querybuilderwithquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderwithquery-when-valid)
+       - [queryBuilder.set(query)](#cypher-neoquerybuilder-querybuildersetquery)
+         - [when valid](#cypher-neoquerybuilder-querybuildersetquery-when-valid)
+       - [queryBuilder.merge(query)](#cypher-neoquerybuilder-querybuildermergequery)
+         - [when valid](#cypher-neoquerybuilder-querybuildermergequery-when-valid)
+       - [queryBuilder.drop(query)](#cypher-neoquerybuilder-querybuilderdropquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderdropquery-when-valid)
+       - [queryBuilder.remove(query)](#cypher-neoquerybuilder-querybuilderremovequery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderremovequery-when-valid)
+       - [queryBuilder.del(query)](#cypher-neoquerybuilder-querybuilderdelquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderdelquery-when-valid)
+       - [queryBuilder.del([query])](#cypher-neoquerybuilder-querybuilderdelquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderdelquery-when-valid)
+       - [queryBuilder.foreach([query])](#cypher-neoquerybuilder-querybuilderforeachquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderforeachquery-when-valid)
+       - [queryBuilder.return(query)](#cypher-neoquerybuilder-querybuilderreturnquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderreturnquery-when-valid)
+       - [queryBuilder.return([query])](#cypher-neoquerybuilder-querybuilderreturnquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderreturnquery-when-valid)
+       - [queryBuilder.return({query})](#cypher-neoquerybuilder-querybuilderreturnquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderreturnquery-when-valid)
+       - [queryBuilder.return([query], true)](#cypher-neoquerybuilder-querybuilderreturnquery-true)
+         - [when valid](#cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid)
+       - [queryBuilder.return({query}, true)](#cypher-neoquerybuilder-querybuilderreturnquery-true)
+         - [when valid](#cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid)
+       - [queryBuilder.union([query])](#cypher-neoquerybuilder-querybuilderunionquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderunionquery-when-valid)
+       - [queryBuilder.using(query)](#cypher-neoquerybuilder-querybuilderusingquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderusingquery-when-valid)
+       - [queryBuilder.using(query, parameter)](#cypher-neoquerybuilder-querybuilderusingquery-parameter)
+         - [when valid](#cypher-neoquerybuilder-querybuilderusingquery-parameter-when-valid)
+       - [queryBuilder.orderBy(query)](#cypher-neoquerybuilder-querybuilderorderbyquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderorderbyquery-when-valid)
+       - [queryBuilder.orderBy([query])](#cypher-neoquerybuilder-querybuilderorderbyquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderorderbyquery-when-valid)
+       - [queryBuilder.orderBy({query})](#cypher-neoquerybuilder-querybuilderorderbyquery)
+         - [when valid](#cypher-neoquerybuilder-querybuilderorderbyquery-when-valid)
+       - [queryBuilder.orderBy([query], true)](#cypher-neoquerybuilder-querybuilderorderbyquery-true)
+         - [when valid](#cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid)
+       - [queryBuilder.orderBy({query}, true)](#cypher-neoquerybuilder-querybuilderorderbyquery-true)
+         - [when valid](#cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid)
+       - [queryBuilder.skip(skip)](#cypher-neoquerybuilder-querybuilderskipskip)
+         - [when valid](#cypher-neoquerybuilder-querybuilderskipskip-when-valid)
+       - [queryBuilder.limit(limit)](#cypher-neoquerybuilder-querybuilderlimitlimit)
+         - [when valid](#cypher-neoquerybuilder-querybuilderlimitlimit-when-valid)
+       - [queryBuilder.limit(limit, step)](#cypher-neoquerybuilder-querybuilderlimitlimit-step)
+         - [when valid](#cypher-neoquerybuilder-querybuilderlimitlimit-step-when-valid)
+       - [queryBuilder.getList(type)](#cypher-neoquerybuilder-querybuildergetlisttype)
+         - [when valid](#cypher-neoquerybuilder-querybuildergetlisttype-when-valid)
+       - [queryBuilder.execute()](#cypher-neoquerybuilder-querybuilderexecute)
+         - [when valid](#cypher-neoquerybuilder-querybuilderexecute-when-valid)
    - [Index](#index)
      - [neo.createIndex(label, [property])](#index-neocreateindexlabel-property)
        - [when valid](#index-neocreateindexlabel-property-when-valid)
@@ -96,33 +133,76 @@
        - [when valid](#label-neodeletelabelnodeid-label-when-valid)
    - [Main](#main)
      - [create new connection](#main-create-new-connection)
-       - [Default config](#main-create-new-connection-default-config)
-       - [custom config](#main-create-new-connection-custom-config)
+       - [new Neo4js()](#main-create-new-connection-new-neo4js)
+         - [when valid](#main-create-new-connection-new-neo4js-when-valid)
+       - [new Neo4js(url)](#main-create-new-connection-new-neo4jsurl)
+         - [when valid](#main-create-new-connection-new-neo4jsurl-when-valid)
+     - [neo.service()](#main-neoservice)
+       - [when valid](#main-neoservice-when-valid)
    - [Node](#node)
-     - [createNode](#node-createnode)
-     - [readNode](#node-readnode)
-     - [updateNodeProperty](#node-updatenodeproperty)
-     - [readNodeProperty](#node-readnodeproperty)
-     - [deleteNodeProperty](#node-deletenodeproperty)
-     - [deleteNode](#node-deletenode)
+     - [neo.createNode({properties})](#node-neocreatenodeproperties)
+       - [when valid](#node-neocreatenodeproperties-when-valid)
+     - [neo.readNode(nodeId)](#node-neoreadnodenodeid)
+       - [when valid](#node-neoreadnodenodeid-when-valid)
+     - [neo.updateNodeProperty(nodeId, property, value)](#node-neoupdatenodepropertynodeid-property-value)
+       - [when valid](#node-neoupdatenodepropertynodeid-property-value-when-valid)
+     - [neo.updateNodeProperty(nodeId, {properties})](#node-neoupdatenodepropertynodeid-properties)
+       - [when valid](#node-neoupdatenodepropertynodeid-properties-when-valid)
+     - [neo.readNodeProperty(nodeId)](#node-neoreadnodepropertynodeid)
+       - [when valid](#node-neoreadnodepropertynodeid-when-valid)
+     - [neo.deleteNodeProperty(nodeId, property)](#node-neodeletenodepropertynodeid-property)
+       - [when valid](#node-neodeletenodepropertynodeid-property-when-valid)
+     - [neo.deleteNodeProperty(nodeId)](#node-neodeletenodepropertynodeid)
+       - [when valid](#node-neodeletenodepropertynodeid-when-valid)
+     - [neo.deleteNode(nodeId)](#node-neodeletenodenodeid)
+       - [when valid](#node-neodeletenodenodeid-when-valid)
    - [Relationship](#relationship)
-     - [createRelationship](#relationship-createrelationship)
-     - [readRelationship](#relationship-readrelationship)
-     - [updateRelationshipProperty](#relationship-updaterelationshipproperty)
-     - [readRelationshipProperty](#relationship-readrelationshipproperty)
-     - [readRelationshipType](#relationship-readrelationshiptype)
-     - [readTypedRelationship](#relationship-readtypedrelationship)
-     - [deleteRelationshipProperty](#relationship-deleterelationshipproperty)
-       - [delete with property](#relationship-deleterelationshipproperty-delete-with-property)
-       - [delete without property](#relationship-deleterelationshipproperty-delete-without-property)
-     - [deleteRelationship](#relationship-deleterelationship)
+     - [neo.createRelationship(fromNodeId, toNodeId, relationship, relationshipProperty)](#relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty)
+       - [when valid](#relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty-when-valid)
+     - [neo.readRelationship(relationshipId)](#relationship-neoreadrelationshiprelationshipid)
+       - [when valid](#relationship-neoreadrelationshiprelationshipid-when-valid)
+     - [neo.updateRelationshipProperty(relationshipId, property, value)](#relationship-neoupdaterelationshippropertyrelationshipid-property-value)
+       - [when valid](#relationship-neoupdaterelationshippropertyrelationshipid-property-value-when-valid)
+     - [neo.updateRelationshipProperty(relationshipId, {properties})](#relationship-neoupdaterelationshippropertyrelationshipid-properties)
+       - [when valid](#relationship-neoupdaterelationshippropertyrelationshipid-properties-when-valid)
+     - [neo.readRelationshipProperty(relationshipId)](#relationship-neoreadrelationshippropertyrelationshipid)
+       - [when valid](#relationship-neoreadrelationshippropertyrelationshipid-when-valid)
+     - [neo.readRelationshipType()](#relationship-neoreadrelationshiptype)
+       - [when valid](#relationship-neoreadrelationshiptype-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'all')](#relationship-neoreadtypedrelationshipnodeid-all)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-all-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'in')](#relationship-neoreadtypedrelationshipnodeid-in)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-in-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'out')](#relationship-neoreadtypedrelationshipnodeid-out)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-out-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'all', label)](#relationship-neoreadtypedrelationshipnodeid-all-label)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-all-label-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'in', label)](#relationship-neoreadtypedrelationshipnodeid-in-label)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-in-label-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'out', label)](#relationship-neoreadtypedrelationshipnodeid-out-label)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-out-label-when-valid)
+     - [neo.readTypedRelationship(nodeId, 'all', [labels])](#relationship-neoreadtypedrelationshipnodeid-all-labels)
+       - [when valid](#relationship-neoreadtypedrelationshipnodeid-all-labels-when-valid)
+     - [neo.deleteRelationshipProperty(relationshipId, property)](#relationship-neodeleterelationshippropertyrelationshipid-property)
+       - [when valid](#relationship-neodeleterelationshippropertyrelationshipid-property-when-valid)
+     - [neo.deleteRelationshipProperty(relationshipId)](#relationship-neodeleterelationshippropertyrelationshipid)
+       - [when valid](#relationship-neodeleterelationshippropertyrelationshipid-when-valid)
+     - [neo.deleteRelationship(relationshipId)](#relationship-neodeleterelationshiprelationshipid)
+       - [when valid](#relationship-neodeleterelationshiprelationshipid-when-valid)
    - [Traversal](#traversal)
-     - [createPagedTraverse](#traversal-createpagedtraverse)
-     - [traversePath](#traversal-traversepath)
-     - [traverseNode](#traversal-traversenode)
-     - [pagedTraverse](#traversal-pagedtraverse)
+     - [neo.createPagedTraverse(nodeId, {properties})](#traversal-neocreatepagedtraversenodeid-properties)
+       - [when valid](#traversal-neocreatepagedtraversenodeid-properties-when-valid)
+     - [neo.traversePath(nodeId, {properties})](#traversal-neotraversepathnodeid-properties)
+       - [when valid](#traversal-neotraversepathnodeid-properties-when-valid)
+     - [neo.traverseNode(nodeId, {property})](#traversal-neotraversenodenodeid-property)
+       - [when valid](#traversal-neotraversenodenodeid-property-when-valid)
+     - [neo.traverseRelationship(nodeId, {property})](#traversal-neotraverserelationshipnodeid-property)
+       - [when valid](#traversal-neotraverserelationshipnodeid-property-when-valid)
+     - [neo.pagedTraverse(nodeId, {parameters})](#traversal-neopagedtraversenodeid-parameters)
+       - [when valid](#traversal-neopagedtraversenodeid-parameters-when-valid)
    - [Utils](#utils)
-     - [objToStr](#utils-objtostr)
+     - [neo.objToStr({object})](#utils-neoobjtostrobject)
+       - [when valid](#utils-neoobjtostrobject-when-valid)
 <a name=""></a>
  
 <a name="algorithm"></a>
@@ -227,7 +307,7 @@ return neo.deleteConstraint('person', randomProperty).should.eventually.be["true
 ## neo.executeCypher(query, parameters)
 <a name="cypher-neoexecutecypherquery-parameters-when-valid"></a>
 ### when valid
-should pass.
+should run cypher query.
 
 ```js
 return neo.executeCypher('START n = node({nodeId}) RETURN n', {
@@ -351,17 +431,21 @@ should construct correct cypher query.
 return queryBuilder.direction('n=n/r=friend/n=m').toString().should.equal('(n)-[friend]->(m)');
 ```
 
-<a name="cypher-neoquerybuilder-querybuilderstart"></a>
-### queryBuilder.start()
-<a name="cypher-neoquerybuilder-querybuilderstart-node"></a>
-#### node
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderstartquery"></a>
+### queryBuilder.start(query)
+<a name="cypher-neoquerybuilder-querybuilderstartquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.start('*').toString().should.equal('START n = node(*)');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderstartnodeid"></a>
+### queryBuilder.start(nodeId)
+<a name="cypher-neoquerybuilder-querybuilderstartnodeid-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 queryBuilder.start(1).toString().should.equal('START n = node({id})');
@@ -369,13 +453,21 @@ queryBuilder.getParams().should.include.keys('id');
 return queryBuilder.getParams().id.should.equal(1);
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderstartquery"></a>
+### queryBuilder.start(query)
+<a name="cypher-neoquerybuilder-querybuilderstartquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.start('n = node(*)').toString().should.equal('START n = node(*)');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderstartquery"></a>
+### queryBuilder.start({query})
+<a name="cypher-neoquerybuilder-querybuilderstartquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 queryBuilder.start({
@@ -385,15 +477,21 @@ queryBuilder.getParams().should.include.keys('name');
 return queryBuilder.getParams().name.should.equal('Kieve');
 ```
 
-<a name="cypher-neoquerybuilder-querybuilderstart-relationship"></a>
-#### relationship
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderstartquery-true"></a>
+### queryBuilder.start(query, true)
+<a name="cypher-neoquerybuilder-querybuilderstartquery-true-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.start('*', true).toString().should.equal('START r = relationship(*)');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderstartnodeid-true"></a>
+### queryBuilder.start(nodeId, true)
+<a name="cypher-neoquerybuilder-querybuilderstartnodeid-true-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 queryBuilder.start(1, true).toString().should.equal('START r = relationship({id})');
@@ -425,103 +523,127 @@ return queryBuilder.create('n', true).toString().should.equal('CREATE UNIQUE n')
 ### queryBuilder.match(query)
 <a name="cypher-neoquerybuilder-querybuildermatchquery-when-valid"></a>
 #### when valid
-should pass.
+should construct correct cypher query.
 
 ```js
 return queryBuilder.match('(movie:Movie)').toString().should.equal('MATCH (movie:Movie)');
 ```
 
-<a name="cypher-neoquerybuilder-where"></a>
-### where
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderwherequery"></a>
+### queryBuilder.where(query)
+<a name="cypher-neoquerybuilder-querybuilderwherequery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.where('n:Swedish').toString().should.equal('WHERE n:Swedish');
 ```
 
-<a name="cypher-neoquerybuilder-with"></a>
-### with
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderwithquery"></a>
+### queryBuilder.with(query)
+<a name="cypher-neoquerybuilder-querybuilderwithquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder["with"]('m').toString().should.equal('WITH m');
 ```
 
-<a name="cypher-neoquerybuilder-set"></a>
-### set
-should pass.
+<a name="cypher-neoquerybuilder-querybuildersetquery"></a>
+### queryBuilder.set(query)
+<a name="cypher-neoquerybuilder-querybuildersetquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.set("n.surname = 'Kieve'").toString().should.equal("SET n.surname = 'Kieve'");
 ```
 
-<a name="cypher-neoquerybuilder-merge"></a>
-### merge
-should pass.
+<a name="cypher-neoquerybuilder-querybuildermergequery"></a>
+### queryBuilder.merge(query)
+<a name="cypher-neoquerybuilder-querybuildermergequery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.merge('kieve:Critic').toString().should.equal('MERGE (kieve:Critic)');
 ```
 
-<a name="cypher-neoquerybuilder-drop"></a>
-### drop
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderdropquery"></a>
+### queryBuilder.drop(query)
+<a name="cypher-neoquerybuilder-querybuilderdropquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.drop('(movie:Movie)').toString().should.equal('DROP (movie:Movie)');
 ```
 
-<a name="cypher-neoquerybuilder-remove"></a>
-### remove
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderremovequery"></a>
+### queryBuilder.remove(query)
+<a name="cypher-neoquerybuilder-querybuilderremovequery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.remove('kieve.age').toString().should.equal('REMOVE kieve.age');
 ```
 
-<a name="cypher-neoquerybuilder-delete"></a>
-### delete
-<a name="cypher-neoquerybuilder-delete-string"></a>
-#### string
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderdelquery"></a>
+### queryBuilder.del(query)
+<a name="cypher-neoquerybuilder-querybuilderdelquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.del('n').toString().should.equal('DELETE n');
 ```
 
-<a name="cypher-neoquerybuilder-delete-array"></a>
-#### array
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderdelquery"></a>
+### queryBuilder.del([query])
+<a name="cypher-neoquerybuilder-querybuilderdelquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.del(['n', 'm']).toString().should.equal('DELETE n, m');
 ```
 
-<a name="cypher-neoquerybuilder-foreach"></a>
-### foreach
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderforeachquery"></a>
+### queryBuilder.foreach([query])
+<a name="cypher-neoquerybuilder-querybuilderforeachquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.foreach('(n IN nodes(p)| SET n.marked = TRUE )').toString().should.equal('FOREACH (n IN nodes(p)| SET n.marked = TRUE )');
 ```
 
-<a name="cypher-neoquerybuilder-return"></a>
-### return
-<a name="cypher-neoquerybuilder-return-node"></a>
-#### node
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderreturnquery"></a>
+### queryBuilder.return(query)
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder["return"]('n').toString().should.equal('RETURN n');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderreturnquery"></a>
+### queryBuilder.return([query])
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder["return"](['name', 'age']).toString().should.equal('RETURN n.name, n.age');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderreturnquery"></a>
+### queryBuilder.return({query})
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder["return"]({
@@ -530,15 +652,21 @@ return queryBuilder["return"]({
 }).toString().should.equal('RETURN n.name AS Name, n.age AS Age');
 ```
 
-<a name="cypher-neoquerybuilder-return-relationship"></a>
-#### relationship
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-true"></a>
+### queryBuilder.return([query], true)
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder["return"](['name', 'age'], true).toString().should.equal('RETURN r.name, r.age');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-true"></a>
+### queryBuilder.return({query}, true)
+<a name="cypher-neoquerybuilder-querybuilderreturnquery-true-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder["return"]({
@@ -547,49 +675,61 @@ return queryBuilder["return"]({
 }, true).toString().should.equal('RETURN r.name AS Name, r.age AS Age');
 ```
 
-<a name="cypher-neoquerybuilder-union"></a>
-### union
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderunionquery"></a>
+### queryBuilder.union([query])
+<a name="cypher-neoquerybuilder-querybuilderunionquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.union('all').toString().should.equal('UNION ALL');
 ```
 
-<a name="cypher-neoquerybuilder-using"></a>
-### using
-<a name="cypher-neoquerybuilder-using-without-param"></a>
-#### without param
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderusingquery"></a>
+### queryBuilder.using(query)
+<a name="cypher-neoquerybuilder-querybuilderusingquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.using('n:Swedish(surname)').toString().should.equal('USING n:Swedish(surname)');
 ```
 
-<a name="cypher-neoquerybuilder-using-with-param"></a>
-#### with param
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderusingquery-parameter"></a>
+### queryBuilder.using(query, parameter)
+<a name="cypher-neoquerybuilder-querybuilderusingquery-parameter-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.using('n:Swedish(surname)', 'INDEX').toString().should.equal('USING INDEX n:Swedish(surname)');
 ```
 
-<a name="cypher-neoquerybuilder-orderby"></a>
-### orderBy
-<a name="cypher-neoquerybuilder-orderby-node"></a>
-#### node
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery"></a>
+### queryBuilder.orderBy(query)
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.orderBy('n.name').toString().should.equal('ORDER BY n.name');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery"></a>
+### queryBuilder.orderBy([query])
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.orderBy(['name', 'age']).toString().should.equal('ORDER BY n.name, n.age');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery"></a>
+### queryBuilder.orderBy({query})
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.orderBy({
@@ -599,15 +739,21 @@ return queryBuilder.orderBy({
 }).toString().should.equal('ORDER BY n.name ASC, n.age ASC, n.gender ASC');
 ```
 
-<a name="cypher-neoquerybuilder-orderby-relationship"></a>
-#### relationship
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-true"></a>
+### queryBuilder.orderBy([query], true)
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.orderBy(['name', 'age'], true).toString().should.equal('ORDER BY r.name, r.age');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-true"></a>
+### queryBuilder.orderBy({query}, true)
+<a name="cypher-neoquerybuilder-querybuilderorderbyquery-true-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.orderBy({
@@ -617,43 +763,54 @@ return queryBuilder.orderBy({
 }, true).toString().should.equal('ORDER BY r.name ASC, r.age ASC, r.gender ASC');
 ```
 
-<a name="cypher-neoquerybuilder-skip"></a>
-### skip
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderskipskip"></a>
+### queryBuilder.skip(skip)
+<a name="cypher-neoquerybuilder-querybuilderskipskip-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.skip(1).toString().should.equal('SKIP 1');
 ```
 
-<a name="cypher-neoquerybuilder-limit"></a>
-### limit
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderlimitlimit"></a>
+### queryBuilder.limit(limit)
+<a name="cypher-neoquerybuilder-querybuilderlimitlimit-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.limit(1).toString().should.equal('LIMIT 1');
 ```
 
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderlimitlimit-step"></a>
+### queryBuilder.limit(limit, step)
+<a name="cypher-neoquerybuilder-querybuilderlimitlimit-step-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.limit(1, 2).toString().should.equal('LIMIT 1 SKIP 2');
 ```
 
-<a name="cypher-neoquerybuilder-getfunctionlist"></a>
-### getFunctionList
-should pass.
+<a name="cypher-neoquerybuilder-querybuildergetlisttype"></a>
+### queryBuilder.getList(type)
+<a name="cypher-neoquerybuilder-querybuildergetlisttype-when-valid"></a>
+#### when valid
+should construct correct cypher query.
 
 ```js
 return queryBuilder.getList('function').should.deep.equal(['ALL', 'ANY', 'NONE', 'SINGLE', 'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE', 'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE', 'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'COT', 'DEGREES', 'E', 'EXP', 'FLOOR', 'HAVERSIN', 'LOG', 'LOG10', 'PI', 'RADIANS', 'RAND', 'ROUND', 'SIGN', 'SIN', 'SQRT', 'TAN', 'STR', 'REPLACE', 'SUBSTRING', 'LEFT', 'RIGHT', 'LTRIM', 'RTRIM', 'TRIM', 'LOWER', 'UPPER']);
 ```
 
-<a name="cypher-neoquerybuilder-execute"></a>
-### execute
-should pass.
+<a name="cypher-neoquerybuilder-querybuilderexecute"></a>
+### queryBuilder.execute()
+<a name="cypher-neoquerybuilder-querybuilderexecute-when-valid"></a>
+#### when valid
+should run cypher query.
 
 ```js
 var result;
-true.should.be["true"];
 result = queryBuilder.start('*')["return"]('*').execute();
 return result.should.eventually.include.keys('data');
 ```
@@ -765,25 +922,31 @@ return neo.deleteLabel(testNode[1]._id, 'testfriend').should.eventually.be["true
 # Main
 <a name="main-create-new-connection"></a>
 ## create new connection
-<a name="main-create-new-connection-default-config"></a>
-### Default config
+<a name="main-create-new-connection-new-neo4js"></a>
+### new Neo4js()
+<a name="main-create-new-connection-new-neo4js-when-valid"></a>
+#### when valid
 should return default Neo4j connection.
 
 ```js
 return neo.url.should.equal('http://localhost:7474');
 ```
 
-<a name="main-create-new-connection-custom-config"></a>
-### custom config
+<a name="main-create-new-connection-new-neo4jsurl"></a>
+### new Neo4js(url)
+<a name="main-create-new-connection-new-neo4jsurl-when-valid"></a>
+#### when valid
 should return default Neo4j connection.
 
 ```js
 return neo.url.should.equal('http://localhost:8484');
 ```
 
-<a name="main-create-new-connection"></a>
-## create new connection
-should return default Neo4j setting.
+<a name="main-neoservice"></a>
+## neo.service()
+<a name="main-neoservice-when-valid"></a>
+### when valid
+should return Neo4j setting.
 
 ```js
 return neo.service().should.eventually.have.contain.keys('node', 'node_index', 'relationship_index', 'extensions_info');
@@ -791,9 +954,11 @@ return neo.service().should.eventually.have.contain.keys('node', 'node_index', '
 
 <a name="node"></a>
 # Node
-<a name="node-createnode"></a>
-## createNode
-should pass.
+<a name="node-neocreatenodeproperties"></a>
+## neo.createNode({properties})
+<a name="node-neocreatenodeproperties-when-valid"></a>
+### when valid
+should create a new node.
 
 ```js
 return neo.createNode({
@@ -804,9 +969,11 @@ return neo.createNode({
 });
 ```
 
-<a name="node-readnode"></a>
-## readNode
-should pass.
+<a name="node-neoreadnodenodeid"></a>
+## neo.readNode(nodeId)
+<a name="node-neoreadnodenodeid-when-valid"></a>
+### when valid
+should return node details.
 
 ```js
 return neo.readNode(testNode._id).then(function(result) {
@@ -814,25 +981,34 @@ return neo.readNode(testNode._id).then(function(result) {
 });
 ```
 
-<a name="node-updatenodeproperty"></a>
-## updateNodeProperty
-should pass.
+<a name="node-neoupdatenodepropertynodeid-property-value"></a>
+## neo.updateNodeProperty(nodeId, property, value)
+<a name="node-neoupdatenodepropertynodeid-property-value-when-valid"></a>
+### when valid
+should update node property.
 
 ```js
-return Q.all([
-  neo.updateNodeProperty(testNode._id, 'gender', 'male'), neo.updateNodeProperty(testNode._id, {
-    'name': 'Kieve Chua',
-    'age': 17
-  })
-]).then(function(result) {
-  result[0].should.be["true"];
-  return result[1].should.be["true"];
-});
+return neo.updateNodeProperty(testNode._id, 'gender', 'male').should.eventually.be["true"];
 ```
 
-<a name="node-readnodeproperty"></a>
-## readNodeProperty
-should pass.
+<a name="node-neoupdatenodepropertynodeid-properties"></a>
+## neo.updateNodeProperty(nodeId, {properties})
+<a name="node-neoupdatenodepropertynodeid-properties-when-valid"></a>
+### when valid
+should update node properties.
+
+```js
+return neo.updateNodeProperty(testNode._id, {
+  'name': 'Kieve Chua',
+  'age': 17
+}).should.eventually.be["true"];
+```
+
+<a name="node-neoreadnodepropertynodeid"></a>
+## neo.readNodeProperty(nodeId)
+<a name="node-neoreadnodepropertynodeid-when-valid"></a>
+### when valid
+should return properties of a node.
 
 ```js
 return neo.readNodeProperty(testNode._id).then(function(result) {
@@ -841,20 +1017,31 @@ return neo.readNodeProperty(testNode._id).then(function(result) {
 });
 ```
 
-<a name="node-deletenodeproperty"></a>
-## deleteNodeProperty
-should pass.
+<a name="node-neodeletenodepropertynodeid-property"></a>
+## neo.deleteNodeProperty(nodeId, property)
+<a name="node-neodeletenodepropertynodeid-property-when-valid"></a>
+### when valid
+should delete node property.
 
 ```js
-return Q.all([neo.deleteNodeProperty(testNode._id, 'name'), neo.deleteNodeProperty(testNode._id)]).then(function(result) {
-  result[0].should.be["true"];
-  return result[1].should.be["true"];
-});
+return neo.deleteNodeProperty(testNode._id, 'name').should.eventually.be["true"];
 ```
 
-<a name="node-deletenode"></a>
-## deleteNode
-should pass.
+<a name="node-neodeletenodepropertynodeid"></a>
+## neo.deleteNodeProperty(nodeId)
+<a name="node-neodeletenodepropertynodeid-when-valid"></a>
+### when valid
+should delete all property of a node.
+
+```js
+return neo.deleteNodeProperty(testNode._id).should.eventually.be["true"];
+```
+
+<a name="node-neodeletenodenodeid"></a>
+## neo.deleteNode(nodeId)
+<a name="node-neodeletenodenodeid-when-valid"></a>
+### when valid
+should delete a node.
 
 ```js
 return neo.deleteNode(testNode._id).should.eventually.be["true"];
@@ -862,9 +1049,11 @@ return neo.deleteNode(testNode._id).should.eventually.be["true"];
 
 <a name="relationship"></a>
 # Relationship
-<a name="relationship-createrelationship"></a>
-## createRelationship
-should pass.
+<a name="relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty"></a>
+## neo.createRelationship(fromNodeId, toNodeId, relationship, relationshipProperty)
+<a name="relationship-neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty-when-valid"></a>
+### when valid
+should create relationship between nodes.
 
 ```js
 return neo.createRelationship(testNode[0]._id, testNode[1]._id, 'friend', {
@@ -875,9 +1064,11 @@ return neo.createRelationship(testNode[0]._id, testNode[1]._id, 'friend', {
 });
 ```
 
-<a name="relationship-readrelationship"></a>
-## readRelationship
-should pass.
+<a name="relationship-neoreadrelationshiprelationshipid"></a>
+## neo.readRelationship(relationshipId)
+<a name="relationship-neoreadrelationshiprelationshipid-when-valid"></a>
+### when valid
+should return details of a relationship.
 
 ```js
 return neo.readRelationship(testRelationship._id).then(function(result) {
@@ -885,30 +1076,34 @@ return neo.readRelationship(testRelationship._id).then(function(result) {
 });
 ```
 
-<a name="relationship-updaterelationshipproperty"></a>
-## updateRelationshipProperty
-should pass.
+<a name="relationship-neoupdaterelationshippropertyrelationshipid-property-value"></a>
+## neo.updateRelationshipProperty(relationshipId, property, value)
+<a name="relationship-neoupdaterelationshippropertyrelationshipid-property-value-when-valid"></a>
+### when valid
+should update relationship's property value.
 
 ```js
-return neo.updateRelationshipProperty(testRelationship._id, 'since', '11 years ago').then(function(result) {
-  return result.should.be["true"];
-});
+return neo.updateRelationshipProperty(testRelationship._id, 'since', '11 years ago').should.eventually.be["true"];
 ```
 
-should pass.
+<a name="relationship-neoupdaterelationshippropertyrelationshipid-properties"></a>
+## neo.updateRelationshipProperty(relationshipId, {properties})
+<a name="relationship-neoupdaterelationshippropertyrelationshipid-properties-when-valid"></a>
+### when valid
+should update relationship's properties value.
 
 ```js
 return neo.updateRelationshipProperty(testRelationship._id, {
   'since': '12 years ago',
   'sinceAge': 17
-}).then(function(result) {
-  return result.should.be["true"];
-});
+}).should.eventually.be["true"];
 ```
 
-<a name="relationship-readrelationshipproperty"></a>
-## readRelationshipProperty
-should pass.
+<a name="relationship-neoreadrelationshippropertyrelationshipid"></a>
+## neo.readRelationshipProperty(relationshipId)
+<a name="relationship-neoreadrelationshippropertyrelationshipid-when-valid"></a>
+### when valid
+should return properties of a relationship.
 
 ```js
 return neo.readRelationshipProperty(testRelationship._id).then(function(result) {
@@ -917,53 +1112,111 @@ return neo.readRelationshipProperty(testRelationship._id).then(function(result) 
 });
 ```
 
-<a name="relationship-readrelationshiptype"></a>
-## readRelationshipType
-should pass.
+<a name="relationship-neoreadrelationshiptype"></a>
+## neo.readRelationshipType()
+<a name="relationship-neoreadrelationshiptype-when-valid"></a>
+### when valid
+should return all relationships type.
 
 ```js
-return neo.readRelationshipType().then(function(result) {
-  return result.should.include('friend');
-});
+return neo.readRelationshipType().should.eventually.include('friend');
 ```
 
-<a name="relationship-readtypedrelationship"></a>
-## readTypedRelationship
-should pass.
+<a name="relationship-neoreadtypedrelationshipnodeid-all"></a>
+## neo.readTypedRelationship(nodeId, 'all')
+<a name="relationship-neoreadtypedrelationshipnodeid-all-when-valid"></a>
+### when valid
+should return all relationship for a node.
 
 ```js
-return Q.all([neo.readTypedRelationship(testNode[1]._id, 'all'), neo.readTypedRelationship(testNode[1]._id, 'in'), neo.readTypedRelationship(testNode[1]._id, 'out'), neo.readTypedRelationship(testNode[1]._id, 'all', 'friend'), neo.readTypedRelationship(testNode[1]._id, 'in', 'friend'), neo.readTypedRelationship(testNode[1]._id, 'out', 'friend'), neo.readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover'])]).then(function(result) {
-  result[0].should.have.length(1);
-  result[1].should.have.length(1);
-  result[2].should.be.empty;
-  result[3].should.have.length(1);
-  result[4].should.have.length(1);
-  result[5].should.be.empty;
-  return result[6].should.have.length(1);
-});
+return neo.readTypedRelationship(testNode[1]._id, 'all').should.eventually.have.length(1);
 ```
 
-<a name="relationship-deleterelationshipproperty"></a>
-## deleteRelationshipProperty
-<a name="relationship-deleterelationshipproperty-delete-with-property"></a>
-### delete with property
-should pass.
+<a name="relationship-neoreadtypedrelationshipnodeid-in"></a>
+## neo.readTypedRelationship(nodeId, 'in')
+<a name="relationship-neoreadtypedrelationshipnodeid-in-when-valid"></a>
+### when valid
+should return all inbound relationship for a node.
+
+```js
+return neo.readTypedRelationship(testNode[1]._id, 'in').should.eventually.have.length(1);
+```
+
+<a name="relationship-neoreadtypedrelationshipnodeid-out"></a>
+## neo.readTypedRelationship(nodeId, 'out')
+<a name="relationship-neoreadtypedrelationshipnodeid-out-when-valid"></a>
+### when valid
+should return all outbound relationship for a node.
+
+```js
+return neo.readTypedRelationship(testNode[1]._id, 'out').should.eventually.be.empty;
+```
+
+<a name="relationship-neoreadtypedrelationshipnodeid-all-label"></a>
+## neo.readTypedRelationship(nodeId, 'all', label)
+<a name="relationship-neoreadtypedrelationshipnodeid-all-label-when-valid"></a>
+### when valid
+should return all outbound relationship for a node.
+
+```js
+return neo.readTypedRelationship(testNode[1]._id, 'all', 'friend').should.eventually.have.length(1);
+```
+
+<a name="relationship-neoreadtypedrelationshipnodeid-in-label"></a>
+## neo.readTypedRelationship(nodeId, 'in', label)
+<a name="relationship-neoreadtypedrelationshipnodeid-in-label-when-valid"></a>
+### when valid
+should return all outbound relationship for a node.
+
+```js
+return neo.readTypedRelationship(testNode[1]._id, 'in', 'friend').should.eventually.have.length(1);
+```
+
+<a name="relationship-neoreadtypedrelationshipnodeid-out-label"></a>
+## neo.readTypedRelationship(nodeId, 'out', label)
+<a name="relationship-neoreadtypedrelationshipnodeid-out-label-when-valid"></a>
+### when valid
+should return all outbound relationship for a node.
+
+```js
+return neo.readTypedRelationship(testNode[1]._id, 'out', 'friend').should.eventually.be.empty;
+```
+
+<a name="relationship-neoreadtypedrelationshipnodeid-all-labels"></a>
+## neo.readTypedRelationship(nodeId, 'all', [labels])
+<a name="relationship-neoreadtypedrelationshipnodeid-all-labels-when-valid"></a>
+### when valid
+should return all outbound relationship for a node.
+
+```js
+return neo.readTypedRelationship(testNode[1]._id, 'all', ['friend', 'lover']).should.eventually.have.length(1);
+```
+
+<a name="relationship-neodeleterelationshippropertyrelationshipid-property"></a>
+## neo.deleteRelationshipProperty(relationshipId, property)
+<a name="relationship-neodeleterelationshippropertyrelationshipid-property-when-valid"></a>
+### when valid
+should delete relationships's property.
 
 ```js
 return neo.deleteRelationshipProperty(testRelationship._id, 'since').should.eventually.be["true"];
 ```
 
-<a name="relationship-deleterelationshipproperty-delete-without-property"></a>
-### delete without property
-should pass.
+<a name="relationship-neodeleterelationshippropertyrelationshipid"></a>
+## neo.deleteRelationshipProperty(relationshipId)
+<a name="relationship-neodeleterelationshippropertyrelationshipid-when-valid"></a>
+### when valid
+should delete all relationships's properties.
 
 ```js
 return neo.deleteRelationshipProperty(testRelationship._id).should.eventually.be["true"];
 ```
 
-<a name="relationship-deleterelationship"></a>
-## deleteRelationship
-should pass.
+<a name="relationship-neodeleterelationshiprelationshipid"></a>
+## neo.deleteRelationship(relationshipId)
+<a name="relationship-neodeleterelationshiprelationshipid-when-valid"></a>
+### when valid
+should delete relationship.
 
 ```js
 return neo.deleteRelationship(testRelationship._id).should.eventually.be["true"];
@@ -971,9 +1224,11 @@ return neo.deleteRelationship(testRelationship._id).should.eventually.be["true"]
 
 <a name="traversal"></a>
 # Traversal
-<a name="traversal-createpagedtraverse"></a>
-## createPagedTraverse
-should pass.
+<a name="traversal-neocreatepagedtraversenodeid-properties"></a>
+## neo.createPagedTraverse(nodeId, {properties})
+<a name="traversal-neocreatepagedtraversenodeid-properties-when-valid"></a>
+### when valid
+should create a paged traverse.
 
 ```js
 return neo.createPagedTraverse(testNode[0]._id, {
@@ -990,14 +1245,14 @@ return neo.createPagedTraverse(testNode[0]._id, {
     "type": "testfriend",
     "direction": "out"
   }
-}).then(function(result) {
-  return result.should.have.length.of.at.least(1);
-});
+}).should.eventually.have.length.of.at.least(1);
 ```
 
-<a name="traversal-traversepath"></a>
-## traversePath
-should pass.
+<a name="traversal-neotraversepathnodeid-properties"></a>
+## neo.traversePath(nodeId, {properties})
+<a name="traversal-neotraversepathnodeid-properties-when-valid"></a>
+### when valid
+should return traversed path.
 
 ```js
 return neo.traversePath(testNode[0]._id, {
@@ -1007,14 +1262,14 @@ return neo.traversePath(testNode[0]._id, {
     "language": "builtin",
     "name": "all"
   }
-}).then(function(result) {
-  return result.should.have.length.of.at.least(1);
-});
+}).should.eventually.have.length.of.at.least(1);
 ```
 
-<a name="traversal-traversenode"></a>
-## traverseNode
-should pass.
+<a name="traversal-neotraversenodenodeid-property"></a>
+## neo.traverseNode(nodeId, {property})
+<a name="traversal-neotraversenodenodeid-property-when-valid"></a>
+### when valid
+should return traversed node.
 
 ```js
 return neo.traverseNode(testNode[0]._id, {
@@ -1024,28 +1279,45 @@ return neo.traverseNode(testNode[0]._id, {
     "language": "builtin",
     "name": "all"
   }
-}).then(function(result) {
-  return result.should.have.length.of.at.least(1);
-});
+}).should.eventually.have.length.of.at.least(1);
 ```
 
-<a name="traversal-pagedtraverse"></a>
-## pagedTraverse
-should pass.
+<a name="traversal-neotraverserelationshipnodeid-property"></a>
+## neo.traverseRelationship(nodeId, {property})
+<a name="traversal-neotraverserelationshipnodeid-property-when-valid"></a>
+### when valid
+should return traversed node.
+
+```js
+return neo.traverseRelationship(testNode[0]._id, {
+  "order": "breadth_first",
+  "uniqueness": "none",
+  "return_filter": {
+    "language": "builtin",
+    "name": "all"
+  }
+}).should.eventually.have.length.of.at.least(1);
+```
+
+<a name="traversal-neopagedtraversenodeid-parameters"></a>
+## neo.pagedTraverse(nodeId, {parameters})
+<a name="traversal-neopagedtraversenodeid-parameters-when-valid"></a>
+### when valid
+should return paged traverse path.
 
 ```js
 return neo.pagedTraverse(testNode[0]._id, {
   pageSize: 1
-}).then(function(result) {
-  return result.should.have.length.of.at.least(1);
-});
+}).should.eventually.have.length.of.at.least(1);
 ```
 
 <a name="utils"></a>
 # Utils
-<a name="utils-objtostr"></a>
-## objToStr
-should return stringify object.
+<a name="utils-neoobjtostrobject"></a>
+## neo.objToStr({object})
+<a name="utils-neoobjtostrobject-when-valid"></a>
+### when valid
+should return stringified object.
 
 ```js
 return utils.objToStr({

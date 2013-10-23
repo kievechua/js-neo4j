@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/README.md",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
@@ -129,7 +129,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/algorithm.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/algorithm.coffee",
         "projectPath": "src/algorithm.coffee",
         "targetPath": "algorithm",
         "pageTitle": "algorithm",
@@ -160,7 +160,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/batch.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/batch.coffee",
         "projectPath": "src/batch.coffee",
         "targetPath": "batch",
         "pageTitle": "batch",
@@ -199,7 +199,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/constraint.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/constraint.coffee",
         "projectPath": "src/constraint.coffee",
         "targetPath": "constraint",
         "pageTitle": "constraint",
@@ -270,7 +270,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/cypher.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/cypher.coffee",
         "projectPath": "src/cypher.coffee",
         "targetPath": "cypher",
         "pageTitle": "cypher",
@@ -309,7 +309,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/indexing.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/indexing.coffee",
         "projectPath": "src/indexing.coffee",
         "targetPath": "indexing",
         "pageTitle": "indexing",
@@ -356,7 +356,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/label.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/label.coffee",
         "projectPath": "src/label.coffee",
         "targetPath": "label",
         "pageTitle": "label",
@@ -427,7 +427,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/main.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/main.coffee",
         "projectPath": "src/main.coffee",
         "targetPath": "main",
         "pageTitle": "main",
@@ -458,7 +458,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/node.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/node.coffee",
         "projectPath": "src/node.coffee",
         "targetPath": "node",
         "pageTitle": "node",
@@ -569,7 +569,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/relationship.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/relationship.coffee",
         "projectPath": "src/relationship.coffee",
         "targetPath": "relationship",
         "pageTitle": "relationship",
@@ -723,7 +723,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/test/test.md",
+            "sourcePath": "/Users/kieve/Shoppa/neo4js/test/test.md",
             "projectPath": "test/test.md",
             "targetPath": "test/test",
             "pageTitle": "test/test",
@@ -754,10 +754,21 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "neo.findPath()",
-                    "slug": "neofindpath"
+                    "title": "neo.findPath(nodeId, {parameters})",
+                    "slug": "neofindpathnodeid-parameters"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -773,10 +784,21 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "executeBatch",
-                    "slug": "executebatch"
+                    "title": "neo.executeBatch([tasks])",
+                    "slug": "neoexecutebatchtasks"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -792,34 +814,78 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "createUniquenessConstraint",
-                    "slug": "createuniquenessconstraint"
+                    "title": "neo.createUniquenessConstraint(label, [property])",
+                    "slug": "neocreateuniquenessconstraintlabel-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "readConstraint",
-                    "slug": "readconstraint"
+                    "title": "neo.readConstraint()",
+                    "slug": "neoreadconstraint"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "readUniquenessConstraint",
-                    "slug": "readuniquenessconstraint"
+                    "title": "neo.readUniquenessConstraint(label, property)",
+                    "slug": "neoreaduniquenessconstraintlabel-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "deleteConstraint",
-                    "slug": "deleteconstraint"
+                    "title": "neo.deleteConstraint(label, property)",
+                    "slug": "neodeleteconstraintlabel-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -835,16 +901,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "executeCypher",
-                    "slug": "executecypher"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "queryBuilder",
-                    "slug": "querybuilder"
+                    "title": "neo.executeCypher(query, parameters)",
+                    "slug": "neoexecutecypherquery-parameters"
                   },
                   "depth": 2,
                   "children": [
@@ -852,16 +910,46 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "cypher",
-                        "slug": "cypher"
+                        "title": "when valid",
+                        "slug": "when-valid"
                       },
                       "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.queryBuilder()",
+                    "slug": "neoquerybuilder"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.cypher(query)",
+                        "slug": "querybuildercypherquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }, {
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "direction",
-                        "slug": "direction"
+                        "title": "queryBuilder.direction(query)",
+                        "slug": "querybuilderdirectionquery"
                       },
                       "depth": 3,
                       "children": [
@@ -872,7 +960,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "n",
                             "slug": "n"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -880,7 +979,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "tn",
                             "slug": "tn"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -888,7 +998,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "fn",
                             "slug": "fn"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -896,7 +1017,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "r",
                             "slug": "r"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -904,7 +1036,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "tr",
                             "slug": "tr"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -912,7 +1055,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "fr",
                             "slug": "fr"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -920,7 +1074,18 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "or",
                             "slug": "or"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -928,7 +1093,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "ir",
                             "slug": "ir"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }, {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }, {
                           "type": "heading",
                           "data": {
@@ -936,15 +1120,26 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                             "title": "chaining",
                             "slug": "chaining"
                           },
-                          "depth": 4
+                          "depth": 4,
+                          "children": [
+                            {
+                              "type": "heading",
+                              "data": {
+                                "level": 5,
+                                "title": "when valid",
+                                "slug": "when-valid"
+                              },
+                              "depth": 5
+                            }
+                          ]
                         }
                       ]
                     }, {
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "start",
-                        "slug": "start"
+                        "title": "queryBuilder.start(query)",
+                        "slug": "querybuilderstartquery"
                       },
                       "depth": 3,
                       "children": [
@@ -952,16 +1147,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 4,
-                            "title": "node",
-                            "slug": "node"
-                          },
-                          "depth": 4
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 4,
-                            "title": "relationship",
-                            "slug": "relationship"
+                            "title": "when valid",
+                            "slug": "when-valid"
                           },
                           "depth": 4
                         }
@@ -970,8 +1157,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "create",
-                        "slug": "create"
+                        "title": "queryBuilder.start(nodeId)",
+                        "slug": "querybuilderstartnodeid"
                       },
                       "depth": 3,
                       "children": [
@@ -979,16 +1166,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 4,
-                            "title": "normal",
-                            "slug": "normal"
-                          },
-                          "depth": 4
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 4,
-                            "title": "unique",
-                            "slug": "unique"
+                            "title": "when valid",
+                            "slug": "when-valid"
                           },
                           "depth": 4
                         }
@@ -997,64 +1176,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "match",
-                        "slug": "match"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "where",
-                        "slug": "where"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "with",
-                        "slug": "with"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "set",
-                        "slug": "set"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "merge",
-                        "slug": "merge"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "drop",
-                        "slug": "drop"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "remove",
-                        "slug": "remove"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "delete",
-                        "slug": "delete"
+                        "title": "queryBuilder.start(query)",
+                        "slug": "querybuilderstartquery"
                       },
                       "depth": 3,
                       "children": [
@@ -1062,16 +1185,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 4,
-                            "title": "string",
-                            "slug": "string"
-                          },
-                          "depth": 4
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 4,
-                            "title": "array",
-                            "slug": "array"
+                            "title": "when valid",
+                            "slug": "when-valid"
                           },
                           "depth": 4
                         }
@@ -1080,16 +1195,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "foreach",
-                        "slug": "foreach"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "return",
-                        "slug": "return"
+                        "title": "queryBuilder.start({query})",
+                        "slug": "querybuilderstartquery"
                       },
                       "depth": 3,
                       "children": [
@@ -1097,16 +1204,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 4,
-                            "title": "node",
-                            "slug": "node"
-                          },
-                          "depth": 4
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 4,
-                            "title": "relationship",
-                            "slug": "relationship"
+                            "title": "when valid",
+                            "slug": "when-valid"
                           },
                           "depth": 4
                         }
@@ -1115,16 +1214,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "union",
-                        "slug": "union"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "using",
-                        "slug": "using"
+                        "title": "queryBuilder.start(query, true)",
+                        "slug": "querybuilderstartquery-true"
                       },
                       "depth": 3,
                       "children": [
@@ -1132,16 +1223,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 4,
-                            "title": "without param",
-                            "slug": "without-param"
-                          },
-                          "depth": 4
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 4,
-                            "title": "with param",
-                            "slug": "with-param"
+                            "title": "when valid",
+                            "slug": "when-valid"
                           },
                           "depth": 4
                         }
@@ -1150,8 +1233,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "orderBy",
-                        "slug": "orderby"
+                        "title": "queryBuilder.start(nodeId, true)",
+                        "slug": "querybuilderstartnodeid-true"
                       },
                       "depth": 3,
                       "children": [
@@ -1159,16 +1242,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                           "type": "heading",
                           "data": {
                             "level": 4,
-                            "title": "node",
-                            "slug": "node"
-                          },
-                          "depth": 4
-                        }, {
-                          "type": "heading",
-                          "data": {
-                            "level": 4,
-                            "title": "relationship",
-                            "slug": "relationship"
+                            "title": "when valid",
+                            "slug": "when-valid"
                           },
                           "depth": 4
                         }
@@ -1177,34 +1252,572 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "skip",
-                        "slug": "skip"
+                        "title": "queryBuilder.create(query)",
+                        "slug": "querybuildercreatequery"
                       },
-                      "depth": 3
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }, {
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "limit",
-                        "slug": "limit"
+                        "title": "queryBuilder.create(query, true)",
+                        "slug": "querybuildercreatequery-true"
                       },
-                      "depth": 3
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }, {
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "getFunctionList",
-                        "slug": "getfunctionlist"
+                        "title": "queryBuilder.match(query)",
+                        "slug": "querybuildermatchquery"
                       },
-                      "depth": 3
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }, {
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "execute",
-                        "slug": "execute"
+                        "title": "queryBuilder.where(query)",
+                        "slug": "querybuilderwherequery"
                       },
-                      "depth": 3
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.with(query)",
+                        "slug": "querybuilderwithquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.set(query)",
+                        "slug": "querybuildersetquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.merge(query)",
+                        "slug": "querybuildermergequery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.drop(query)",
+                        "slug": "querybuilderdropquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.remove(query)",
+                        "slug": "querybuilderremovequery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.del(query)",
+                        "slug": "querybuilderdelquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.del([query])",
+                        "slug": "querybuilderdelquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.foreach([query])",
+                        "slug": "querybuilderforeachquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return(query)",
+                        "slug": "querybuilderreturnquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return([query])",
+                        "slug": "querybuilderreturnquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return({query})",
+                        "slug": "querybuilderreturnquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return([query], true)",
+                        "slug": "querybuilderreturnquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.return({query}, true)",
+                        "slug": "querybuilderreturnquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.union([query])",
+                        "slug": "querybuilderunionquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.using(query)",
+                        "slug": "querybuilderusingquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.using(query, parameter)",
+                        "slug": "querybuilderusingquery-parameter"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy(query)",
+                        "slug": "querybuilderorderbyquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy([query])",
+                        "slug": "querybuilderorderbyquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy({query})",
+                        "slug": "querybuilderorderbyquery"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy([query], true)",
+                        "slug": "querybuilderorderbyquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.orderBy({query}, true)",
+                        "slug": "querybuilderorderbyquery-true"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.skip(skip)",
+                        "slug": "querybuilderskipskip"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.limit(limit)",
+                        "slug": "querybuilderlimitlimit"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.limit(limit, step)",
+                        "slug": "querybuilderlimitlimit-step"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.getList(type)",
+                        "slug": "querybuildergetlisttype"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "queryBuilder.execute()",
+                        "slug": "querybuilderexecute"
+                      },
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }
                   ]
                 }
@@ -1222,26 +1835,59 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "createIndex",
-                    "slug": "createindex"
+                    "title": "neo.createIndex(label, [property])",
+                    "slug": "neocreateindexlabel-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "readIndex",
-                    "slug": "readindex"
+                    "title": "neo.readIndex(label)",
+                    "slug": "neoreadindexlabel"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "deleteIndex",
-                    "slug": "deleteindex"
+                    "title": "neo.deleteIndex(label, property)",
+                    "slug": "neodeleteindexlabel-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1257,34 +1903,116 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "createLabel",
-                    "slug": "createlabel"
+                    "title": "neo.createLabel(nodeId, [labels])",
+                    "slug": "neocreatelabelnodeid-labels"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "updateLabel",
-                    "slug": "updatelabel"
+                    "title": "neo.createLabel(nodeId, label)",
+                    "slug": "neocreatelabelnodeid-label"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "readLabel",
-                    "slug": "readlabel"
+                    "title": "neo.updateLabel(nodeId, labels)",
+                    "slug": "neoupdatelabelnodeid-labels"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "deleteLabel",
-                    "slug": "deletelabel"
+                    "title": "neo.readLabel(nodeId)",
+                    "slug": "neoreadlabelnodeid"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readLabel()",
+                    "slug": "neoreadlabel"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteLabel(nodeId, label)",
+                    "slug": "neodeletelabelnodeid-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1309,28 +2037,61 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "Default config",
-                        "slug": "default-config"
+                        "title": "new Neo4js()",
+                        "slug": "new-neo4js"
                       },
-                      "depth": 3
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }, {
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "custom config",
-                        "slug": "custom-config"
+                        "title": "new Neo4js(url)",
+                        "slug": "new-neo4jsurl"
                       },
-                      "depth": 3
+                      "depth": 3,
+                      "children": [
+                        {
+                          "type": "heading",
+                          "data": {
+                            "level": 4,
+                            "title": "when valid",
+                            "slug": "when-valid"
+                          },
+                          "depth": 4
+                        }
+                      ]
                     }
                   ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "create new connection",
-                    "slug": "create-new-connection"
+                    "title": "neo.service()",
+                    "slug": "neoservice"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1346,50 +2107,154 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "createNode",
-                    "slug": "createnode"
+                    "title": "neo.createNode({properties})",
+                    "slug": "neocreatenodeproperties"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "readNode",
-                    "slug": "readnode"
+                    "title": "neo.readNode(nodeId)",
+                    "slug": "neoreadnodenodeid"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "updateNodeProperty",
-                    "slug": "updatenodeproperty"
+                    "title": "neo.updateNodeProperty(nodeId, property, value)",
+                    "slug": "neoupdatenodepropertynodeid-property-value"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "readNodeProperty",
-                    "slug": "readnodeproperty"
+                    "title": "neo.updateNodeProperty(nodeId, {properties})",
+                    "slug": "neoupdatenodepropertynodeid-properties"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "deleteNodeProperty",
-                    "slug": "deletenodeproperty"
+                    "title": "neo.readNodeProperty(nodeId)",
+                    "slug": "neoreadnodepropertynodeid"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "deleteNode",
-                    "slug": "deletenode"
+                    "title": "neo.deleteNodeProperty(nodeId, property)",
+                    "slug": "neodeletenodepropertynodeid-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteNodeProperty(nodeId)",
+                    "slug": "neodeletenodepropertynodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteNode(nodeId)",
+                    "slug": "neodeletenodenodeid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1405,56 +2270,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "createRelationship",
-                    "slug": "createrelationship"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "readRelationship",
-                    "slug": "readrelationship"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "updateRelationshipProperty",
-                    "slug": "updaterelationshipproperty"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "readRelationshipProperty",
-                    "slug": "readrelationshipproperty"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "readRelationshipType",
-                    "slug": "readrelationshiptype"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "readTypedRelationship",
-                    "slug": "readtypedrelationship"
-                  },
-                  "depth": 2
-                }, {
-                  "type": "heading",
-                  "data": {
-                    "level": 2,
-                    "title": "deleteRelationshipProperty",
-                    "slug": "deleterelationshipproperty"
+                    "title": "neo.createRelationship(fromNodeId, toNodeId, relationship, relationshipProperty)",
+                    "slug": "neocreaterelationshipfromnodeid-tonodeid-relationship-relationshipproperty"
                   },
                   "depth": 2,
                   "children": [
@@ -1462,16 +2279,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "type": "heading",
                       "data": {
                         "level": 3,
-                        "title": "delete with property",
-                        "slug": "delete-with-property"
-                      },
-                      "depth": 3
-                    }, {
-                      "type": "heading",
-                      "data": {
-                        "level": 3,
-                        "title": "delete without property",
-                        "slug": "delete-without-property"
+                        "title": "when valid",
+                        "slug": "when-valid"
                       },
                       "depth": 3
                     }
@@ -1480,10 +2289,287 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "deleteRelationship",
-                    "slug": "deleterelationship"
+                    "title": "neo.readRelationship(relationshipId)",
+                    "slug": "neoreadrelationshiprelationshipid"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateRelationshipProperty(relationshipId, property, value)",
+                    "slug": "neoupdaterelationshippropertyrelationshipid-property-value"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.updateRelationshipProperty(relationshipId, {properties})",
+                    "slug": "neoupdaterelationshippropertyrelationshipid-properties"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readRelationshipProperty(relationshipId)",
+                    "slug": "neoreadrelationshippropertyrelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readRelationshipType()",
+                    "slug": "neoreadrelationshiptype"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'all')",
+                    "slug": "neoreadtypedrelationshipnodeid-all"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'in')",
+                    "slug": "neoreadtypedrelationshipnodeid-in"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'out')",
+                    "slug": "neoreadtypedrelationshipnodeid-out"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'all', label)",
+                    "slug": "neoreadtypedrelationshipnodeid-all-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'in', label)",
+                    "slug": "neoreadtypedrelationshipnodeid-in-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'out', label)",
+                    "slug": "neoreadtypedrelationshipnodeid-out-label"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.readTypedRelationship(nodeId, 'all', [labels])",
+                    "slug": "neoreadtypedrelationshipnodeid-all-labels"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteRelationshipProperty(relationshipId, property)",
+                    "slug": "neodeleterelationshippropertyrelationshipid-property"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteRelationshipProperty(relationshipId)",
+                    "slug": "neodeleterelationshippropertyrelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.deleteRelationship(relationshipId)",
+                    "slug": "neodeleterelationshiprelationshipid"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1499,34 +2585,97 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "createPagedTraverse",
-                    "slug": "createpagedtraverse"
+                    "title": "neo.createPagedTraverse(nodeId, {properties})",
+                    "slug": "neocreatepagedtraversenodeid-properties"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "traversePath",
-                    "slug": "traversepath"
+                    "title": "neo.traversePath(nodeId, {properties})",
+                    "slug": "neotraversepathnodeid-properties"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "traverseNode",
-                    "slug": "traversenode"
+                    "title": "neo.traverseNode(nodeId, {property})",
+                    "slug": "neotraversenodenodeid-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }, {
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "pagedTraverse",
-                    "slug": "pagedtraverse"
+                    "title": "neo.traverseRelationship(nodeId, {property})",
+                    "slug": "neotraverserelationshipnodeid-property"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }, {
+                  "type": "heading",
+                  "data": {
+                    "level": 2,
+                    "title": "neo.pagedTraverse(nodeId, {parameters})",
+                    "slug": "neopagedtraversenodeid-parameters"
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }, {
@@ -1542,10 +2691,21 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                   "type": "heading",
                   "data": {
                     "level": 2,
-                    "title": "objToStr",
-                    "slug": "objtostr"
+                    "title": "neo.objToStr({object})",
+                    "slug": "neoobjtostrobject"
                   },
-                  "depth": 2
+                  "depth": 2,
+                  "children": [
+                    {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when valid",
+                        "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }
+                  ]
                 }
               ]
             }
@@ -1565,7 +2725,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/traversal.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/traversal.coffee",
         "projectPath": "src/traversal.coffee",
         "targetPath": "traversal",
         "pageTitle": "traversal",
@@ -1628,7 +2788,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve.chua/Documents/libraries/neo4js/src/utils.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/utils.coffee",
         "projectPath": "src/utils.coffee",
         "targetPath": "utils",
         "pageTitle": "utils",

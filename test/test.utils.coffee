@@ -12,6 +12,7 @@ require("mocha-as-promised")()
 describe 'Utils', ->
     utils = new Neo4js().utils
 
-    describe 'objToStr', ->
-        it 'should return stringify object', ->
-            utils.objToStr(name: 'kieve', age: 18).should.equal "{ name : 'kieve', age : '18' }"
+    describe 'neo.objToStr({object})', ->
+        describe 'when valid', ->
+            it 'should return stringified object', ->
+                utils.objToStr(name: 'kieve', age: 18).should.equal "{ name : 'kieve', age : '18' }"

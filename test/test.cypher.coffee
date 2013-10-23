@@ -26,7 +26,7 @@ describe 'Cypher', ->
 
     describe 'neo.executeCypher(query, parameters)', ->
         describe 'when valid', ->
-            it 'should pass', ->
+            it 'should run cypher query', ->
                 neo
                 .executeCypher(
                     'START n = node({nodeId}) RETURN n'
@@ -122,14 +122,16 @@ describe 'Cypher', ->
                         .direction('n=n/r=friend/n=m')
                         .toString().should.equal '(n)-[friend]->(m)'
 
-        describe 'queryBuilder.start()', ->
-            describe 'node', ->
-                it 'should pass', ->
+        describe 'queryBuilder.start(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .start('*')
                     .toString().should.equal 'START n = node(*)'
 
-                it 'should pass', ->
+        describe 'queryBuilder.start(nodeId)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .start(1)
                     .toString().should.equal 'START n = node({id})'
@@ -140,12 +142,16 @@ describe 'Cypher', ->
                     queryBuilder
                     .getParams().id.should.equal 1
 
-                it 'should pass', ->
+        describe 'queryBuilder.start(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .start('n = node(*)')
                     .toString().should.equal 'START n = node(*)'
 
-                it 'should pass', ->
+        describe 'queryBuilder.start({query})', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .start({ name: 'Kieve' })
                     .toString().should.equal 'START name = node({name})'
@@ -156,13 +162,16 @@ describe 'Cypher', ->
                     queryBuilder
                     .getParams().name.should.equal 'Kieve'
 
-            describe 'relationship', ->
-                it 'should pass', ->
+        describe 'queryBuilder.start(query, true)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .start('*', true)
                     .toString().should.equal 'START r = relationship(*)'
 
-                it 'should pass', ->
+        describe 'queryBuilder.start(nodeId, true)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .start(1, true)
                     .toString().should.equal 'START r = relationship({id})'
@@ -189,179 +198,208 @@ describe 'Cypher', ->
 
         describe 'queryBuilder.match(query)', ->
             describe 'when valid', ->
-                it 'should pass', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .match('(movie:Movie)')
                     .toString().should.equal 'MATCH (movie:Movie)'
 
-        describe 'where', ->
-            it 'should pass', ->
-                queryBuilder
-                .where('n:Swedish')
-                .toString().should.equal 'WHERE n:Swedish'
+        describe 'queryBuilder.where(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .where('n:Swedish')
+                    .toString().should.equal 'WHERE n:Swedish'
 
-        describe 'with', ->
-            it 'should pass', ->
-                queryBuilder
-                .with('m')
-                .toString().should.equal 'WITH m'
+        describe 'queryBuilder.with(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .with('m')
+                    .toString().should.equal 'WITH m'
 
-        describe 'set', ->
-            it 'should pass', ->
-                queryBuilder
-                .set("n.surname = 'Kieve'")
-                .toString().should.equal "SET n.surname = 'Kieve'"
+        describe 'queryBuilder.set(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .set("n.surname = 'Kieve'")
+                    .toString().should.equal "SET n.surname = 'Kieve'"
 
-        describe 'merge', ->
-            it 'should pass', ->
-                queryBuilder
-                .merge('kieve:Critic')
-                .toString().should.equal 'MERGE (kieve:Critic)'
+        describe 'queryBuilder.merge(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .merge('kieve:Critic')
+                    .toString().should.equal 'MERGE (kieve:Critic)'
 
-        describe 'drop', ->
-            it 'should pass', ->
-                queryBuilder
-                .drop('(movie:Movie)')
-                .toString().should.equal 'DROP (movie:Movie)'
+        describe 'queryBuilder.drop(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .drop('(movie:Movie)')
+                    .toString().should.equal 'DROP (movie:Movie)'
 
-        describe 'remove', ->
-            it 'should pass', ->
-                queryBuilder
-                .remove('kieve.age')
-                .toString().should.equal 'REMOVE kieve.age'
+        describe 'queryBuilder.remove(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .remove('kieve.age')
+                    .toString().should.equal 'REMOVE kieve.age'
 
-        describe 'delete', ->
-            describe 'string', ->
-                it 'should pass', ->
+        describe 'queryBuilder.del(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .del('n')
                     .toString().should.equal 'DELETE n'
 
-            describe 'array', ->
-                it 'should pass', ->
+        describe 'queryBuilder.del([query])', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .del(['n', 'm'])
                     .toString().should.equal 'DELETE n, m'
 
-        describe 'foreach', ->
-            it 'should pass', ->
-                queryBuilder
-                .foreach('(n IN nodes(p)| SET n.marked = TRUE )')
-                .toString().should.equal 'FOREACH (n IN nodes(p)| SET n.marked = TRUE )'
+        describe 'queryBuilder.foreach([query])', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .foreach('(n IN nodes(p)| SET n.marked = TRUE )')
+                    .toString().should.equal 'FOREACH (n IN nodes(p)| SET n.marked = TRUE )'
 
-        describe 'return', ->
-            describe 'node', ->
-                it 'should pass', ->
+        describe 'queryBuilder.return(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .return('n')
                     .toString().should.equal 'RETURN n'
 
-                it 'should pass', ->
+        describe 'queryBuilder.return([query])', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .return(['name', 'age'])
                     .toString().should.equal 'RETURN n.name, n.age'
 
-                it 'should pass', ->
+        describe 'queryBuilder.return({query})', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .return({'name': 'Name', 'age': 'Age'})
                     .toString().should.equal 'RETURN n.name AS Name, n.age AS Age'
 
-            describe 'relationship', ->
-                it 'should pass', ->
+        describe 'queryBuilder.return([query], true)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .return(['name', 'age'], true)
                     .toString().should.equal 'RETURN r.name, r.age'
 
-                it 'should pass', ->
+        describe 'queryBuilder.return({query}, true)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .return({'name': 'Name', 'age': 'Age'}, true)
                     .toString().should.equal 'RETURN r.name AS Name, r.age AS Age'
 
-        describe 'union', ->
-            it 'should pass', ->
-                queryBuilder
-                .union('all')
-                .toString().should.equal 'UNION ALL'
+        describe 'queryBuilder.union([query])', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .union('all')
+                    .toString().should.equal 'UNION ALL'
 
-        describe 'using', ->
-            describe 'without param', ->
-                it 'should pass', ->
+        describe 'queryBuilder.using(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .using('n:Swedish(surname)')
                     .toString().should.equal 'USING n:Swedish(surname)'
 
-            describe 'with param', ->
-                it 'should pass', ->
+        describe 'queryBuilder.using(query, parameter)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .using('n:Swedish(surname)', 'INDEX')
                     .toString().should.equal 'USING INDEX n:Swedish(surname)'
 
-        describe 'orderBy', ->
-            describe 'node', ->
-                it 'should pass', ->
+        describe 'queryBuilder.orderBy(query)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .orderBy('n.name')
                     .toString().should.equal 'ORDER BY n.name'
 
-                it 'should pass', ->
+        describe 'queryBuilder.orderBy([query])', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .orderBy(['name', 'age'])
                     .toString().should.equal 'ORDER BY n.name, n.age'
 
-                it 'should pass', ->
+        describe 'queryBuilder.orderBy({query})', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .orderBy({ 'name': 'asc', 'age': 1, 'gender': true })
                     .toString().should.equal 'ORDER BY n.name ASC, n.age ASC, n.gender ASC'
 
-            describe 'relationship', ->
-                it 'should pass', ->
+        describe 'queryBuilder.orderBy([query], true)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .orderBy(['name', 'age'], true)
                     .toString().should.equal 'ORDER BY r.name, r.age'
 
-                it 'should pass', ->
+        describe 'queryBuilder.orderBy({query}, true)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
                     queryBuilder
                     .orderBy({ 'name': 'asc', 'age': 1, 'gender': true }, true)
                     .toString().should.equal 'ORDER BY r.name ASC, r.age ASC, r.gender ASC'
 
-        describe 'skip', ->
-            it 'should pass', ->
-                queryBuilder
-                .skip(1)
-                .toString().should.equal 'SKIP 1'
+        describe 'queryBuilder.skip(skip)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .skip(1)
+                    .toString().should.equal 'SKIP 1'
 
-        describe 'limit', ->
-            it 'should pass', ->
-                queryBuilder
-                .limit(1)
-                .toString().should.equal 'LIMIT 1'
+        describe 'queryBuilder.limit(limit)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .limit(1)
+                    .toString().should.equal 'LIMIT 1'
 
-            it 'should pass', ->
-                queryBuilder
-                .limit(1, 2)
-                .toString().should.equal 'LIMIT 1 SKIP 2'
+        describe 'queryBuilder.limit(limit, step)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .limit(1, 2)
+                    .toString().should.equal 'LIMIT 1 SKIP 2'
 
-        describe 'getFunctionList', ->
-            it 'should pass', ->
-                queryBuilder
-                .getList('function').should.deep.equal [
-                    'ALL', 'ANY', 'NONE', 'SINGLE',
-                    'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE',
-                    'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE',
-                    'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'COT', 'DEGREES', 'E', 'EXP', 'FLOOR', 'HAVERSIN', 'LOG', 'LOG10', 'PI', 'RADIANS', 'RAND', 'ROUND', 'SIGN', 'SIN', 'SQRT', 'TAN',
-                    'STR', 'REPLACE', 'SUBSTRING', 'LEFT', 'RIGHT', 'LTRIM', 'RTRIM', 'TRIM', 'LOWER', 'UPPER'
-                ]
+        describe 'queryBuilder.getList(type)', ->
+            describe 'when valid', ->
+                it 'should construct correct cypher query', ->
+                    queryBuilder
+                    .getList('function')
+                    .should.deep.equal [
+                        'ALL', 'ANY', 'NONE', 'SINGLE',
+                        'LENGTH', 'TYPE', 'ID', 'COALESCE', 'HEAD', 'LAST', 'TIMESTAMP', 'STARTNODE', 'ENDNODE',
+                        'NODES', 'RELATIONSHIPS', 'LABELS', 'EXTRACT', 'FILTER', 'TAIL', 'RANGE', 'REDUCE',
+                        'ABS', 'ACOS', 'ASIN', 'ATAN', 'COS', 'COT', 'DEGREES', 'E', 'EXP', 'FLOOR', 'HAVERSIN', 'LOG', 'LOG10', 'PI', 'RADIANS', 'RAND', 'ROUND', 'SIGN', 'SIN', 'SQRT', 'TAN',
+                        'STR', 'REPLACE', 'SUBSTRING', 'LEFT', 'RIGHT', 'LTRIM', 'RTRIM', 'TRIM', 'LOWER', 'UPPER'
+                    ]
 
-        describe 'execute', ->
-            it 'should pass', ->
-                true.should.be.true
+        describe 'queryBuilder.execute()', ->
+            describe 'when valid', ->
+                it 'should run cypher query', ->
+                    result = queryBuilder
+                                .start('*')
+                                .return('*')
+                                .execute()
 
-                result = queryBuilder
-                            .start('*')
-                            .return('*')
-                            .execute()
-
-                result.should.eventually.include.keys('data')
+                    result.should.eventually.include.keys('data')
 
     after ->
         Q.all([
