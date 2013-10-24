@@ -10,10 +10,15 @@ module.exports = (grunt) ->
         banner: "/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - " + "<%= grunt.template.today(\"yyyy-mm-dd\") %>\n" + "<%= pkg.homepage ? \"* \" + pkg.homepage + \"\\n\" : \"\" %>" + "* Copyright (c) <%= grunt.template.today(\"yyyy\") %> <%= pkg.author.name %>;" + " Licensed <%= _.pluck(pkg.licenses, \"type\").join(\", \") %> */\n"
 
         mochaTest:
+            single:
+                options:
+                    reporter: 'spec'
+                    require: ['coffee-script']
+                src: ['test/test.constraint.coffee']
             test:
                 options:
                     reporter: 'spec'
-                    require: ['coffee-script', 'watch']
+                    require: ['coffee-script']
                 src: ['test/**/*.coffee']
             generate:
                 options:
@@ -59,7 +64,7 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks "grunt-groc"
 
     # Default task.
-    grunt.registerTask "default", ["mochaTest"]
+    grunt.registerTask "default", ["mochaTest:test"]
 
     grunt.registerTask "doc", ["mochaTest:generate", "groc:generate"]
     grunt.registerTask "docupload", ["mochaTest:generate", "groc:github"]

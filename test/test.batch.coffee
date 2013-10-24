@@ -40,6 +40,9 @@ describe 'Batch', ->
                     result[0].id.should.equal parseInt(testNode[0]._id)
                     result[1].id.should.equal parseInt(testNode[1]._id)
                 )
+        describe 'when invalid', ->
+            it 'should throw error message', ->
+                (-> neo.executeBatch()).should.throw Error
 
     after ->
         Q.all([

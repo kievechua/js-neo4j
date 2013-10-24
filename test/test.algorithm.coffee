@@ -53,6 +53,10 @@ describe 'Algorithm', ->
                     result[0].start.should.equal "http://localhost:7474/db/data/node/#{testNode[0]._id}"
                     result[0].end.should.equal "http://localhost:7474/db/data/node/#{testNode[1]._id}"
                 )
+        describe 'when invalid', ->
+            it 'should throw error message', ->
+                (-> neo.findPath()).should.throw Error
+                (-> neo.findPath(1)).should.throw Error
 
     after (done) ->
         neo

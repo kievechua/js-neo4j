@@ -25,6 +25,12 @@ describe 'Constraint', ->
                 .fail((result) ->
                     console.log randomProperty
                 )
+        describe 'when invalid', ->
+            it 'should throw error message', ->
+                (-> neo.createUniquenessConstraint()).should.throw Error
+                (-> neo.createUniquenessConstraint(1)).should.throw Error
+                (-> neo.createUniquenessConstraint(1, 'some')).should.throw Error
+                (-> neo.createUniquenessConstraint('testperson', {})).should.throw Error
 
     describe 'neo.readConstraint()', ->
         describe 'when valid', ->
@@ -32,6 +38,9 @@ describe 'Constraint', ->
                 neo
                 .readConstraint()
                 .should.eventually.have.length.of.at.least 1
+        describe 'when invalid', ->
+            it 'should throw error message', ->
+                (-> neo.readConstraint(1)).should.throw Error
 
     describe 'neo.readUniquenessConstraint(label, property)', ->
         describe 'when valid', ->
@@ -41,6 +50,12 @@ describe 'Constraint', ->
                 .then((result) ->
                     result[0]['property-keys'][0].should.equal randomProperty
                 )
+        describe 'when invalid', ->
+            it 'should throw error message', ->
+                (-> neo.readUniquenessConstraint()).should.throw Error
+                (-> neo.readUniquenessConstraint(1)).should.throw Error
+                (-> neo.readUniquenessConstraint(1, 'some')).should.throw Error
+                (-> neo.readUniquenessConstraint('testperson', {})).should.throw Error
 
     describe 'neo.deleteConstraint(label, property)', ->
         describe 'when valid', ->
@@ -48,3 +63,8 @@ describe 'Constraint', ->
                 neo
                 .deleteConstraint('person', randomProperty)
                 .should.eventually.be.true
+        describe 'when invalid', ->
+            it 'should throw error message', ->
+                (-> neo.deleteConstraint()).should.throw Error
+                (-> neo.deleteConstraint(1)).should.throw Error
+                (-> neo.deleteConstraint('some', 1)).should.throw Error

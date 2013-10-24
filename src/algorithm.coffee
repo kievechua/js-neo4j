@@ -1,6 +1,7 @@
 utils = require './utils'
 request = require 'request'
 Q = require 'q'
+_ = require 'lodash'
 
 module.exports =
     # ###Find path
@@ -20,6 +21,9 @@ module.exports =
     ```
     ###
     findPath: (nodeId, params) ->
+        if _.isEmpty nodeId then throw new Error 'Node id cannot be empty'
+        if _.isEmpty params then throw new Error 'Params cannot be empty'
+
         utils.post(
             "#{@url}/db/data/node/#{nodeId}/paths"
             params

@@ -1,4 +1,5 @@
 utils = require './utils'
+_ = require 'lodash'
 
 module.exports =
     # ###Execute batch operation
@@ -37,6 +38,8 @@ module.exports =
     ```
     ###
     executeBatch: (params) ->
+        if _.isEmpty params then throw new Error 'Params cannot be empty'
+
         utils.post("#{@url}/db/data/batch", params, (result) -> result.body)
 
     # # ###Execute multiple operations in batch streaming
