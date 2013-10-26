@@ -319,7 +319,7 @@ class Cypher
         else
             _.union @constructor.FUNCTION_LIST, @constructor.QUERY_LIST, @constructor.OPERATION_LIST
 
-    execute: (query, params) ->
+    execute: (params = @_params) ->
         utils.post(
             "#{@url}/db/data/cypher",
             {

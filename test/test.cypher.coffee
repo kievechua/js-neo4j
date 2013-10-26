@@ -401,6 +401,16 @@ describe 'Cypher', ->
 
                     result.should.eventually.include.keys('data')
 
+        describe 'queryBuilder.execute({params})', ->
+            describe 'when valid', ->
+                it 'should run cypher query', ->
+                    result = queryBuilder
+                                .start('*')
+                                .return('*')
+                                .execute({name: 'Kieve Chua'})
+
+                    result.should.eventually.include.keys('data')
+
     after ->
         Q.all([
             neo.deleteNode(testNode[0]._id)
