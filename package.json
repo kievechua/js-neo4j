@@ -1,11 +1,11 @@
 {
   "author": "Kieve Chua <kievechua@gmail.com>",
-  "name": "neo4js",
+  "name": "js-neo4j",
   "description": "Neo4j REST API wrapper for Node.js",
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kievechua/neo4js.git"
+    "url": "https://github.com/kievechua/js-neo4j.git"
   },
   "main": "./src/main",
   "scripts": {

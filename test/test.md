@@ -133,10 +133,10 @@
        - [when valid](#label-neodeletelabelnodeid-label-when-valid)
    - [Main](#main)
      - [create new connection](#main-create-new-connection)
-       - [new Neo4js()](#main-create-new-connection-new-neo4js)
-         - [when valid](#main-create-new-connection-new-neo4js-when-valid)
-       - [new Neo4js(url)](#main-create-new-connection-new-neo4jsurl)
-         - [when valid](#main-create-new-connection-new-neo4jsurl-when-valid)
+       - [new Neo4js()](#main-create-new-connection-new-js-neo4j)
+         - [when valid](#main-create-new-connection-new-js-neo4j-when-valid)
+       - [new Neo4js(url)](#main-create-new-connection-new-js-neo4jurl)
+         - [when valid](#main-create-new-connection-new-js-neo4jurl-when-valid)
      - [neo.service()](#main-neoservice)
        - [when valid](#main-neoservice-when-valid)
    - [Node](#node)
@@ -206,7 +206,7 @@
      - [neo.get(url)](#utils-neogeturl)
        - [when valid](#utils-neogeturl-when-valid)
 <a name=""></a>
- 
+
 <a name="algorithm"></a>
 # Algorithm
 <a name="algorithm-neofindpathnodeid-parameters"></a>
@@ -924,9 +924,9 @@ return neo.deleteLabel(testNode[1]._id, 'testfriend').should.eventually.be["true
 # Main
 <a name="main-create-new-connection"></a>
 ## create new connection
-<a name="main-create-new-connection-new-neo4js"></a>
+<a name="main-create-new-connection-new-js-neo4j"></a>
 ### new Neo4js()
-<a name="main-create-new-connection-new-neo4js-when-valid"></a>
+<a name="main-create-new-connection-new-js-neo4j-when-valid"></a>
 #### when valid
 should return default Neo4j connection.
 
@@ -934,9 +934,9 @@ should return default Neo4j connection.
 return neo.url.should.equal('http://localhost:7474');
 ```
 
-<a name="main-create-new-connection-new-neo4jsurl"></a>
+<a name="main-create-new-connection-new-js-neo4jurl"></a>
 ### new Neo4js(url)
-<a name="main-create-new-connection-new-neo4jsurl-when-valid"></a>
+<a name="main-create-new-connection-new-js-neo4jurl-when-valid"></a>
 #### when valid
 should return default Neo4j connection.
 

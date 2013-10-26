@@ -2,10 +2,10 @@
 
 ---
 ## Installation
-`npm install neo4js`
+`npm install js-neo4j`
 
 ## Usage
-    {Neo4js} = require('neo4js')
+    {Neo4js} = require('js-neo4j')
 
     neo = new Neo4js()
 
@@ -30,9 +30,9 @@
             console.log 'error', arguments
         )
 
-Check out [api document](http://kievechua.github.io/neo4js/)
+Check out [api document](http://kievechua.github.io/js-neo4j/)
 
-Or [test generator document](http://kievechua.github.io/neo4js/doc/test/test.html)
+Or [test generator document](http://kievechua.github.io/js-neo4j/doc/test/test.html)
 
 All Neo4js CRUB interface come with little shorthand
 

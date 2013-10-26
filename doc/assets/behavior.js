@@ -13,7 +13,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "commentsOnly": true,
           "name": "Markdown"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/README.md",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/README.md",
         "projectPath": "README.md",
         "targetPath": "index",
         "pageTitle": "index",
@@ -129,7 +129,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/algorithm.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/algorithm.coffee",
         "projectPath": "src/algorithm.coffee",
         "targetPath": "algorithm",
         "pageTitle": "algorithm",
@@ -160,7 +160,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/batch.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/batch.coffee",
         "projectPath": "src/batch.coffee",
         "targetPath": "batch",
         "pageTitle": "batch",
@@ -199,7 +199,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/constraint.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/constraint.coffee",
         "projectPath": "src/constraint.coffee",
         "targetPath": "constraint",
         "pageTitle": "constraint",
@@ -270,7 +270,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/cypher.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/cypher.coffee",
         "projectPath": "src/cypher.coffee",
         "targetPath": "cypher",
         "pageTitle": "cypher",
@@ -309,7 +309,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/indexing.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/indexing.coffee",
         "projectPath": "src/indexing.coffee",
         "targetPath": "indexing",
         "pageTitle": "indexing",
@@ -356,7 +356,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/label.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/label.coffee",
         "projectPath": "src/label.coffee",
         "targetPath": "label",
         "pageTitle": "label",
@@ -427,7 +427,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/main.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/main.coffee",
         "projectPath": "src/main.coffee",
         "targetPath": "main",
         "pageTitle": "main",
@@ -458,7 +458,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/node.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/node.coffee",
         "projectPath": "src/node.coffee",
         "targetPath": "node",
         "pageTitle": "node",
@@ -569,7 +569,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/relationship.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/relationship.coffee",
         "projectPath": "src/relationship.coffee",
         "targetPath": "relationship",
         "pageTitle": "relationship",
@@ -723,7 +723,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
               "commentsOnly": true,
               "name": "Markdown"
             },
-            "sourcePath": "/Users/kieve/Shoppa/neo4js/test/test.md",
+            "sourcePath": "/Users/kieve/Shoppa/js-neo4j/test/test.md",
             "projectPath": "test/test.md",
             "targetPath": "test/test",
             "pageTitle": "test/test",
@@ -2038,7 +2038,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "data": {
                         "level": 3,
                         "title": "new Neo4js()",
-                        "slug": "new-neo4js"
+                        "slug": "new-js-neo4j"
                       },
                       "depth": 3,
                       "children": [
@@ -2057,7 +2057,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "data": {
                         "level": 3,
                         "title": "new Neo4js(url)",
-                        "slug": "new-neo4jsurl"
+                        "slug": "new-js-neo4jurl"
                       },
                       "depth": 3,
                       "children": [
@@ -2744,7 +2744,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/traversal.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/traversal.coffee",
         "projectPath": "src/traversal.coffee",
         "targetPath": "traversal",
         "pageTitle": "traversal",
@@ -2807,7 +2807,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "CoffeeScript"
         },
-        "sourcePath": "/Users/kieve/Shoppa/neo4js/src/utils.coffee",
+        "sourcePath": "/Users/kieve/Shoppa/js-neo4j/src/utils.coffee",
         "projectPath": "src/utils.coffee",
         "targetPath": "utils",
         "pageTitle": "utils",
