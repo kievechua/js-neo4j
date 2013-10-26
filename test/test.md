@@ -2,18 +2,24 @@
    - [Algorithm](#algorithm)
      - [neo.findPath(nodeId, {parameters})](#algorithm-neofindpathnodeid-parameters)
        - [when valid](#algorithm-neofindpathnodeid-parameters-when-valid)
+       - [when invalid](#algorithm-neofindpathnodeid-parameters-when-invalid)
    - [Batch](#batch)
      - [neo.executeBatch([tasks])](#batch-neoexecutebatchtasks)
        - [when valid](#batch-neoexecutebatchtasks-when-valid)
+       - [when invalid](#batch-neoexecutebatchtasks-when-invalid)
    - [Constraint](#constraint)
      - [neo.createUniquenessConstraint(label, [property])](#constraint-neocreateuniquenessconstraintlabel-property)
        - [when valid](#constraint-neocreateuniquenessconstraintlabel-property-when-valid)
+       - [when invalid](#constraint-neocreateuniquenessconstraintlabel-property-when-invalid)
      - [neo.readConstraint()](#constraint-neoreadconstraint)
        - [when valid](#constraint-neoreadconstraint-when-valid)
+       - [when invalid](#constraint-neoreadconstraint-when-invalid)
      - [neo.readUniquenessConstraint(label, property)](#constraint-neoreaduniquenessconstraintlabel-property)
        - [when valid](#constraint-neoreaduniquenessconstraintlabel-property-when-valid)
+       - [when invalid](#constraint-neoreaduniquenessconstraintlabel-property-when-invalid)
      - [neo.deleteConstraint(label, property)](#constraint-neodeleteconstraintlabel-property)
        - [when valid](#constraint-neodeleteconstraintlabel-property-when-valid)
+       - [when invalid](#constraint-neodeleteconstraintlabel-property-when-invalid)
    - [Cypher](#cypher)
      - [neo.executeCypher(query, parameters)](#cypher-neoexecutecypherquery-parameters)
        - [when valid](#cypher-neoexecutecypherquery-parameters-when-valid)
@@ -133,10 +139,10 @@
        - [when valid](#label-neodeletelabelnodeid-label-when-valid)
    - [Main](#main)
      - [create new connection](#main-create-new-connection)
-       - [new Neo4js()](#main-create-new-connection-new-js-neo4j)
-         - [when valid](#main-create-new-connection-new-js-neo4j-when-valid)
-       - [new Neo4js(url)](#main-create-new-connection-new-js-neo4jurl)
-         - [when valid](#main-create-new-connection-new-js-neo4jurl-when-valid)
+       - [new Neo4js()](#main-create-new-connection-new-neo4js)
+         - [when valid](#main-create-new-connection-new-neo4js-when-valid)
+       - [new Neo4js(url)](#main-create-new-connection-new-neo4jsurl)
+         - [when valid](#main-create-new-connection-new-neo4jsurl-when-valid)
      - [neo.service()](#main-neoservice)
        - [when valid](#main-neoservice-when-valid)
    - [Node](#node)
@@ -206,7 +212,7 @@
      - [neo.get(url)](#utils-neogeturl)
        - [when valid](#utils-neogeturl-when-valid)
 <a name=""></a>
-
+ 
 <a name="algorithm"></a>
 # Algorithm
 <a name="algorithm-neofindpathnodeid-parameters"></a>
@@ -228,6 +234,19 @@ return neo.findPath(testNode[0]._id, {
   result[0].start.should.equal("http://localhost:7474/db/data/node/" + testNode[0]._id);
   return result[0].end.should.equal("http://localhost:7474/db/data/node/" + testNode[1]._id);
 });
+```
+
+<a name="algorithm-neofindpathnodeid-parameters-when-invalid"></a>
+### when invalid
+should throw error message.
+
+```js
+(function() {
+  return neo.findPath();
+}).should["throw"](Error);
+return (function() {
+  return neo.findPath(1);
+}).should["throw"](Error);
 ```
 
 <a name="batch"></a>
@@ -255,6 +274,16 @@ return neo.executeBatch([
 });
 ```
 
+<a name="batch-neoexecutebatchtasks-when-invalid"></a>
+### when invalid
+should throw error message.
+
+```js
+return (function() {
+  return neo.executeBatch();
+}).should["throw"](Error);
+```
+
 <a name="constraint"></a>
 # Constraint
 <a name="constraint-neocreateuniquenessconstraintlabel-property"></a>
@@ -271,6 +300,25 @@ return neo.createUniquenessConstraint('person', [randomProperty]).then(function(
 });
 ```
 
+<a name="constraint-neocreateuniquenessconstraintlabel-property-when-invalid"></a>
+### when invalid
+should throw error message.
+
+```js
+(function() {
+  return neo.createUniquenessConstraint();
+}).should["throw"](Error);
+(function() {
+  return neo.createUniquenessConstraint(1);
+}).should["throw"](Error);
+(function() {
+  return neo.createUniquenessConstraint(1, 'some');
+}).should["throw"](Error);
+return (function() {
+  return neo.createUniquenessConstraint('testperson', {});
+}).should["throw"](Error);
+```
+
 <a name="constraint-neoreadconstraint"></a>
 ## neo.readConstraint()
 <a name="constraint-neoreadconstraint-when-valid"></a>
@@ -279,6 +327,16 @@ should return all constraint.
 
 ```js
 return neo.readConstraint().should.eventually.have.length.of.at.least(1);
+```
+
+<a name="constraint-neoreadconstraint-when-invalid"></a>
+### when invalid
+should throw error message.
+
+```js
+return (function() {
+  return neo.readConstraint(1);
+}).should["throw"](Error);
 ```
 
 <a name="constraint-neoreaduniquenessconstraintlabel-property"></a>
@@ -293,6 +351,25 @@ return neo.readUniquenessConstraint('person', randomProperty).then(function(resu
 });
 ```
 
+<a name="constraint-neoreaduniquenessconstraintlabel-property-when-invalid"></a>
+### when invalid
+should throw error message.
+
+```js
+(function() {
+  return neo.readUniquenessConstraint();
+}).should["throw"](Error);
+(function() {
+  return neo.readUniquenessConstraint(1);
+}).should["throw"](Error);
+(function() {
+  return neo.readUniquenessConstraint(1, 'some');
+}).should["throw"](Error);
+return (function() {
+  return neo.readUniquenessConstraint('testperson', {});
+}).should["throw"](Error);
+```
+
 <a name="constraint-neodeleteconstraintlabel-property"></a>
 ## neo.deleteConstraint(label, property)
 <a name="constraint-neodeleteconstraintlabel-property-when-valid"></a>
@@ -301,6 +378,22 @@ should return true.
 
 ```js
 return neo.deleteConstraint('person', randomProperty).should.eventually.be["true"];
+```
+
+<a name="constraint-neodeleteconstraintlabel-property-when-invalid"></a>
+### when invalid
+should throw error message.
+
+```js
+(function() {
+  return neo.deleteConstraint();
+}).should["throw"](Error);
+(function() {
+  return neo.deleteConstraint(1);
+}).should["throw"](Error);
+return (function() {
+  return neo.deleteConstraint('some', 1);
+}).should["throw"](Error);
 ```
 
 <a name="cypher"></a>
@@ -924,9 +1017,9 @@ return neo.deleteLabel(testNode[1]._id, 'testfriend').should.eventually.be["true
 # Main
 <a name="main-create-new-connection"></a>
 ## create new connection
-<a name="main-create-new-connection-new-js-neo4j"></a>
+<a name="main-create-new-connection-new-neo4js"></a>
 ### new Neo4js()
-<a name="main-create-new-connection-new-js-neo4j-when-valid"></a>
+<a name="main-create-new-connection-new-neo4js-when-valid"></a>
 #### when valid
 should return default Neo4j connection.
 
@@ -934,9 +1027,9 @@ should return default Neo4j connection.
 return neo.url.should.equal('http://localhost:7474');
 ```
 
-<a name="main-create-new-connection-new-js-neo4jurl"></a>
+<a name="main-create-new-connection-new-neo4jsurl"></a>
 ### new Neo4js(url)
-<a name="main-create-new-connection-new-js-neo4jurl-when-valid"></a>
+<a name="main-create-new-connection-new-neo4jsurl-when-valid"></a>
 #### when valid
 should return default Neo4j connection.
 

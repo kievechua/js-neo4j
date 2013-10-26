@@ -767,6 +767,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "when-valid"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when invalid",
+                        "slug": "when-invalid"
+                      },
+                      "depth": 3
                     }
                   ]
                 }
@@ -795,6 +803,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "level": 3,
                         "title": "when valid",
                         "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when invalid",
+                        "slug": "when-invalid"
                       },
                       "depth": 3
                     }
@@ -827,6 +843,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "when-valid"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when invalid",
+                        "slug": "when-invalid"
+                      },
+                      "depth": 3
                     }
                   ]
                 }, {
@@ -844,6 +868,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "level": 3,
                         "title": "when valid",
                         "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when invalid",
+                        "slug": "when-invalid"
                       },
                       "depth": 3
                     }
@@ -865,6 +897,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "slug": "when-valid"
                       },
                       "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when invalid",
+                        "slug": "when-invalid"
+                      },
+                      "depth": 3
                     }
                   ]
                 }, {
@@ -882,6 +922,14 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                         "level": 3,
                         "title": "when valid",
                         "slug": "when-valid"
+                      },
+                      "depth": 3
+                    }, {
+                      "type": "heading",
+                      "data": {
+                        "level": 3,
+                        "title": "when invalid",
+                        "slug": "when-invalid"
                       },
                       "depth": 3
                     }
@@ -2038,7 +2086,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "data": {
                         "level": 3,
                         "title": "new Neo4js()",
-                        "slug": "new-js-neo4j"
+                        "slug": "new-neo4js"
                       },
                       "depth": 3,
                       "children": [
@@ -2057,7 +2105,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
                       "data": {
                         "level": 3,
                         "title": "new Neo4js(url)",
-                        "slug": "new-js-neo4jurl"
+                        "slug": "new-neo4jsurl"
                       },
                       "depth": 3,
                       "children": [

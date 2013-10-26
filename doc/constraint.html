@@ -1,4 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><title>constraint</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="constraint"><meta name="groc-project-path" content="src/constraint.coffee"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">src/constraint.coffee</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="nv">utils = </span><span class="nx">require</span> <span class="s">&#39;./utils&#39;</span>
+<span class="nv">_ = </span><span class="nx">require</span> <span class="s">&#39;lodash&#39;</span>
 
 <span class="nv">module.exports =</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><h3 id="create-uniqueness-constraint">Create uniqueness constraint</h3>
 
@@ -6,6 +7,13 @@
 
 <pre><code>neo.createUniquenessConstraint('person', [ "name" ])
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">createUniquenessConstraint: createUniquenessConstraint = </span><span class="nf">(label, constraint) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label cannot be empty&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label must be string&#39;</span>
+
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">constraint</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Constraint cannot be empty&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isPlainObject</span> <span class="nx">constraint</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Constraint must not be object&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">constraint</span> <span class="k">then</span> <span class="nv">constraint = </span><span class="p">[</span><span class="nx">constraint</span><span class="p">]</span>
+
         <span class="nx">utils</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span>
             <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness&quot;</span>
             <span class="nv">property_keys: </span><span class="nx">constraint</span>
@@ -24,7 +32,12 @@
 
 <pre><code>neo.readUniquenessConstraint('person')
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readUniquenessConstraint: readUniquenessConstraint = </span><span class="nf">(label, property) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label cannot be empty&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label must be string&#39;</span>
+
         <span class="k">if</span> <span class="nx">property</span>
+            <span class="k">if</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">property</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Property must be string&#39;</span>
+
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
         <span class="k">else</span>
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness&quot;</span>
@@ -44,6 +57,8 @@
 <pre><code>neo.readConstraint()
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">readConstraint: readConstraint = </span><span class="nf">(label) -&gt;</span>
         <span class="k">if</span> <span class="nx">label</span>
+            <span class="k">unless</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label must be string&#39;</span>
+
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">&quot;</span>
         <span class="k">else</span>
             <span class="nv">url = </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint&quot;</span>
@@ -55,6 +70,12 @@
 
 <pre><code>neo.deleteConstraint('person', 'name')
 </code></pre></div></div><div class="code"><div class="wrapper">    <span class="nv">deleteConstraint: deleteConstraint = </span><span class="nf">(label, property) -&gt;</span>
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label cannot be empty&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Label must be string&#39;</span>
+
+        <span class="k">if</span> <span class="nx">_</span><span class="p">.</span><span class="nx">isEmpty</span> <span class="nx">property</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Property cannot be empty&#39;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">!</span><span class="nx">_</span><span class="p">.</span><span class="nx">isString</span> <span class="nx">label</span> <span class="k">then</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&#39;Property must be string&#39;</span>
+
         <span class="nx">utils</span><span class="p">.</span><span class="nx">del</span><span class="p">(</span>
             <span class="s">&quot;</span><span class="si">#{</span><span class="nx">@url</span><span class="si">}</span><span class="s">/db/data/schema/constraint/</span><span class="si">#{</span><span class="nx">label</span><span class="si">}</span><span class="s">/uniqueness/</span><span class="si">#{</span><span class="nx">property</span><span class="si">}</span><span class="s">&quot;</span>
             <span class="nf">(result) -&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">ok</span>
